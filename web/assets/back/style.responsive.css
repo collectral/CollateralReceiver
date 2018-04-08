@@ -1,0 +1,537 @@
+.responsive body
+{
+   min-width: 240px;
+}
+  
+.responsive img 
+{
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+}  
+  
+.responsive .gitst-content-layout img,
+.responsive .gitst-content-layout video
+{
+   max-width: 100%;
+   height: auto !important;
+}
+
+.responsive.responsive-phone .gitst-content-layout img 
+{
+   margin: 1%;
+}
+
+.responsive.responsive-phone .gitst-collage,
+.responsive.responsive-tablet .gitst-collage {
+   margin: 0 !important;
+}
+
+.responsive .gitst-content-layout .gitst-sidebar0, 
+.responsive .gitst-content-layout .gitst-sidebar1, 
+.responsive .gitst-content-layout .gitst-sidebar2 
+{
+   width: auto !important;
+}
+    
+.responsive .gitst-content-layout, 
+.responsive .gitst-content-layout-row, 
+.responsive .gitst-layout-cell 
+{
+   display: block;
+}
+
+.responsive .gitst-content-layout, 
+.responsive .gitst-content-layout-row
+{
+   padding: 0;
+}
+    
+.responsive .image-caption-wrapper 
+{
+   width: auto;
+}
+
+.responsive.responsive-tablet .gitst-vmenublock,
+.responsive.responsive-tablet .gitst-block
+{
+   margin-left: 1%;
+   margin-right: 1%;
+   width: 48%;
+   float: left;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+}
+
+.responsive .gitst-responsive-embed 
+{
+   height: 0;
+   padding-bottom: 56.25%;
+   /* 16:9 */
+    position: relative;
+}
+
+.responsive .gitst-responsive-embed iframe,
+.responsive .gitst-responsive-embed object,
+.responsive .gitst-responsive-embed embed
+{
+   height: 100%;
+   left: 0;
+   position: absolute;
+   top: 0;
+   width: 100%;
+}
+
+.responsive .gitst-header 
+{
+   width: auto !important;
+   max-width: none !important;
+   min-height: 100px !important;
+   min-width: 0 !important;
+   margin-right: 1% !important;
+   margin-left: 1% !important;
+   text-align: center;
+}
+
+.default-responsive .gitst-header 
+{
+   height: auto;
+}
+
+.default-responsive .gitst-header *
+{
+   position: relative;
+   text-align: center;
+   -webkit-transform: none !important;
+   -moz-transform: none !important;
+   -o-transform: none !important;
+   -ms-transform: none !important;
+   transform: none !important;
+}
+
+.default-responsive .gitst-header .gitst-headline, 
+.default-responsive .gitst-header .gitst-slogan 
+{
+   display: block !important;
+   top: 0 !important;
+   left: 0 !important;
+   margin: 2% !important;
+   text-align: center !important;
+}
+    
+.default-responsive .gitst-header .gitst-headline a, 
+.default-responsive .gitst-header .gitst-slogan 
+{
+   white-space: normal !important;
+}
+
+.default-responsive .gitst-header .gitst-logo
+{
+   display: inline-block;
+   margin: auto !important;
+   left: auto;
+   top: auto !important;
+   width: auto;
+   height: auto;
+}
+
+.responsive .gitst-header .gitst-slidenavigator 
+{
+   position: absolute;
+}
+
+.default-responsive .gitst-header .gitst-positioncontrol 
+{
+   display: block !important;
+   position: relative !important;
+   top: auto !important;
+   right: auto !important;
+   bottom: auto !important;
+   left: auto !important;
+   margin: 2% auto !important;
+   width: auto !important;
+   height: auto !important;
+}
+
+.responsive .gitst-header #gitst-flash-area
+{
+   display: none;
+}
+
+/* Search and other elements in header element directly */
+.default-responsive .gitst-header>.gitst-textblock
+{
+   position: relative !important;
+   display: block !important;
+   margin: 1% auto !important;
+   width: 75% !important;
+   top: auto !important;
+   right: auto !important;
+   bottom: auto !important;
+   left: auto !important;
+}
+
+.default-responsive .gitst-header .gitst-textblock 
+{
+   position: relative !important;
+   display: block !important;
+   margin: auto !important;
+   left: 0 !important;
+   right: 0 !important;
+   top: auto !important;
+   height: auto !important;
+   width: auto;
+   background-image: none;
+}
+
+/* '.gitst-header *' used noram align, but for '.gitst-textblock *' we must force align because of preview */
+.responsive .gitst-header .gitst-textblock *
+{
+   text-align: center !important;
+}
+
+.default-responsive .gitst-header .gitst-shapes > .gitst-textblock,
+.default-responsive .gitst-header .gitst-slide-item > .gitst-textblock
+{
+   display: none !important;
+}
+
+.default-responsive .gitst-header .gitst-shapes > .gitst-textblock *
+{
+   text-align: center !important;
+   width: auto !important;
+   height: auto !important;
+   display: block;
+}
+
+.default-responsive .gitst-header .gitst-slider .gitst-textblock *
+{
+   text-align: center !important;
+   width: auto !important;
+   height: auto !important;
+   display: block;
+}
+
+/* For icons like facebook, rss, etc. */
+.responsive .gitst-header>.gitst-textblock>div 
+{
+   width: 100%;
+}
+.responsive .gitst-sheet
+{
+   width: auto !important;
+   min-width: 240px !important;
+   max-width: none !important;
+   margin-right: 1% !important;
+   margin-left: 1% !important;
+   margin-top: 1% !important;
+}
+
+#gitst-resp {
+   display: none;
+}
+
+@media all and (max-width: 999px)
+{
+    #gitst-resp, #gitst-resp-t { display: block; }
+    #gitst-resp-m { display: none; }
+}
+
+@media all and (max-width: 480px)
+{
+    #gitst-resp, #gitst-resp-m { display: block; }
+    #gitst-resp-t { display: none; }
+}
+
+#gitst-resp-desktop {
+   display: none;
+}
+#gitst-resp-tablet-landscape {
+   display: none;
+}
+#gitst-resp-tablet-portrait {
+   display: none;
+}
+#gitst-resp-phone-landscape {
+   display: none;
+}
+#gitst-resp-phone-portrait {
+   display: none;
+}
+
+@media (min-width: 1200px)
+{
+    #gitst-resp-desktop { display: block; }
+}
+
+@media (min-width: 980px) and (max-width: 1199px)
+{
+    #gitst-resp-tablet-landscape { display: block; }
+}
+
+@media (min-width: 768px) and (max-width: 979px)
+{
+    #gitst-resp-tablet-portrait { display: block; }
+}
+
+@media (min-width: 480px) and (max-width: 767px)
+{
+    #gitst-resp-phone-landscape { display: block; }
+}
+
+@media (max-width: 479px)
+{
+    #gitst-resp-phone-portrait { display: block; }
+}
+/* dynamic width nav */
+.responsive nav.gitst-nav,
+.responsive .gitst-nav-inner
+{
+   width: auto !important;
+   position: relative !important;
+   top: auto !important;
+   left: auto !important;
+   right: auto !important;
+   bottom: auto !important;
+   margin-top: 0;
+   margin-bottom: 0;
+   min-width: 0;
+   text-align: left !important;
+}
+
+.responsive nav.gitst-nav
+{
+   min-width: 1%;
+}
+
+.responsive .gitst-nav 
+{
+   padding-left: 0;
+   padding-right: 0;
+}
+
+/* full width hmenu, instead of inline-block */
+.responsive .gitst-nav ul.gitst-hmenu 
+{
+   float: none;
+   text-align: center;
+   display: none;
+}
+
+/* elements on different lines */
+.responsive .gitst-nav ul.gitst-hmenu li,
+.responsive .gitst-hmenu-extra1,
+.responsive .gitst-hmenu-extra2
+{
+   float: none;
+}
+  
+/* horizontal margins */
+.responsive .gitst-nav ul.gitst-hmenu>li:first-child, 
+.responsive .gitst-nav ul.gitst-hmenu>li:last-child, 
+.responsive .gitst-nav ul.gitst-hmenu>li
+{
+   margin-left: 0;
+   margin-right: 0;
+}
+ 
+/* separator */ 
+.responsive .gitst-nav ul.gitst-hmenu>li:before
+{
+   display: none;
+}
+
+/* vertical distance between items */
+.responsive .gitst-nav ul.gitst-hmenu a
+{
+   margin-top: 1px !important;
+   margin-bottom: 1px !important;
+   height: auto;
+   white-space: normal;
+}
+
+.responsive .gitst-nav ul.gitst-hmenu>li:first-child>a
+{
+   margin-top: 0 !important;
+}
+
+.responsive .gitst-nav ul.gitst-hmenu>li:last-child>a
+{
+   margin-bottom: 0 !important;
+}
+
+/* fixes for extended menu */
+.responsive .gitst-nav .ext, 
+.responsive .gitst-nav ul.gitst-hmenu>li>ul, 
+.responsive .gitst-nav ul.gitst-hmenu>li>ul>li,
+.responsive .gitst-nav ul.gitst-hmenu>li>ul>li a
+{
+   width: auto !important;
+}
+
+/* submenu position on hover */
+.responsive .gitst-nav ul.gitst-hmenu ul
+{
+   left: auto !important;
+   right: auto !important;
+   top: auto !important;
+   bottom: auto !important;
+   display: none !important;
+   position: relative !important;
+   visibility: visible !important;
+}
+
+.responsive .gitst-nav ul.gitst-hmenu li.active>ul
+{
+   display: block !important;
+}
+.responsive .gitst-nav ul.gitst-hmenu ul li.active>a
+{
+   font-weight: bold;
+}
+
+.gitst-nav .gitst-menu-btn 
+{
+   border: 1px solid #404040;
+   border-radius: 3px;
+   box-shadow: 0 0 3px 0 rgba(0, 0, 0, .2);
+   display: none;
+   -svg-background: linear-gradient(to bottom, #707070 0, #000 100%);
+   background: -ms-linear-gradient(top, #707070 0, #000 100%);
+   background: -moz-linear-gradient(top, #707070 0, #000 100%);
+   background: -o-linear-gradient(top, #707070 0, #000 100%);
+   background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #707070), color-stop(1, #000));
+   background: -webkit-linear-gradient(top, #707070 0, #000 100%);
+   background: linear-gradient(to bottom, #707070 0, #000 100%);
+   margin: 3px;
+   outline: none;
+   padding: 5px;
+   position: relative;
+   vertical-align: bottom;
+   width: 20px;
+}
+
+.gitst-nav .gitst-menu-btn span 
+{
+   background: #E0E0E0;
+   border-radius: 2px;
+   display: block;
+   height: 3px;
+   margin: 3px 1px;
+   position: relative;
+   -moz-transition: background .2s;
+   -o-transition: background .2s;
+   -webkit-transition: background .2s;
+   transition: background .2s;
+}
+
+.gitst-nav .gitst-menu-btn:hover span
+{
+   background: #f3f3f3;
+}
+
+.responsive .gitst-nav .gitst-menu-btn 
+{
+   display: inline-block;
+}
+
+.responsive .gitst-nav .gitst-hmenu.visible 
+{
+   display: block;
+}
+
+.responsive .gitst-nav ul.gitst-hmenu>li>ul>li:first-child:after 
+{
+   display: none;
+}
+.responsive .gitst-nav ul.gitst-hmenu ul a
+{
+   padding-left: 4% !important;
+}
+.responsive .gitst-nav ul.gitst-hmenu ul ul a
+{
+   padding-left: 6% !important;
+}
+.responsive .gitst-nav ul.gitst-hmenu ul ul ul a
+{
+   padding-left: 8% !important;
+}
+.responsive .gitst-nav ul.gitst-hmenu ul ul ul ul a
+{
+   padding-left: 10% !important;
+}
+.responsive .gitst-nav ul.gitst-hmenu ul ul ul ul ul a
+{
+   padding-left: 12% !important;
+}
+  
+.responsive .gitst-nav ul.gitst-hmenu>li>ul
+{
+   padding: 0;
+}
+  
+.responsive .gitst-nav ul.gitst-hmenu>li>ul:before
+{
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+}
+
+.responsive .gitst-content-layout, 
+.responsive .gitst-content-layout-row, 
+.responsive .gitst-layout-cell 
+{
+   display: block;
+}
+
+.responsive .gitst-layout-cell 
+{
+   width: auto !important;
+   height: auto !important;
+}
+
+.responsive .gitst-content-layout:after, 
+.responsive .gitst-content-layout-row:after, 
+.responsive .gitst-layout-cell:after 
+{
+   content: ".";
+   display: block;
+   height: 0;
+   clear: both;
+   visibility: hidden;
+}
+
+.responsive .responsive-tablet-layout-cell,
+.responsive.responsive-tablet .gitst-footer .gitst-content-layout .gitst-layout-cell 
+{
+   margin: 1%;
+   width: 98% !important;
+   float: left;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+}
+
+.responsive .responsive-layout-row-2 .responsive-tablet-layout-cell,
+.responsive.responsive-tablet .gitst-footer .gitst-content-layout .responsive-layout-row-2 .gitst-layout-cell
+{
+   width: 48% !important;
+}
+
+.responsive .responsive-layout-row-3 .responsive-tablet-layout-cell,
+.responsive.responsive-tablet .gitst-footer .gitst-content-layout .responsive-layout-row-3 .gitst-layout-cell
+{
+   width: 31% !important;
+}
+.responsive .gitst-post
+{
+   border-radius: 0;
+}
+
+.responsive .gitst-footer-inner
+{
+   min-width: 0;
+}
+

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <listener>
+        <listener-class>
+            initialize.Application
+        </listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>ServletSyncReg</servlet-name>
+        <servlet-class>devices.ServletSyncReg</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletTemplates</servlet-name>
+        <servlet-class>devices.ServletFormsList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>confirm</servlet-name>
+        <servlet-class>devices.ServletConfirm</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetSingleForm</servlet-name>
+        <servlet-class>devices.ServletSingleForm</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Servers</servlet-name>
+        <servlet-class>servers.Server</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletSyncReg</servlet-name>
+        <url-pattern>/reg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletTemplates</servlet-name>
+        <url-pattern>/templ</url-pattern>
+    </servlet-mapping>
+    <!--Forms  -->
+    <servlet>
+        <servlet-name>forms</servlet-name>
+        <jsp-file>/forms.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>forms</servlet-name>
+        <url-pattern>/Forms/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>forms</servlet-name>
+        <url-pattern>/forms/*</url-pattern>
+    </servlet-mapping>
+    <!--End Forms  -->
+    <!--Files  -->
+    <servlet>
+        <servlet-name>files</servlet-name>
+        <jsp-file>/files.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>files</servlet-name>
+        <url-pattern>/Files/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>files</servlet-name>
+        <url-pattern>/files/*</url-pattern>
+    </servlet-mapping>
+    <!--End Files  -->
+    <!--Users  -->
+    <servlet>
+        <servlet-name>users</servlet-name>
+        <jsp-file>/users.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>users</servlet-name>
+        <url-pattern>/Users/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>users</servlet-name>
+        <url-pattern>/users/*</url-pattern>
+    </servlet-mapping>
+    <!--End Users-->
+    <!--Devices -->
+    <servlet>
+        <servlet-name>devices</servlet-name>
+        <jsp-file>/devices.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>devices</servlet-name>
+        <url-pattern>/Devices/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>devices</servlet-name>
+        <url-pattern>/devices/*</url-pattern>
+    </servlet-mapping>
+    <!--End Devices-->
+    <servlet>
+        <servlet-name>index</servlet-name>
+        <jsp-file>/index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>index</servlet-name>
+        <url-pattern>/web/*</url-pattern>
+    </servlet-mapping>
+    <!--Error Page-->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/index.jsp</location>
+    </error-page>
+    <!--End Error Page-->
+    <servlet-mapping>
+        <servlet-name>confirm</servlet-name>
+        <url-pattern>/confirm</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetSingleForm</servlet-name>
+        <url-pattern>/singleform</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Servers</servlet-name>
+        <url-pattern>/servers</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>

@@ -1,0 +1,2794 @@
+#gitst-main
+{
+   background: #F5F5F5 url('images/page.png') fixed;
+   margin:0 auto;
+   font-size: 12px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: justify;
+   position: relative;
+   width: 100%;
+   min-height: 100%;
+   left: 0;
+   top: 0;
+   cursor:default;
+   overflow:hidden;
+}
+table, ul.gitst-hmenu
+{
+   font-size: 12px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: justify;
+}
+
+h1, h2, h3, h4, h5, h6, p, a, ul, ol, li
+{
+   margin: 0;
+   padding: 0;
+}
+
+.gitst-button
+{
+   border-collapse: separate;
+   -webkit-border-radius: 0;
+   -webkit-background-origin: border !important;
+   -moz-background-origin: border !important;
+   background-origin: border-box !important;
+   background: #E5E5E5;
+   background: -webkit-linear-gradient(top, #FCFCFC 0, #CFCFCF 100%) no-repeat;
+   background: -moz-linear-gradient(top, #FCFCFC 0, #CFCFCF 100%) no-repeat;
+   background: -o-linear-gradient(top, #FCFCFC 0, #CFCFCF 100%) no-repeat;
+   background: -ms-linear-gradient(top, #FCFCFC 0, #CFCFCF 100%) no-repeat;
+   -svg-background: linear-gradient(top, #FCFCFC 0, #CFCFCF 100%) no-repeat;
+   background: linear-gradient(to bottom, #FCFCFC 0, #CFCFCF 100%) no-repeat;
+   border:1px solid #BFBFBF;
+   padding:0 20px;
+   margin:0 auto;
+   height:27px;
+}
+
+.gitst-postcontent,
+.gitst-postheadericons,
+.gitst-postfootericons,
+.gitst-blockcontent,
+ul.gitst-vmenu a 
+{
+   text-align: left;
+}
+
+.gitst-postcontent,
+.gitst-postcontent li,
+.gitst-postcontent table,
+.gitst-postcontent a,
+.gitst-postcontent a:link,
+.gitst-postcontent a:visited,
+.gitst-postcontent a.visited,
+.gitst-postcontent a:hover,
+.gitst-postcontent a.hovered
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   line-height: 150%;
+}
+
+.gitst-postcontent p
+{
+   margin: 12px 0;
+}
+
+.gitst-postcontent h1, .gitst-postcontent h1 a, .gitst-postcontent h1 a:link, .gitst-postcontent h1 a:visited, .gitst-postcontent h1 a:hover,
+.gitst-postcontent h2, .gitst-postcontent h2 a, .gitst-postcontent h2 a:link, .gitst-postcontent h2 a:visited, .gitst-postcontent h2 a:hover,
+.gitst-postcontent h3, .gitst-postcontent h3 a, .gitst-postcontent h3 a:link, .gitst-postcontent h3 a:visited, .gitst-postcontent h3 a:hover,
+.gitst-postcontent h4, .gitst-postcontent h4 a, .gitst-postcontent h4 a:link, .gitst-postcontent h4 a:visited, .gitst-postcontent h4 a:hover,
+.gitst-postcontent h5, .gitst-postcontent h5 a, .gitst-postcontent h5 a:link, .gitst-postcontent h5 a:visited, .gitst-postcontent h5 a:hover,
+.gitst-postcontent h6, .gitst-postcontent h6 a, .gitst-postcontent h6 a:link, .gitst-postcontent h6 a:visited, .gitst-postcontent h6 a:hover,
+.gitst-blockheader .t, .gitst-blockheader .t a, .gitst-blockheader .t a:link, .gitst-blockheader .t a:visited, .gitst-blockheader .t a:hover,
+.gitst-vmenublockheader .t, .gitst-vmenublockheader .t a, .gitst-vmenublockheader .t a:link, .gitst-vmenublockheader .t a:visited, .gitst-vmenublockheader .t a:hover,
+.gitst-headline, .gitst-headline a, .gitst-headline a:link, .gitst-headline a:visited, .gitst-headline a:hover,
+.gitst-slogan, .gitst-slogan a, .gitst-slogan a:link, .gitst-slogan a:visited, .gitst-slogan a:hover,
+.gitst-postheader, .gitst-postheader a, .gitst-postheader a:link, .gitst-postheader a:visited, .gitst-postheader a:hover
+{
+   font-size: 28px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: bold;
+   font-style: normal;
+   text-align: left;
+}
+
+.gitst-postcontent a, .gitst-postcontent a:link
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: none;
+   color: #1B87DE;
+}
+
+.gitst-postcontent a:visited, .gitst-postcontent a.visited
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: underline;
+   color: #9C9C9C;
+}
+
+.gitst-postcontent  a:hover, .gitst-postcontent a.hover
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: underline;
+   color: #F55D42;
+}
+
+.gitst-postcontent h1
+{
+   color: #7D7D7D;
+   margin: 10px 0;
+   font-size: 26px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: left;
+}
+
+.gitst-blockcontent h1
+{
+   margin: 10px 0;
+   font-size: 26px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: left;
+}
+
+.gitst-postcontent h1 a, .gitst-postcontent h1 a:link, .gitst-postcontent h1 a:hover, .gitst-postcontent h1 a:visited, .gitst-blockcontent h1 a, .gitst-blockcontent h1 a:link, .gitst-blockcontent h1 a:hover, .gitst-blockcontent h1 a:visited 
+{
+   font-size: 26px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: left;
+}
+
+.gitst-postcontent h2
+{
+   color: #4EA3E9;
+   margin: 10px 0 20px;
+   font-size: 26px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: left;
+}
+
+.gitst-blockcontent h2
+{
+   margin: 10px 0 20px;
+   font-size: 26px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: left;
+}
+
+.gitst-postcontent h2 a, .gitst-postcontent h2 a:link, .gitst-postcontent h2 a:hover, .gitst-postcontent h2 a:visited, .gitst-blockcontent h2 a, .gitst-blockcontent h2 a:link, .gitst-blockcontent h2 a:hover, .gitst-blockcontent h2 a:visited 
+{
+   font-size: 26px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: left;
+}
+
+.gitst-postcontent h3
+{
+   color: #9C9C9C;
+   margin: 10px 0;
+   font-size: 18px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: left;
+}
+
+.gitst-blockcontent h3
+{
+   margin: 10px 0;
+   font-size: 18px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: left;
+}
+
+.gitst-postcontent h3 a, .gitst-postcontent h3 a:link, .gitst-postcontent h3 a:hover, .gitst-postcontent h3 a:visited, .gitst-blockcontent h3 a, .gitst-blockcontent h3 a:link, .gitst-blockcontent h3 a:hover, .gitst-blockcontent h3 a:visited 
+{
+   font-size: 18px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: left;
+}
+
+.gitst-postcontent h4
+{
+   color: #696969;
+   margin: 20px 0;
+   font-size: 18px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: center;
+}
+
+.gitst-blockcontent h4
+{
+   margin: 20px 0;
+   font-size: 18px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: center;
+}
+
+.gitst-postcontent h4 a, .gitst-postcontent h4 a:link, .gitst-postcontent h4 a:hover, .gitst-postcontent h4 a:visited, .gitst-blockcontent h4 a, .gitst-blockcontent h4 a:link, .gitst-blockcontent h4 a:hover, .gitst-blockcontent h4 a:visited 
+{
+   font-size: 18px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: center;
+}
+
+.gitst-postcontent h5
+{
+   color: #FFFFFF;
+   font-size: 36px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: left;
+   line-height: 125%;
+}
+
+.gitst-blockcontent h5
+{
+   font-size: 36px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: left;
+   line-height: 125%;
+}
+
+.gitst-postcontent h5 a, .gitst-postcontent h5 a:link, .gitst-postcontent h5 a:hover, .gitst-postcontent h5 a:visited, .gitst-blockcontent h5 a, .gitst-blockcontent h5 a:link, .gitst-blockcontent h5 a:hover, .gitst-blockcontent h5 a:visited 
+{
+   font-size: 36px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: left;
+   line-height: 125%;
+}
+
+.gitst-postcontent h6
+{
+   color: #B5B5B5;
+   font-size: 14px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: bold;
+   font-style: normal;
+   text-align: left;
+}
+
+.gitst-blockcontent h6
+{
+   font-size: 14px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: bold;
+   font-style: normal;
+   text-align: left;
+}
+
+.gitst-postcontent h6 a, .gitst-postcontent h6 a:link, .gitst-postcontent h6 a:hover, .gitst-postcontent h6 a:visited, .gitst-blockcontent h6 a, .gitst-blockcontent h6 a:link, .gitst-blockcontent h6 a:hover, .gitst-blockcontent h6 a:visited 
+{
+   font-size: 14px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: bold;
+   font-style: normal;
+   text-align: left;
+}
+
+header, footer, article, nav, #gitst-hmenu-bg, .gitst-sheet, .gitst-hmenu a, .gitst-vmenu a, .gitst-slidenavigator > a, .gitst-checkbox:before, .gitst-radiobutton:before
+{
+   -webkit-background-origin: border !important;
+   -moz-background-origin: border !important;
+   background-origin: border-box !important;
+}
+
+header, footer, article, nav, #gitst-hmenu-bg, .gitst-sheet, .gitst-slidenavigator > a, .gitst-checkbox:before, .gitst-radiobutton:before
+{
+   display: block;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+}
+
+ul
+{
+   list-style-type: none;
+}
+
+ol
+{
+   list-style-position: inside;
+}
+
+html, body
+{
+   height: 100%;
+}
+
+/**
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ * https://github.com/necolas/normalize.css
+ */
+
+html {
+   -ms-text-size-adjust: 100%;
+   /* 2 */
+    -webkit-text-size-adjust: 100%;
+/* 2 */}
+
+body
+{
+   padding: 0;
+   margin:0;
+   min-width: 1000px;
+   color: #3D3D3D;
+}
+
+.gitst-header:before, 
+#gitst-header-bg:before, 
+.gitst-layout-cell:before, 
+.gitst-layout-wrapper:before, 
+.gitst-footer:before, 
+.gitst-nav:before, 
+#gitst-hmenu-bg:before, 
+.gitst-sheet:before 
+{
+   width: 100%;
+   content: " ";
+   display: table;
+   border-collapse: collapse;
+   border-spacing: 0;
+}
+
+.gitst-header:after, 
+#gitst-header-bg:after, 
+.gitst-layout-cell:after, 
+.gitst-layout-wrapper:after, 
+.gitst-footer:after, 
+.gitst-nav:after, 
+#gitst-hmenu-bg:after, 
+.gitst-sheet:after,
+.cleared, .clearfix:after 
+{
+   clear: both;
+   font: 0/0 serif;
+   display: block;
+   content: " ";
+}
+
+form
+{
+   padding: 0 !important;
+   margin: 0 !important;
+}
+
+table.position
+{
+   position: relative;
+   width: 100%;
+   table-layout: fixed;
+}
+
+li h1, .gitst-postcontent li h1, .gitst-blockcontent li h1 
+{
+   margin:1px;
+} 
+li h2, .gitst-postcontent li h2, .gitst-blockcontent li h2 
+{
+   margin:1px;
+} 
+li h3, .gitst-postcontent li h3, .gitst-blockcontent li h3 
+{
+   margin:1px;
+} 
+li h4, .gitst-postcontent li h4, .gitst-blockcontent li h4 
+{
+   margin:1px;
+} 
+li h5, .gitst-postcontent li h5, .gitst-blockcontent li h5 
+{
+   margin:1px;
+} 
+li h6, .gitst-postcontent li h6, .gitst-blockcontent li h6 
+{
+   margin:1px;
+} 
+li p, .gitst-postcontent li p, .gitst-blockcontent li p 
+{
+   margin:1px;
+}
+
+
+.gitst-shapes
+{
+   position: absolute;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   overflow: hidden;
+   z-index: 0;
+}
+
+.gitst-slider-inner {
+   position: relative;
+   overflow: hidden;
+   width: 100%;
+   height: 100%;
+}
+
+.gitst-slidenavigator > a {
+   display: inline-block;
+   vertical-align: middle;
+   outline-style: none;
+   font-size: 1px;
+}
+
+.gitst-slidenavigator > a:last-child {
+   margin-right: 0 !important;
+}
+
+.gitst-object547074591 h1, 
+.gitst-object547074591 h2, 
+.gitst-object547074591 h3, 
+.gitst-object547074591 h4, 
+.gitst-object547074591 h5, 
+.gitst-object547074591 h6, 
+.gitst-object547074591 p, 
+.gitst-object547074591 a, 
+.gitst-object547074591 ul, 
+.gitst-object547074591 ol, 
+.gitst-object547074591 li
+{
+  line-height: 36px;
+}
+
+.gitst-object547074591
+{  
+  position: absolute;
+  top: 15px;
+  left: 94.54%;
+  margin-left: -235px !important;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+      z-index: 101;
+  width: 249px;
+  height: 36px;
+}
+
+.default-responsive .gitst-object547074591
+{
+  }
+
+
+
+
+
+
+
+.gitst-header
+{
+   border:1px solid #CCCCCC;
+   margin:0 auto;
+   background-repeat: no-repeat;
+   height: 150px;
+   background-image: url('images/header.jpg');
+   background-position: 0 0;
+   position: relative;
+   width: 1000px;
+   z-index: auto !important;
+}
+
+.custom-responsive .gitst-header
+{
+   background-image: url('images/header.jpg');
+   background-position: 0 0;
+}
+
+.default-responsive .gitst-header,
+.default-responsive #gitst-header-bg
+{
+   background-image: url('images/header.jpg');
+   background-position: center center;
+   background-size: cover;
+}
+
+.gitst-header>.widget 
+{
+   position:absolute;
+   z-index:101;
+}
+
+.gitst-sheet
+{
+   background: #FCFCFC;
+   border:1px solid #CCCCCC;
+   margin:20px auto 0;
+   position:relative;
+   cursor:auto;
+   width: 1000px;
+   z-index: auto !important;
+}
+
+.gitst-nav
+{
+   background: #DEDEDE;
+   background: -webkit-linear-gradient(top, #FAFAFA 0, #BFBFBF 100%) no-repeat;
+   background: -moz-linear-gradient(top, #FAFAFA 0, #BFBFBF 100%) no-repeat;
+   background: -o-linear-gradient(top, #FAFAFA 0, #BFBFBF 100%) no-repeat;
+   background: -ms-linear-gradient(top, #FAFAFA 0, #BFBFBF 100%) no-repeat;
+   -svg-background: linear-gradient(top, #FAFAFA 0, #BFBFBF 100%) no-repeat;
+   background: linear-gradient(to bottom, #FAFAFA 0, #BFBFBF 100%) no-repeat;
+   margin:0 auto;
+   position: relative;
+   z-index: 499;
+   text-align: left;
+}
+
+ul.gitst-hmenu a, ul.gitst-hmenu a:link, ul.gitst-hmenu a:visited, ul.gitst-hmenu a:hover 
+{
+   outline: none;
+   position: relative;
+   z-index: 11;
+}
+
+ul.gitst-hmenu, ul.gitst-hmenu ul
+{
+   display: block;
+   margin: 0;
+   padding: 0;
+   border: 0;
+   list-style-type: none;
+}
+
+ul.gitst-hmenu li
+{
+   position: relative;
+   z-index: 5;
+   display: block;
+   float: left;
+   background: none;
+   margin: 0;
+   padding: 0;
+   border: 0;
+}
+
+ul.gitst-hmenu li:hover
+{
+   z-index: 10000;
+   white-space: normal;
+}
+
+ul.gitst-hmenu:after, ul.gitst-hmenu ul:after
+{
+   content: ".";
+   height: 0;
+   display: block;
+   visibility: hidden;
+   overflow: hidden;
+   clear: both;
+}
+
+ul.gitst-hmenu, ul.gitst-hmenu ul 
+{
+   min-height: 0;
+}
+
+ul.gitst-hmenu 
+{
+   display: inline-block;
+   vertical-align: bottom;
+}
+
+.gitst-nav:before 
+{
+   content:' ';
+}
+
+.gitst-hmenu-extra1
+{
+   position: relative;
+   display: block;
+   float: left;
+   width: auto;
+   height: auto;
+   background-position: center;
+}
+
+.gitst-hmenu-extra2
+{
+   position: relative;
+   display: block;
+   float: right;
+   width: auto;
+   height: auto;
+   background-position: center;
+}
+
+.gitst-hmenu
+{
+   float: left;
+}
+
+.gitst-menuitemcontainer
+{
+   margin:0 auto;
+}
+ul.gitst-hmenu>li {
+   margin-left: 1px;
+}
+ul.gitst-hmenu>li:first-child {
+   margin-left: 0;
+}
+ul.gitst-hmenu>li:last-child, ul.gitst-hmenu>li.last-child {
+   margin-right: 0;
+}
+
+ul.gitst-hmenu>li>a
+{
+   background: #E5E5E5;
+   background: -webkit-linear-gradient(top, #FCFCFC 0, #CFCFCF 100%) no-repeat;
+   background: -moz-linear-gradient(top, #FCFCFC 0, #CFCFCF 100%) no-repeat;
+   background: -o-linear-gradient(top, #FCFCFC 0, #CFCFCF 100%) no-repeat;
+   background: -ms-linear-gradient(top, #FCFCFC 0, #CFCFCF 100%) no-repeat;
+   -svg-background: linear-gradient(top, #FCFCFC 0, #CFCFCF 100%) no-repeat;
+   background: linear-gradient(to bottom, #FCFCFC 0, #CFCFCF 100%) no-repeat;
+   border:1px solid #D9D9D9;
+   padding:0 40px;
+   margin:0 auto;
+   position: relative;
+   display: block;
+   height: 41px;
+   cursor: pointer;
+   text-decoration: none;
+   color: #808080;
+   line-height: 41px;
+   text-align: center;
+}
+
+.gitst-hmenu>li>a, 
+.gitst-hmenu>li>a:link, 
+.gitst-hmenu>li>a:visited, 
+.gitst-hmenu>li>a.active, 
+.gitst-hmenu>li>a:hover
+{
+   font-size: 14px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: bold;
+   font-style: normal;
+   text-decoration: none;
+   text-align: left;
+}
+
+ul.gitst-hmenu>li>a.active
+{
+   background: #2E93E5;
+   background: -webkit-linear-gradient(top, #4EA3E9 0, #1C89E3 79%, #1A81D5 100%) no-repeat;
+   background: -moz-linear-gradient(top, #4EA3E9 0, #1C89E3 79%, #1A81D5 100%) no-repeat;
+   background: -o-linear-gradient(top, #4EA3E9 0, #1C89E3 79%, #1A81D5 100%) no-repeat;
+   background: -ms-linear-gradient(top, #4EA3E9 0, #1C89E3 79%, #1A81D5 100%) no-repeat;
+   -svg-background: linear-gradient(top, #4EA3E9 0, #1C89E3 79%, #1A81D5 100%) no-repeat;
+   background: linear-gradient(to bottom, #4EA3E9 0, #1C89E3 79%, #1A81D5 100%) no-repeat;
+   border:1px solid #197FE6;
+   padding:0 40px;
+   margin:0 auto;
+   color: #FFFFFF;
+   text-decoration: none;
+}
+
+ul.gitst-hmenu>li>a:visited, 
+ul.gitst-hmenu>li>a:hover, 
+ul.gitst-hmenu>li:hover>a {
+   text-decoration: none;
+}
+
+ul.gitst-hmenu>li>a:hover, .desktop ul.gitst-hmenu>li:hover>a
+{
+   background: #97C9F2;
+   background: -webkit-linear-gradient(top, #BBDCF7 0, #72B6EE 100%) no-repeat;
+   background: -moz-linear-gradient(top, #BBDCF7 0, #72B6EE 100%) no-repeat;
+   background: -o-linear-gradient(top, #BBDCF7 0, #72B6EE 100%) no-repeat;
+   background: -ms-linear-gradient(top, #BBDCF7 0, #72B6EE 100%) no-repeat;
+   -svg-background: linear-gradient(top, #BBDCF7 0, #72B6EE 100%) no-repeat;
+   background: linear-gradient(to bottom, #BBDCF7 0, #72B6EE 100%) no-repeat;
+   border:1px solid #60ADEB;
+   padding:0 40px;
+   margin:0 auto;
+}
+ul.gitst-hmenu>li>a:hover, 
+.desktop ul.gitst-hmenu>li:hover>a {
+   color: #FFFFFF;
+   text-decoration: none;
+}
+
+ul.gitst-hmenu li li a
+{
+   background: #97C9F2;
+   border:1px solid #2E93E5;
+   padding:0 8px;
+   margin:0 auto;
+}
+ul.gitst-hmenu li li 
+{
+   float: none;
+   width: auto;
+   margin-top: 0;
+   margin-bottom: 0;
+}
+
+.desktop ul.gitst-hmenu li li ul>li:first-child 
+{
+   margin-top: 0;
+}
+
+ul.gitst-hmenu li li ul>li:last-child 
+{
+   margin-bottom: 0;
+}
+
+.gitst-hmenu ul a
+{
+   display: block;
+   white-space: nowrap;
+   height: 23px;
+   min-width: 7em;
+   border: 1px solid transparent;
+   text-align: left;
+   line-height: 23px;
+   color: #092C49;
+   font-size: 12px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-decoration: none;
+   margin:0;
+}
+
+.gitst-hmenu li li a 
+{
+   border-top-width: 0 !important;
+}
+.gitst-hmenu li li:hover>a 
+{
+   border-top-width: 1px !important;
+}
+.gitst-hmenu ul>li:first-child>a 
+{
+   border-top-width: 1px !important;
+}
+
+.gitst-hmenu ul a:link, 
+.gitst-hmenu ul a:visited, 
+.gitst-hmenu ul a.active, 
+.gitst-hmenu ul a:hover
+{
+   text-align: left;
+   line-height: 23px;
+   color: #092C49;
+   font-size: 12px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-decoration: none;
+   margin:0;
+}
+
+ul.gitst-hmenu ul li a:hover, .desktop ul.gitst-hmenu ul li:hover>a
+{
+   background: #2E93E5;
+   border:1px solid #ABABAB;
+   margin:0 auto;
+}
+.gitst-hmenu ul a:hover
+{
+   color: #262626;
+}
+
+.gitst-hmenu ul li a.gitst-hmenu-before-hovered 
+{
+   border-bottom-width: 0 !important;
+}
+
+.desktop .gitst-hmenu ul li:hover>a
+{
+   color: #262626;
+}
+
+ul.gitst-hmenu ul:before
+{
+   background: #949494;
+   margin:0 auto;
+   display: block;
+   position: absolute;
+   content: ' ';
+   z-index: 1;
+}
+.desktop ul.gitst-hmenu li:hover>ul {
+   visibility: visible;
+   top: 100%;
+}
+.desktop ul.gitst-hmenu li li:hover>ul {
+   top: 0;
+   left: 100%;
+}
+
+ul.gitst-hmenu ul
+{
+   visibility: hidden;
+   position: absolute;
+   z-index: 10;
+   left: 0;
+   top: 0;
+   background-image: url('images/spacer.gif');
+}
+
+.desktop ul.gitst-hmenu>li>ul
+{
+   padding: 10px 30px 30px 30px;
+   margin: -10px 0 0 -30px;
+}
+
+.desktop ul.gitst-hmenu ul ul
+{
+   padding: 30px 30px 30px 10px;
+   margin: -30px 0 0 -10px;
+}
+
+.desktop ul.gitst-hmenu ul.gitst-hmenu-left-to-right 
+{
+   right: auto;
+   left: 0;
+   margin: -10px 0 0 -30px;
+}
+
+.desktop ul.gitst-hmenu ul.gitst-hmenu-right-to-left 
+{
+   left: auto;
+   right: 0;
+   margin: -10px -30px 0 0;
+}
+
+.desktop ul.gitst-hmenu li li:hover>ul.gitst-hmenu-left-to-right {
+   right: auto;
+   left: 100%;
+}
+.desktop ul.gitst-hmenu li li:hover>ul.gitst-hmenu-right-to-left {
+   left: auto;
+   right: 100%;
+}
+
+.desktop ul.gitst-hmenu ul ul.gitst-hmenu-left-to-right
+{
+   right: auto;
+   left: 0;
+   padding: 30px 30px 30px 10px;
+   margin: -30px 0 0 -10px;
+}
+
+.desktop ul.gitst-hmenu ul ul.gitst-hmenu-right-to-left
+{
+   left: auto;
+   right: 0;
+   padding: 30px 10px 30px 30px;
+   margin: -30px -10px 0 0;
+}
+
+.desktop ul.gitst-hmenu li ul>li:first-child {
+   margin-top: 0;
+}
+.desktop ul.gitst-hmenu li ul>li:last-child {
+   margin-bottom: 0;
+}
+
+.desktop ul.gitst-hmenu ul ul:before
+{
+   border-radius: 0;
+   top: 30px;
+   bottom: 30px;
+   right: 30px;
+   left: 10px;
+}
+
+.desktop ul.gitst-hmenu>li>ul:before
+{
+   top: 10px;
+   right: 30px;
+   bottom: 30px;
+   left: 30px;
+}
+
+.desktop ul.gitst-hmenu>li>ul.gitst-hmenu-left-to-right:before {
+   right: 30px;
+   left: 30px;
+}
+.desktop ul.gitst-hmenu>li>ul.gitst-hmenu-right-to-left:before {
+   right: 30px;
+   left: 30px;
+}
+.desktop ul.gitst-hmenu ul ul.gitst-hmenu-left-to-right:before {
+   right: 30px;
+   left: 10px;
+}
+.desktop ul.gitst-hmenu ul ul.gitst-hmenu-right-to-left:before {
+   right: 10px;
+   left: 30px;
+}
+
+.gitst-layout-wrapper
+{
+   position: relative;
+   margin: 0 auto 0 auto;
+   z-index: auto !important;
+}
+
+.gitst-content-layout
+{
+   display: table;
+   width: 100%;
+   table-layout: fixed;
+}
+
+.gitst-content-layout-row 
+{
+   display: table-row;
+}
+
+.gitst-layout-cell
+{
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+   display: table-cell;
+   vertical-align: top;
+}
+
+/* need only for content layout in post content */ 
+.gitst-postcontent .gitst-content-layout
+{
+   border-collapse: collapse;
+}
+
+.gitst-vmenublock
+{
+   margin:10px;
+}
+div.gitst-vmenublock img
+{
+   margin: 0;
+}
+
+.gitst-vmenublockheader
+{
+   background: #545454;
+   background: -webkit-linear-gradient(top, rgba(105, 105, 105, 0.8) 0, rgba(66, 66, 66, 0.8) 100%) no-repeat;
+   background: -moz-linear-gradient(top, rgba(105, 105, 105, 0.8) 0, rgba(66, 66, 66, 0.8) 100%) no-repeat;
+   background: -o-linear-gradient(top, rgba(105, 105, 105, 0.8) 0, rgba(66, 66, 66, 0.8) 100%) no-repeat;
+   background: -ms-linear-gradient(top, rgba(105, 105, 105, 0.8) 0, rgba(66, 66, 66, 0.8) 100%) no-repeat;
+   -svg-background: linear-gradient(top, rgba(105, 105, 105, 0.8) 0, rgba(66, 66, 66, 0.8) 100%) no-repeat;
+   background: linear-gradient(to bottom, rgba(105, 105, 105, 0.8) 0, rgba(66, 66, 66, 0.8) 100%) no-repeat;
+   padding:10px 0;
+   margin:0 auto;
+}
+.gitst-vmenublockheader .t,
+.gitst-vmenublockheader .t a,
+.gitst-vmenublockheader .t a:link,
+.gitst-vmenublockheader .t a:visited, 
+.gitst-vmenublockheader .t a:hover
+{
+   color: #000000;
+   font-size: 14px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: bold;
+   font-style: normal;
+   margin-left: 10px;
+   margin-right: 10px;
+}
+
+.gitst-vmenublockcontent
+{
+   background: #D9D9D9;
+   background: rgba(217, 217, 217, 0.6);
+   background: #D9D9D9;
+   background: rgba(217, 217, 217, 0.6);
+   border:1px solid rgba(191, 191, 191, 0.6);
+   margin:0 auto;
+}
+
+ul.gitst-vmenu, ul.gitst-vmenu ul
+{
+   list-style: none;
+   display: block;
+}
+
+ul.gitst-vmenu, ul.gitst-vmenu li
+{
+   display: block;
+   margin: 0;
+   padding: 0;
+   width: auto;
+   line-height: 0;
+}
+
+ul.gitst-vmenu
+{
+   margin-top: 0;
+   margin-bottom: 0;
+}
+
+ul.gitst-vmenu ul
+{
+   display: none;
+   margin: 0;
+   padding: 0;
+   position: relative;
+}
+
+ul.gitst-vmenu ul.active
+{
+   display: block;
+}
+
+ul.gitst-vmenu>li>a
+{
+   padding:0 10px;
+   margin:0 auto;
+   font-size: 12px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: bold;
+   font-style: normal;
+   text-decoration: none;
+   color: #757575;
+   min-height: 28px;
+   line-height: 28px;
+}
+ul.gitst-vmenu a 
+{
+   display: block;
+   cursor: pointer;
+   z-index: 1;
+   position:relative;
+}
+
+ul.gitst-vmenu li{
+   position:relative;
+}
+
+ul.gitst-vmenu>li
+{
+   margin-top: 0;
+}
+ul.gitst-vmenu>li>ul
+{
+   padding: 0;
+   margin-top: 0;
+   margin-bottom: 0;
+}
+ul.gitst-vmenu>li:first-child
+{
+   margin-top:0;
+}
+
+ul.gitst-vmenu>li>a:before
+{
+   content:url('images/vmenuitemicon.png');
+   margin-right:5px;
+   bottom: 2px;
+   position:relative;
+   display:inline-block;
+   vertical-align:middle;
+   font-size:0;
+   line-height:0;
+}
+.opera ul.gitst-vmenu>li>a:before
+{
+   /* Vertical-align:middle in Opera doesn't need additional offset */
+    bottom: 0;
+}
+
+ul.gitst-vmenu>li>a.active:before
+{
+   content:url('images/vmenuactiveitemicon.png');
+   margin-right:5px;
+   bottom: 2px;
+   position:relative;
+   display:inline-block;
+   vertical-align:middle;
+   font-size:0;
+   line-height:0;
+}
+.opera ul.gitst-vmenu>li>a.active:before
+{
+   /* Vertical-align:middle in Opera doesn't need additional offset */
+    bottom: 0;
+}
+
+ul.gitst-vmenu>li>a:hover:before,  ul.gitst-vmenu>li>a.active:hover:before,  ul.gitst-vmenu>li:hover>a:before,  ul.gitst-vmenu>li:hover>a.active:before
+{
+   content:url('images/vmenuhovereditemicon.png');
+   margin-right:5px;
+   bottom: 2px;
+   position:relative;
+   display:inline-block;
+   vertical-align:middle;
+   font-size:0;
+   line-height:0;
+}
+.opera ul.gitst-vmenu>li>a:hover:before, .opera   ul.gitst-vmenu>li>a.active:hover:before, .opera   ul.gitst-vmenu>li:hover>a:before, .opera   ul.gitst-vmenu>li:hover>a.active:before
+{
+   /* Vertical-align:middle in Opera doesn't need additional offset */
+    bottom: 0;
+}
+
+ul.gitst-vmenu>li>a:hover, ul.gitst-vmenu>li>a.active:hover
+{
+   background: #F44425;
+   background: -webkit-linear-gradient(top, #F66E55 0, #F22F0D 75%, #DA2A0B 100%) no-repeat;
+   background: -moz-linear-gradient(top, #F66E55 0, #F22F0D 75%, #DA2A0B 100%) no-repeat;
+   background: -o-linear-gradient(top, #F66E55 0, #F22F0D 75%, #DA2A0B 100%) no-repeat;
+   background: -ms-linear-gradient(top, #F66E55 0, #F22F0D 75%, #DA2A0B 100%) no-repeat;
+   -svg-background: linear-gradient(top, #F66E55 0, #F22F0D 75%, #DA2A0B 100%) no-repeat;
+   background: linear-gradient(to bottom, #F66E55 0, #F22F0D 75%, #DA2A0B 100%) no-repeat;
+   padding:0 10px;
+   margin:0 auto;
+}
+
+ul.gitst-vmenu a:hover, ul.gitst-vmenu a.active:hover 
+{
+   color: #791806;
+}
+
+ul.gitst-vmenu>li>a.active:hover>span.border-top, ul.gitst-vmenu>li>a.active:hover>span.border-bottom 
+{
+   background-color: transparent;
+}
+
+ul.gitst-vmenu>li>a.active
+{
+   padding:0 10px;
+   margin:0 auto;
+   color: #1A7ED1;
+}
+
+ul.gitst-vmenu>li>ul:before
+{
+   margin:0 auto;
+   display: block;
+   position: absolute;
+   content: ' ';
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+}
+
+ul.gitst-vmenu li li a
+{
+   margin:0 auto;
+   position: relative;
+}
+ul.gitst-vmenu ul li
+{
+   margin: 0;
+   padding: 0;
+}
+ul.gitst-vmenu li li{
+   position: relative;
+   margin-top: 0;
+}
+
+ul.gitst-vmenu ul a
+{
+   display: block;
+   position: relative;
+   min-height: 20px;
+   overflow: visible;
+   padding: 0;
+   padding-left: 25px;
+   padding-right: 0;
+   z-index: 0;
+   line-height: 20px;
+   color: #1A7ED1;
+   font-size: 11px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   margin-left: 0;
+   margin-right: 0;
+}
+
+ul.gitst-vmenu ul a:visited, ul.gitst-vmenu ul a.active:hover, ul.gitst-vmenu ul a:hover, ul.gitst-vmenu ul a.active
+{
+   line-height: 20px;
+   color: #1A7ED1;
+   font-size: 11px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   margin-left: 0;
+   margin-right: 0;
+}
+
+ul.gitst-vmenu ul ul a
+{
+   padding-left: 50px;
+}
+ul.gitst-vmenu ul ul ul a
+{
+   padding-left: 75px;
+}
+ul.gitst-vmenu ul ul ul ul a
+{
+   padding-left: 100px;
+}
+ul.gitst-vmenu ul ul ul ul ul a
+{
+   padding-left: 125px;
+}
+
+ul.gitst-vmenu ul>li>a:hover, ul.gitst-vmenu ul>li>a.active:hover
+{
+   background: #97C9F2;
+   margin:0 auto;
+}
+ul.gitst-vmenu ul li a:hover, ul.gitst-vmenu ul li a.active:hover
+{
+   color: #911C08;
+}
+
+ul.gitst-vmenu ul a:hover:after
+{
+   background-position: center ;
+}
+ul.gitst-vmenu ul a.active:hover:after
+{
+   background-position: center ;
+}
+ul.gitst-vmenu ul a.active:after
+{
+   background-position: bottom ;
+}
+
+ul.gitst-vmenu ul>li>a.active
+{
+   background: #97C9F2;
+   margin:0 auto;
+}
+ul.gitst-vmenu ul a.active, ul.gitst-vmenu ul a:hover, ul.gitst-vmenu ul a.active:hover
+{
+   color: #4D4D4D;
+}
+
+.gitst-block
+{
+   margin:10px;
+}
+div.gitst-block img
+{
+   border: none;
+   margin: 0;
+}
+
+.gitst-blockheader
+{
+   background: #F7765F;
+   background: -webkit-linear-gradient(top, rgba(249, 151, 134, 0.8) 0, rgba(245, 89, 61, 0.8) 100%) no-repeat;
+   background: -moz-linear-gradient(top, rgba(249, 151, 134, 0.8) 0, rgba(245, 89, 61, 0.8) 100%) no-repeat;
+   background: -o-linear-gradient(top, rgba(249, 151, 134, 0.8) 0, rgba(245, 89, 61, 0.8) 100%) no-repeat;
+   background: -ms-linear-gradient(top, rgba(249, 151, 134, 0.8) 0, rgba(245, 89, 61, 0.8) 100%) no-repeat;
+   -svg-background: linear-gradient(top, rgba(249, 151, 134, 0.8) 0, rgba(245, 89, 61, 0.8) 100%) no-repeat;
+   background: linear-gradient(to bottom, rgba(249, 151, 134, 0.8) 0, rgba(245, 89, 61, 0.8) 100%) no-repeat;
+   padding:10px 7px;
+   margin:0 auto;
+}
+.gitst-blockheader .t,
+.gitst-blockheader .t a,
+.gitst-blockheader .t a:link,
+.gitst-blockheader .t a:visited, 
+.gitst-blockheader .t a:hover
+{
+   color: #000000;
+   font-size: 14px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: bold;
+   font-style: normal;
+   margin-left: 10px;
+   margin-right: 10px;
+}
+
+.gitst-blockcontent
+{
+   background: #FFFFFF;
+   background: rgba(255, 255, 255, 0.5);
+   border:1px solid rgba(191, 191, 191, 0.5);
+   padding:7px;
+   margin:0 auto;
+   color: #3D3D3D;
+   font-size: 12px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+}
+.gitst-blockcontent table,
+.gitst-blockcontent li, 
+.gitst-blockcontent a,
+.gitst-blockcontent a:link,
+.gitst-blockcontent a:visited,
+.gitst-blockcontent a:hover
+{
+   color: #3D3D3D;
+   font-size: 12px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+}
+
+.gitst-blockcontent a, .gitst-blockcontent a:link
+{
+   color: #F55D42;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: underline;
+}
+
+.gitst-blockcontent a:visited, .gitst-blockcontent a.visited
+{
+   color: #B8B8B8;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: underline;
+}
+
+.gitst-blockcontent a:hover, .gitst-blockcontent a.hover
+{
+   color: #F55D42;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: none;
+}
+.gitst-block ul>li:before
+{
+   content:url('images/blockbullets.png');
+   margin-right:6px;
+   bottom: 2px;
+   position:relative;
+   display:inline-block;
+   vertical-align:middle;
+   font-size:0;
+   line-height:0;
+   margin-left: -13px;
+}
+.opera .gitst-block ul>li:before
+{
+   /* Vertical-align:middle in Opera doesn't need additional offset */
+    bottom: 0;
+}
+
+.gitst-block li
+{
+   font-size: 12px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: none;
+   line-height: 125%;
+   color: #696969;
+}
+
+.gitst-block ul>li, .gitst-block ol
+{
+   padding: 0;
+}
+
+.gitst-block ul>li
+{
+   padding-left: 13px;
+}
+
+.gitst-breadcrumbs
+{
+   margin:0 auto;
+}
+
+a.gitst-button,
+a.gitst-button:link,
+a:link.gitst-button:link,
+body a.gitst-button:link,
+a.gitst-button:visited,
+body a.gitst-button:visited,
+input.gitst-button,
+button.gitst-button
+{
+   text-decoration: none;
+   font-size: 10px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   position:relative;
+   display: inline-block;
+   vertical-align: middle;
+   white-space: nowrap;
+   text-align: center;
+   color: #000000;
+   margin: 0 5px 0 0 !important;
+   overflow: visible;
+   cursor: pointer;
+   text-indent: 0;
+   line-height: 27px;
+   -webkit-box-sizing: content-box;
+   -moz-box-sizing: content-box;
+   box-sizing: content-box;
+}
+
+.gitst-button img
+{
+   margin: 0;
+   vertical-align: middle;
+}
+
+.firefox2 .gitst-button
+{
+   display: block;
+   float: left;
+}
+
+input, select, textarea, a.gitst-search-button span
+{
+   vertical-align: middle;
+   font-size: 10px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+  
+}
+
+.gitst-block select 
+{
+   width:96%;
+}
+
+input.gitst-button
+{
+   float: none !important;
+   -webkit-appearance: none;
+}
+
+.gitst-button.active, .gitst-button.active:hover
+{
+   background: #60ADEB;
+   background: -webkit-linear-gradient(top, #84C0F0 0, #409CE7 100%) no-repeat;
+   background: -moz-linear-gradient(top, #84C0F0 0, #409CE7 100%) no-repeat;
+   background: -o-linear-gradient(top, #84C0F0 0, #409CE7 100%) no-repeat;
+   background: -ms-linear-gradient(top, #84C0F0 0, #409CE7 100%) no-repeat;
+   -svg-background: linear-gradient(top, #84C0F0 0, #409CE7 100%) no-repeat;
+   background: linear-gradient(to bottom, #84C0F0 0, #409CE7 100%) no-repeat;
+   border:1px solid #2E93E5;
+   padding:0 20px;
+   margin:0 auto;
+}
+.gitst-button.active, .gitst-button.active:hover {
+   color: #061E32 !important;
+}
+
+.gitst-button.hover, .gitst-button:hover
+{
+   background: #60ADEB;
+   background: -webkit-linear-gradient(top, #84C0F0 0, #409CE7 100%) no-repeat;
+   background: -moz-linear-gradient(top, #84C0F0 0, #409CE7 100%) no-repeat;
+   background: -o-linear-gradient(top, #84C0F0 0, #409CE7 100%) no-repeat;
+   background: -ms-linear-gradient(top, #84C0F0 0, #409CE7 100%) no-repeat;
+   -svg-background: linear-gradient(top, #84C0F0 0, #409CE7 100%) no-repeat;
+   background: linear-gradient(to bottom, #84C0F0 0, #409CE7 100%) no-repeat;
+   border:1px solid #60ADEB;
+   padding:0 20px;
+   margin:0 auto;
+}
+.gitst-button.hover, .gitst-button:hover {
+   color: #FCFCFC !important;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="number"], input[type="range"], input[type="tel"], input[type="time"], input[type="week"], textarea
+{
+   background: #F8FAFB;
+   -webkit-border-radius:4px;
+   -moz-border-radius:4px;
+   border-radius:4px;
+   -webkit-box-shadow:0 0 2px 1px rgba(0, 0, 0, 0.35);
+   -moz-box-shadow:0 0 2px 1px rgba(0, 0, 0, 0.35);
+   box-shadow:0 0 2px 1px rgba(0, 0, 0, 0.35);
+   border:1px solid #F7765F;
+   margin:0 auto;
+}
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="color"], input[type="date"], input[type="datetime"], input[type="datetime-local"], input[type="month"], input[type="number"], input[type="range"], input[type="tel"], input[type="time"], input[type="week"], textarea
+{
+   width: 100%;
+   padding: 10px 0;
+   color: #741706 !important;
+   font-size: 13px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-shadow: none;
+}
+input.gitst-error, textarea.gitst-error
+{
+   background: #F8FAFB;
+   border:1px solid #F5250A;
+   margin:0 auto;
+}
+input.gitst-error, textarea.gitst-error {
+   color: #741706 !important;
+   font-size: 13px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+}
+form.gitst-search input[type="text"]
+{
+   background: #F8FAFB;
+   border-radius: 0;
+   border:2px solid #CAD6E2;
+   margin:0 auto;
+   width: 100%;
+   padding: 8px 0;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+   color: #741706 !important;
+   font-size: 13px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+}
+form.gitst-search 
+{
+   background-image: none;
+   border: 0;
+   display:block;
+   position:relative;
+   top:0;
+   padding:0;
+   margin:5px;
+   left:0;
+   line-height: 0;
+}
+
+form.gitst-search input, a.gitst-search-button
+{
+   -webkit-appearance: none;
+   top:0;
+   right:0;
+}
+
+form.gitst-search>input, a.gitst-search-button{
+   bottom:0;
+   left:0;
+   vertical-align: middle;
+}
+
+form.gitst-search input[type="submit"], input.gitst-search-button, a.gitst-search-button
+{
+   border-radius: 0;
+   margin:0 auto;
+}
+form.gitst-search input[type="submit"], input.gitst-search-button, a.gitst-search-button {
+   position:absolute;
+   left:auto;
+   display:block;
+   border:none;
+   background:url('images/searchicon.png') center center no-repeat;
+   width:24px;
+   height: 100%;
+   padding:0;
+   color: #545454 !important;
+   cursor: pointer;
+}
+
+a.gitst-search-button span.gitst-search-button-text {
+   display: none;
+}
+
+label.gitst-checkbox:before
+{
+   background: #F8FAFB;
+   -webkit-border-radius:1px;
+   -moz-border-radius:1px;
+   border-radius:1px;
+   border-width: 0;
+   margin:0 auto;
+   width:16px;
+   height:16px;
+}
+label.gitst-checkbox
+{
+   cursor: pointer;
+   font-size: 13px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   line-height: 16px;
+   display: inline-block;
+   color: #741706 !important;
+}
+
+.gitst-checkbox>input[type="checkbox"]
+{
+   margin: 0 5px 0 0;
+}
+
+label.gitst-checkbox.active:before
+{
+   background: #97C9F2;
+   -webkit-border-radius:1px;
+   -moz-border-radius:1px;
+   border-radius:1px;
+   border-width: 0;
+   margin:0 auto;
+   width:16px;
+   height:16px;
+   display: inline-block;
+}
+
+label.gitst-checkbox.hovered:before
+{
+   background: #DBECFB;
+   -webkit-border-radius:1px;
+   -moz-border-radius:1px;
+   border-radius:1px;
+   border-width: 0;
+   margin:0 auto;
+   width:16px;
+   height:16px;
+   display: inline-block;
+}
+
+label.gitst-radiobutton:before
+{
+   background: #F8FAFB;
+   -webkit-border-radius:3px;
+   -moz-border-radius:3px;
+   border-radius:3px;
+   border-width: 0;
+   margin:0 auto;
+   width:12px;
+   height:12px;
+}
+label.gitst-radiobutton
+{
+   cursor: pointer;
+   font-size: 13px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   line-height: 12px;
+   display: inline-block;
+   color: #741706 !important;
+}
+
+.gitst-radiobutton>input[type="radio"]
+{
+   vertical-align: baseline;
+   margin: 0 5px 0 0;
+}
+
+label.gitst-radiobutton.active:before
+{
+   background: #97C9F2;
+   -webkit-border-radius:3px;
+   -moz-border-radius:3px;
+   border-radius:3px;
+   border-width: 0;
+   margin:0 auto;
+   width:12px;
+   height:12px;
+   display: inline-block;
+}
+
+label.gitst-radiobutton.hovered:before
+{
+   background: #DBECFB;
+   -webkit-border-radius:3px;
+   -moz-border-radius:3px;
+   border-radius:3px;
+   border-width: 0;
+   margin:0 auto;
+   width:12px;
+   height:12px;
+   display: inline-block;
+}
+
+.gitst-comments
+{
+   border-top:1px dotted #60ADEB;
+   margin:0 auto;
+   margin-top: 25px;
+}
+
+.gitst-comments h2
+{
+   color: #092C49;
+}
+
+.gitst-comment-inner
+{
+   background: #E1E8EF;
+   background: transparent;
+   -webkit-border-radius:2px;
+   -moz-border-radius:2px;
+   border-radius:2px;
+   padding:5px;
+   margin:0 auto;
+   margin-left: 94px;
+}
+.gitst-comment-avatar 
+{
+   float:left;
+   width:80px;
+   height:80px;
+   padding:1px;
+   background:#fff;
+   border:1px solid #E1E8EF;
+}
+
+.gitst-comment-avatar>img
+{
+   margin:0 !important;
+   border:none !important;
+}
+
+.gitst-comment-content
+{
+   padding:10px 0;
+   color: #3D3D3D;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+}
+
+.gitst-comment
+{
+   margin-top: 6px;
+}
+
+.gitst-comment:first-child
+{
+   margin-top: 0;
+}
+
+.gitst-comment-header
+{
+   color: #092C49;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   line-height: 100%;
+}
+
+.gitst-comment-header a, 
+.gitst-comment-header a:link, 
+.gitst-comment-header a:visited,
+.gitst-comment-header a.visited,
+.gitst-comment-header a:hover,
+.gitst-comment-header a.hovered
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   line-height: 100%;
+}
+
+.gitst-comment-header a, .gitst-comment-header a:link
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   color: #258EE4;
+}
+
+.gitst-comment-header a:visited, .gitst-comment-header a.visited
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   color: #258EE4;
+}
+
+.gitst-comment-header a:hover,  .gitst-comment-header a.hovered
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   color: #258EE4;
+}
+
+.gitst-comment-content a, 
+.gitst-comment-content a:link, 
+.gitst-comment-content a:visited,
+.gitst-comment-content a.visited,
+.gitst-comment-content a:hover,
+.gitst-comment-content a.hovered
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+}
+
+.gitst-comment-content a, .gitst-comment-content a:link
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   color: #C7270A;
+}
+
+.gitst-comment-content a:visited, .gitst-comment-content a.visited
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   color: #525252;
+}
+
+.gitst-comment-content a:hover,  .gitst-comment-content a.hovered
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   color: #C7270A;
+}
+
+.gitst-pager
+{
+   background: #EEF2F6;
+   background: -webkit-linear-gradient(top, #FFFFFF 0, #8EA7C2 100%) no-repeat;
+   background: -moz-linear-gradient(top, #FFFFFF 0, #8EA7C2 100%) no-repeat;
+   background: -o-linear-gradient(top, #FFFFFF 0, #8EA7C2 100%) no-repeat;
+   background: -ms-linear-gradient(top, #FFFFFF 0, #8EA7C2 100%) no-repeat;
+   -svg-background: linear-gradient(top, #FFFFFF 0, #8EA7C2 100%) no-repeat;
+   background: linear-gradient(to bottom, #FFFFFF 0, #8EA7C2 100%) no-repeat;
+   -webkit-border-radius:2px;
+   -moz-border-radius:2px;
+   border-radius:2px;
+   border:1px solid #60ADEB;
+   padding:5px;
+}
+
+.gitst-pager>*:last-child
+{
+   margin-right:0 !important;
+}
+
+.gitst-pager>span {
+   cursor:default;
+}
+
+.gitst-pager>*
+{
+   background: #DBECFB;
+   background: -webkit-linear-gradient(top, #FFFFFF 0, #65AFEC 100%) no-repeat;
+   background: -moz-linear-gradient(top, #FFFFFF 0, #65AFEC 100%) no-repeat;
+   background: -o-linear-gradient(top, #FFFFFF 0, #65AFEC 100%) no-repeat;
+   background: -ms-linear-gradient(top, #FFFFFF 0, #65AFEC 100%) no-repeat;
+   -svg-background: linear-gradient(top, #FFFFFF 0, #65AFEC 100%) no-repeat;
+   background: linear-gradient(to bottom, #FFFFFF 0, #65AFEC 100%) no-repeat;
+   -webkit-border-radius:2px;
+   -moz-border-radius:2px;
+   border-radius:2px;
+   border:1px solid #DBECFB;
+   padding:7px;
+   margin:0 4px 0 auto;
+   line-height: normal;
+   position:relative;
+   display:inline-block;
+   margin-left: 0;
+}
+
+.gitst-pager a:link,
+.gitst-pager a:visited,
+.gitst-pager .active
+{
+   line-height: normal;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: none;
+   color: #082640
+;
+}
+
+.gitst-pager .active
+{
+   background: #B4BFCB;
+   background: -webkit-linear-gradient(top, #E4E8EC 0, #8496A9 100%) no-repeat;
+   background: -moz-linear-gradient(top, #E4E8EC 0, #8496A9 100%) no-repeat;
+   background: -o-linear-gradient(top, #E4E8EC 0, #8496A9 100%) no-repeat;
+   background: -ms-linear-gradient(top, #E4E8EC 0, #8496A9 100%) no-repeat;
+   -svg-background: linear-gradient(top, #E4E8EC 0, #8496A9 100%) no-repeat;
+   background: linear-gradient(to bottom, #E4E8EC 0, #8496A9 100%) no-repeat;
+   border:1px solid #DBECFB;
+   padding:7px;
+   margin:0 4px 0 auto;
+   color: #FFFFFF
+;
+}
+
+.gitst-pager .more
+{
+   background: #DBECFB;
+   background: -webkit-linear-gradient(top, #FFFFFF 0, #65AFEC 100%) no-repeat;
+   background: -moz-linear-gradient(top, #FFFFFF 0, #65AFEC 100%) no-repeat;
+   background: -o-linear-gradient(top, #FFFFFF 0, #65AFEC 100%) no-repeat;
+   background: -ms-linear-gradient(top, #FFFFFF 0, #65AFEC 100%) no-repeat;
+   -svg-background: linear-gradient(top, #FFFFFF 0, #65AFEC 100%) no-repeat;
+   background: linear-gradient(to bottom, #FFFFFF 0, #65AFEC 100%) no-repeat;
+   border:1px solid #DBECFB;
+   margin:0 4px 0 auto;
+}
+.gitst-pager a.more:link,
+.gitst-pager a.more:visited
+{
+   color: #440D04
+;
+}
+.gitst-pager a:hover
+{
+   background: #97C9F2;
+   background: -webkit-linear-gradient(top, #DFEFFB 0, #4EA3E9 100%) no-repeat;
+   background: -moz-linear-gradient(top, #DFEFFB 0, #4EA3E9 100%) no-repeat;
+   background: -o-linear-gradient(top, #DFEFFB 0, #4EA3E9 100%) no-repeat;
+   background: -ms-linear-gradient(top, #DFEFFB 0, #4EA3E9 100%) no-repeat;
+   -svg-background: linear-gradient(top, #DFEFFB 0, #4EA3E9 100%) no-repeat;
+   background: linear-gradient(to bottom, #DFEFFB 0, #4EA3E9 100%) no-repeat;
+   border:1px solid #DBECFB;
+   padding:7px;
+   margin:0 4px 0 auto;
+}
+.gitst-pager  a:hover,
+.gitst-pager  a.more:hover
+{
+   color: #092C49
+;
+}
+.gitst-pager>*:after
+{
+   margin:0 0 0 auto;
+   display:inline-block;
+   position:absolute;
+   content: ' ';
+   top:0;
+   width:0;
+   height:100%;
+   right: 0;
+   text-decoration:none;
+}
+
+.gitst-pager>*:last-child:after{
+   display:none;
+}
+
+.gitst-commentsform
+{
+   background: #E1E8EF;
+   background: transparent;
+   padding:10px;
+   margin:0 auto;
+   margin-top:25px;
+   color: #092C49;
+}
+
+.gitst-commentsform h2{
+   padding-bottom:10px;
+   margin: 0;
+   color: #092C49;
+}
+
+.gitst-commentsform label {
+   display: inline-block;
+   line-height: 25px;
+}
+
+.gitst-commentsform input:not([type=submit]), .gitst-commentsform textarea {
+   box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+   width:100%;
+   max-width:100%;
+}
+
+.gitst-commentsform .form-submit
+{
+   margin-top: 10px;
+}
+
+a img
+{
+   border: 0;
+}
+
+.gitst-article img, img.gitst-article, .gitst-block img, .gitst-footer img
+{
+   margin: 0 0 0 0;
+}
+
+.gitst-metadata-icons img
+{
+   border: none;
+   vertical-align: middle;
+   margin: 2px;
+}
+
+.gitst-article table, table.gitst-article
+{
+   border-collapse: collapse;
+   margin: 1px;
+}
+
+.gitst-post .gitst-content-layout-br
+{
+   height: 0;
+}
+
+.gitst-article th, .gitst-article td
+{
+   padding: 2px;
+   vertical-align: top;
+   text-align: left;
+}
+
+.gitst-article th
+{
+   text-align: center;
+   vertical-align: middle;
+   padding: 7px;
+}
+
+pre
+{
+   overflow: auto;
+   padding: 0.1em;
+}
+
+.preview-cms-logo
+{
+   border: 0;
+   margin: 1em 1em 0 0;
+   float: left;
+}
+
+.image-caption-wrapper
+{
+   padding: 0 0 0 0;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+}
+
+.image-caption-wrapper img
+{
+   margin: 0 !important;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+}
+
+.image-caption-wrapper div.gitst-collage
+{
+   margin: 0 !important;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+}
+
+.image-caption-wrapper p
+{
+   font-size: 80%;
+   text-align: right;
+   margin: 0;
+}
+
+.gitst-postheader
+{
+   color: #696969;
+   margin: 20px 0 0 20px;
+   font-size: 26px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: left;
+}
+
+.gitst-postheader a, 
+.gitst-postheader a:link, 
+.gitst-postheader a:visited,
+.gitst-postheader a.visited,
+.gitst-postheader a:hover,
+.gitst-postheader a.hovered
+{
+   font-size: 26px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: normal;
+   text-align: left;
+}
+
+.gitst-postheader a, .gitst-postheader a:link
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: none;
+   text-align: left;
+   color: #F55D42;
+}
+
+.gitst-postheader a:visited, .gitst-postheader a.visited
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: none;
+   text-align: left;
+   color: #8A8A8A;
+}
+
+.gitst-postheader a:hover,  .gitst-postheader a.hovered
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: none;
+   text-align: left;
+   color: #F55D42;
+}
+
+.gitst-postheadericons,
+.gitst-postheadericons a,
+.gitst-postheadericons a:link,
+.gitst-postheadericons a:visited,
+.gitst-postheadericons a:hover
+{
+   font-size: 11px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   color: #696969;
+}
+
+.gitst-postheadericons
+{
+   padding: 1px;
+}
+
+.gitst-postheadericons a, .gitst-postheadericons a:link
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: underline;
+   color: #A52009;
+}
+
+.gitst-postheadericons a:visited, .gitst-postheadericons a.visited
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: underline;
+   color: #135D9A;
+}
+
+.gitst-postheadericons a:hover, .gitst-postheadericons a.hover
+{
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: none;
+   color: #DF2B0C;
+}
+
+.gitst-postpdficon:before
+{
+   content:url('images/postpdficon.png');
+   margin-right:6px;
+   position:relative;
+   display:inline-block;
+   vertical-align:middle;
+   font-size:0;
+   line-height:0;
+   bottom: auto;
+}
+.opera .gitst-postpdficon:before
+{
+   /* Vertical-align:middle in Opera doesn't need additional offset */
+    bottom: 0;
+}
+
+.gitst-postprinticon:before
+{
+   content:url('images/postprinticon.png');
+   margin-right:6px;
+   position:relative;
+   display:inline-block;
+   vertical-align:middle;
+   font-size:0;
+   line-height:0;
+   bottom: auto;
+}
+.opera .gitst-postprinticon:before
+{
+   /* Vertical-align:middle in Opera doesn't need additional offset */
+    bottom: 0;
+}
+
+.gitst-postemailicon:before
+{
+   content:url('images/postemailicon.png');
+   margin-right:6px;
+   position:relative;
+   display:inline-block;
+   vertical-align:middle;
+   font-size:0;
+   line-height:0;
+   bottom: auto;
+}
+.opera .gitst-postemailicon:before
+{
+   /* Vertical-align:middle in Opera doesn't need additional offset */
+    bottom: 0;
+}
+
+.gitst-postcontent ul>li:before,  .gitst-post ul>li:before,  .gitst-textblock ul>li:before
+{
+   content:url('images/postbullets.png');
+   margin-right:15px;
+   bottom: 2px;
+   position:relative;
+   display:inline-block;
+   vertical-align:middle;
+   font-size:0;
+   line-height:0;
+}
+.opera .gitst-postcontent ul>li:before, .opera   .gitst-post ul>li:before, .opera   .gitst-textblock ul>li:before
+{
+   /* Vertical-align:middle in Opera doesn't need additional offset */
+    bottom: 0;
+}
+
+.gitst-postcontent li, .gitst-post li, .gitst-textblock li
+{
+   font-size: 12px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   line-height: 200%;
+   color: #041624;
+   margin: 0 0 0 9px;
+}
+
+.gitst-postcontent ul>li, .gitst-post ul>li, .gitst-textblock ul>li, .gitst-postcontent ol, .gitst-post ol, .gitst-textblock ol
+{
+   padding: 0;
+}
+
+.gitst-postcontent ul>li, .gitst-post ul>li, .gitst-textblock ul>li
+{
+   padding-left: 23px;
+}
+
+.gitst-postcontent ul>li:before,  .gitst-post ul>li:before,  .gitst-textblock ul>li:before
+{
+   margin-left: -23px;
+}
+
+.gitst-postcontent ol, .gitst-post ol, .gitst-textblock ol, .gitst-postcontent ul, .gitst-post ul, .gitst-textblock ul
+{
+   margin: 1em 0 1em 9px;
+}
+
+.gitst-postcontent li ol, .gitst-post li ol, .gitst-textblock li ol, .gitst-postcontent li ul, .gitst-post li ul, .gitst-textblock li ul
+{
+   margin: 0.5em 0 0.5em 9px;
+}
+
+.gitst-postcontent li, .gitst-post li, .gitst-textblock li
+{
+   margin: 0 0 0 0;
+}
+
+.gitst-postcontent ol>li, .gitst-post ol>li, .gitst-textblock ol>li
+{
+   /* overrides overflow for "ul li" and sets the default value */
+  overflow: visible;
+}
+
+.gitst-postcontent ul>li, .gitst-post ul>li, .gitst-textblock ul>li
+{
+   /* makes "ul li" not to align behind the image if they are in the same line */
+  overflow-x: visible;
+   overflow-y: hidden;
+}
+
+blockquote
+{
+   background: #DEDEDE url('images/postquote.png') no-repeat scroll;
+   border:1px solid #BFBFBF;
+   padding:6px 6px 6px 43px;
+   margin:10px 10px 10px 50px;
+   color: #0F0F0F;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: italic;
+   text-align: left;
+   /* makes block not to align behind the image if they are in the same line */
+  overflow: auto;
+   clear:both;
+}
+blockquote a, .gitst-postcontent blockquote a, .gitst-blockcontent blockquote a, .gitst-footer blockquote a,
+blockquote a:link, .gitst-postcontent blockquote a:link, .gitst-blockcontent blockquote a:link, .gitst-footer blockquote a:link,
+blockquote a:visited, .gitst-postcontent blockquote a:visited, .gitst-blockcontent blockquote a:visited, .gitst-footer blockquote a:visited,
+blockquote a:hover, .gitst-postcontent blockquote a:hover, .gitst-blockcontent blockquote a:hover, .gitst-footer blockquote a:hover
+{
+   color: #0F0F0F;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   font-weight: normal;
+   font-style: italic;
+   text-align: left;
+}
+
+/* Override native 'p' margins*/
+blockquote p,
+.gitst-postcontent blockquote p,
+.gitst-blockcontent blockquote p,
+.gitst-footer blockquote p
+{
+   margin: 0;
+   margin: 2px 0 2px 15px;
+}
+
+.gitst-footer
+{
+   background: #0B3456;
+   background: transparent;
+   padding:15px;
+   margin:0 auto;
+   position: relative;
+   color: #858585;
+   font-size: 11px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-align: center;
+}
+
+.gitst-footer a,
+.gitst-footer a:link,
+.gitst-footer a:visited,
+.gitst-footer a:hover,
+.gitst-footer td, 
+.gitst-footer th,
+.gitst-footer caption
+{
+   color: #858585;
+   font-size: 11px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+}
+
+.gitst-footer p 
+{
+   padding:0;
+   text-align: center;
+}
+
+.gitst-footer a,
+.gitst-footer a:link
+{
+   color: #1B87DE;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: none;
+}
+
+.gitst-footer a:visited
+{
+   color: #1B87DE;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: none;
+}
+
+.gitst-footer a:hover
+{
+   color: #F88672;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   text-decoration: underline;
+}
+
+.gitst-footer h1
+{
+   color: #2E93E5;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+}
+
+.gitst-footer h2
+{
+   color: #60ADEB;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+}
+
+.gitst-footer h3
+{
+   color: #F7765F;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+}
+
+.gitst-footer h4
+{
+   color: #BFBFBF;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+}
+
+.gitst-footer h5
+{
+   color: #BFBFBF;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+}
+
+.gitst-footer h6
+{
+   color: #BFBFBF;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+}
+
+.gitst-footer img
+{
+   border: none;
+   margin: 0;
+}
+
+.gitst-rss-tag-icon
+{
+   background:  url('images/footerrssicon.png') no-repeat scroll;
+   margin:0 auto;
+   min-height:32px;
+   min-width:32px;
+   display: inline-block;
+   text-indent: 35px;
+   background-position: left center;
+   vertical-align: middle;
+}
+
+.gitst-rss-tag-icon:empty
+{
+   vertical-align: middle;
+}
+
+.gitst-facebook-tag-icon
+{
+   background:  url('images/footerfacebookicon.png') no-repeat scroll;
+   margin:0 auto;
+   min-height:32px;
+   min-width:32px;
+   display: inline-block;
+   text-indent: 35px;
+   background-position: left center;
+   vertical-align: middle;
+}
+
+.gitst-facebook-tag-icon:empty
+{
+   vertical-align: middle;
+}
+
+.gitst-twitter-tag-icon
+{
+   background:  url('images/footertwittericon.png') no-repeat scroll;
+   margin:0 auto;
+   min-height:32px;
+   min-width:32px;
+   display: inline-block;
+   text-indent: 35px;
+   background-position: left center;
+   vertical-align: middle;
+}
+
+.gitst-twitter-tag-icon:empty
+{
+   vertical-align: middle;
+}
+
+.gitst-tumblr-tag-icon
+{
+   background:  url('images/tumblricon.png') no-repeat scroll;
+   margin:0 auto;
+   min-height:32px;
+   min-width:32px;
+   display: inline-block;
+   text-indent: 35px;
+   background-position: left center;
+   vertical-align: middle;
+}
+
+.gitst-tumblr-tag-icon:empty
+{
+   vertical-align: middle;
+}
+
+.gitst-pinterest-tag-icon
+{
+   background:  url('images/pinteresticon.png') no-repeat scroll;
+   margin:0 auto;
+   min-height:32px;
+   min-width:32px;
+   display: inline-block;
+   text-indent: 35px;
+   background-position: left center;
+   vertical-align: middle;
+}
+
+.gitst-pinterest-tag-icon:empty
+{
+   vertical-align: middle;
+}
+
+.gitst-vimeo-tag-icon
+{
+   background:  url('images/vimeoicon.png') no-repeat scroll;
+   margin:0 auto;
+   min-height:33px;
+   min-width:32px;
+   display: inline-block;
+   text-indent: 35px;
+   background-position: left center;
+   vertical-align: middle;
+}
+
+.gitst-vimeo-tag-icon:empty
+{
+   vertical-align: middle;
+}
+
+.gitst-youtube-tag-icon
+{
+   background:  url('images/youtubeicon.png') no-repeat scroll;
+   margin:0 auto;
+   min-height:32px;
+   min-width:32px;
+   display: inline-block;
+   text-indent: 35px;
+   background-position: left center;
+   vertical-align: middle;
+}
+
+.gitst-youtube-tag-icon:empty
+{
+   vertical-align: middle;
+}
+
+.gitst-linkedin-tag-icon
+{
+   background:  url('images/linkedinicon.png') no-repeat scroll;
+   margin:0 auto;
+   min-height:32px;
+   min-width:32px;
+   display: inline-block;
+   text-indent: 35px;
+   background-position: left center;
+   vertical-align: middle;
+}
+
+.gitst-linkedin-tag-icon:empty
+{
+   vertical-align: middle;
+}
+
+.gitst-footer li
+{
+   font-size: 13px;
+   font-family: Arial, 'Arial Unicode MS', Helvetica, Sans-Serif;
+   line-height: 125%;
+   color: #9B1E08;
+}
+
+.gitst-page-footer, 
+.gitst-page-footer a,
+.gitst-page-footer a:link,
+.gitst-page-footer a:visited,
+.gitst-page-footer a:hover
+{
+   font-family: Arial;
+   font-size: 10px;
+   letter-spacing: normal;
+   word-spacing: normal;
+   font-style: normal;
+   font-weight: normal;
+   text-decoration: underline;
+   color: #3395E6;
+}
+
+.gitst-page-footer
+{
+   position: relative;
+   z-index: auto !important;
+   padding: 1em;
+   text-align: center !important;
+   text-decoration: none;
+   color: #545454;
+}
+
+.gitst-lightbox-wrapper 
+{
+   background: #333;
+   background: rgba(0, 0, 0, .8);
+   bottom: 0;
+   left: 0;
+   padding: 0 100px;
+   position: fixed;
+   right: 0;
+   text-align: center;
+   top: 0;
+   z-index: 1000000;
+}
+
+.gitst-lightbox,
+.gitst-lightbox-wrapper .gitst-lightbox-image
+{
+   cursor: pointer;
+}
+
+.gitst-lightbox-wrapper .gitst-lightbox-image
+{
+   border: 6px solid #fff;
+   border-radius: 3px;
+   display: none;
+   max-width: 100%;
+   vertical-align: middle;
+}
+
+.gitst-lightbox-wrapper .gitst-lightbox-image.active
+{
+   display: inline-block;
+}
+
+.gitst-lightbox-wrapper .lightbox-error
+{
+   background: #fff;
+   border: 1px solid #b4b4b4;
+   border-radius: 10px;
+   box-shadow: 0 2px 5px #333;
+   height: 80px;
+   opacity: .95;
+   padding: 20px;
+   position: fixed;
+   width: 300px;
+   z-index: 100;
+}
+
+.gitst-lightbox-wrapper .loading
+{
+   background: #fff url('images/preloader-01.gif') center center no-repeat;
+   border: 1px solid #b4b4b4;
+   border-radius: 10px;
+   box-shadow: 0 2px 5px #333;
+   height: 32px;
+   opacity: .5;
+   padding: 10px;
+   position: fixed;
+   width: 32px;
+   z-index: 10100;
+}
+
+.gitst-lightbox-wrapper .arrow
+{
+   cursor: pointer;
+   height: 100px;
+   opacity: .5;
+   filter: alpha(opacity=50);
+   position: fixed;
+   width: 82px;
+   z-index: 10003;
+}
+
+.gitst-lightbox-wrapper .arrow.left
+{
+   left: 9px;
+}
+
+.gitst-lightbox-wrapper .arrow.right
+{
+   right: 9px;
+}
+
+.gitst-lightbox-wrapper .arrow:hover
+{
+   opacity: 1;
+   filter: alpha(opacity=100);
+}
+
+.gitst-lightbox-wrapper .arrow.disabled 
+{
+   display: none;
+}
+
+.gitst-lightbox-wrapper .arrow-t, 
+.gitst-lightbox-wrapper .arrow-b
+{
+   background-color: #fff;
+   border-radius: 3px;
+   height: 6px;
+   left: 26px;
+   position: relative;
+   width: 30px;
+}
+
+.gitst-lightbox-wrapper .arrow-t
+{
+   top: 38px;
+}
+
+.gitst-lightbox-wrapper .arrow-b
+{
+   top: 50px;
+}
+
+.gitst-lightbox-wrapper .close
+{
+   cursor: pointer;
+   height: 22px;
+   opacity: .5;
+   filter: alpha(opacity=50);
+   position: fixed;
+   right: 39px;
+   top: 30px;
+   width: 22px;
+   z-index: 10003;
+}
+
+.gitst-lightbox-wrapper .close:hover 
+{
+   opacity: 1;
+   filter: alpha(opacity=100);
+}
+
+.gitst-lightbox-wrapper .close .cw, 
+.gitst-lightbox-wrapper .close .ccw
+{
+   background-color: #fff;
+   border-radius: 3px;
+   height: 6px;
+   position: absolute;
+   left: -4px;
+   top: 8px;
+   width: 30px;
+}
+
+.gitst-lightbox-wrapper .cw
+{
+   transform: rotate(45deg);
+   -ms-transform: rotate(45deg);
+   /* IE 9 */
+    -webkit-transform: rotate(45deg);
+   /* Safari and Chrome */
+    -o-transform: rotate(45deg);
+   /* Opera */
+    -moz-transform: rotate(45deg);
+/* Firefox */}
+
+.gitst-lightbox-wrapper .ccw
+{
+   transform: rotate(-45deg);
+   -ms-transform: rotate(-45deg);
+   /* IE 9 */
+    -webkit-transform: rotate(-45deg);
+   /* Safari and Chrome */
+    -o-transform: rotate(-45deg);
+   /* Opera */
+    -moz-transform: rotate(-45deg);
+/* Firefox */}
+
+.gitst-lightbox-wrapper .close-alt, 
+.gitst-lightbox-wrapper .arrow-right-alt, 
+.gitst-lightbox-wrapper .arrow-left-alt 
+{
+   color: #fff;
+   display: none;
+   font-size: 2.5em;
+   line-height: 100%;
+}
+
+.ie8 .gitst-lightbox-wrapper .close-alt, 
+.ie8 .gitst-lightbox-wrapper .arrow-right-alt, 
+.ie8 .gitst-lightbox-wrapper .arrow-left-alt 
+{
+   display: block;
+}
+
+.ie8 .gitst-lightbox-wrapper .cw, 
+.ie8 .gitst-lightbox-wrapper .ccw 
+{
+   display: none;
+}
+
+.gitst-content-layout .gitst-sidebar1
+{
+   margin:0 auto;
+   width: 175px;
+}
+
+.gitst-content-layout .gitst-content
+{
+   margin:0 auto;
+}
+
+/* Begin Additional CSS Styles */
+
+/* End Additional CSS Styles */
