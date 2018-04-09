@@ -23,7 +23,7 @@ public class LoginAction {
                   try {
                        password = MD5(password);
 
-                       String query = "SELECT * FROM `" + Constants.db_database +  "`.`users` WHERE UN = ?  AND ADMINID = 0 LIMIT 1 ";
+                       String query = "SELECT * FROM `" + Constants.db_database +  "`.`users` WHERE UN = ?  LIMIT 1 ";
                        PreparedStatement stmt  = Constants.dbConnection.prepareStatement(query);
                        stmt.setString(1, login );
                        ResultSet rs =  stmt.executeQuery();

@@ -17,7 +17,6 @@ public class Constants {
     public static final int page_form     = 2;
     public static final int page_devices  = 3;
     
-    public static String serverKey = null;
     public static Connection dbConnection = null;    
     
     /// ################ DATABASE DEFAULT CONFIGURATION #############
@@ -28,7 +27,7 @@ public class Constants {
     public static String db_port         = "3306"; //  default configuration database name 
     
     //// ############### 
-    public static final String config_file_path = "/WEB-INF/custom_config/config"; 
+    public static final String config_file_path = "/WEB-INF/config/config"; 
     
     
 }

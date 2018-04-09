@@ -1,6 +1,7 @@
 package initialize;
 
 import assets.Constants;
+import assets.Encription;
 
 import errors.Errors;
 import java.sql.DriverManager;
@@ -11,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.servlet.ServletContext;
@@ -89,39 +91,7 @@ public class Application implements ServletContextListener {
             Errors.setErrors("Application / contextInitialized 1 " + ex.toString());
         }
            
-        if (Constants.dbConnection != null ) {
-            String  query = "SELECT * FROM `" + Constants.db_database+"`.`users` LIMIT 1 ";
-            try {
-              
-               boolean userexists = false; 
-                
-               Statement st = Constants.dbConnection.createStatement();
-               ResultSet rs = st.executeQuery(query);
 
-               while (rs.next()) { 
-                   userexists = true;
-               }
-               st.close();
-               rs.close();
-
-               
-               
-               if (userexists) {
-                  query = "SELECT * FROM `" + Constants.db_database+"`.`conf` WHERE TYPE = 'SERVERKEY' LIMIT 1 ";
-                  st = Constants.dbConnection.createStatement();
-                  rs = st.executeQuery(query);
-                  while (rs.next()) { 
-                      Constants.serverKey = rs.getString("VALUE");
-                  }
-                  st.close();
-                  rs.close();
-               }
-               
-            } catch (Exception ex){
-                Errors.setErrors("Application / contextInitialized 2 " + ex.toString());
-            }
-            
-        }
            
     }
 
@@ -130,9 +100,7 @@ public class Application implements ServletContextListener {
          
     }
     
-    
     public static void reconnectDatabase () {
-    
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Constants.dbConnection= DriverManager.getConnection("jdbc:mysql://" +Constants.db_hostname  + ":" 
@@ -182,11 +150,30 @@ public class Application implements ServletContextListener {
         
         try {
             Statement st = Constants.dbConnection.createStatement();
-            st.executeQuery(query);
+            st.execute(query);
             
-            query = "INSERT INTO  " +Constants.db_database + ".`conf` (TYPE , VALUE ) "
+            query = "INSERT INTO  `"+Constants.db_database+ "`.`conf` (TYPE , VALUE ) "
                     + "VALUES ('SERVERKEY', ?)";
             
+            
+            String serverkey = request.getParameter("skey");
+            PreparedStatement stmt  = Constants.dbConnection.prepareStatement(query);
+            stmt.setString(1, serverkey);
+            stmt.execute();
+            stmt.close();
+               
+            query = "INSERT INTO  `" +Constants.db_database + "`.`users` (UN , EM, PS, CM ) VALUES (?, ?, ?, ? )";
+            
+            String username = request.getParameter("username");
+            String password = Encription.getMD5(request.getParameter("pass"));
+            String company_name = request.getParameter("company");
+            stmt  = Constants.dbConnection.prepareStatement(query);
+            stmt.setString(1, username);
+            stmt.setString(2, username);
+            stmt.setString(3, password);
+            stmt.setString(4, company_name);
+            stmt.execute();
+            stmt.close();
             
         
         } catch (Exception ex){
@@ -199,6 +186,25 @@ public class Application implements ServletContextListener {
         return result;
     }
     
+    
+    public static boolean isUserExists() {
+        boolean result  = false; 
+
+        String  query = "SELECT * FROM `" + Constants.db_database+"`.`users` LIMIT 1 ";
+        try {
+            Statement st = Constants.dbConnection.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while (rs.next()) { 
+                result = true;
+            }
+            st.close();
+            rs.close();
+        } catch (Exception ex){
+            Errors.setErrors("Application / isUserExists " + ex.toString());
+        }
+        
+        return result;    
+    }
     
     
 }

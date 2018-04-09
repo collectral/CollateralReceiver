@@ -1,10 +1,11 @@
+<%@page import="initialize.Application"%>
 <%@page import="assets.Constants"%>
 <%@page import="assets.Constants"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String contectxt_url_home_front = request.getContextPath();
         
-    
+    boolean userexists = Application.isUserExists();
 
     
 
@@ -36,7 +37,7 @@
                         <article class="gitst-post gitst-article">
                          
                             <%
-                              if (Constants.serverKey == null) {
+                              if (!userexists) {
                             %>
                               <jsp:include page="/WEB-INF/jsp_files/webfront/registration.jsp"></jsp:include>                        
                             <%
