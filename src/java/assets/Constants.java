@@ -16,7 +16,7 @@ public class Constants {
     public static final int page_file     = 1;
     public static final int page_form     = 2;
     public static final int page_devices  = 3;
-    
+    public static final int page_settings = 4;
     public static Connection dbConnection = null;    
     
     /// ################ DATABASE DEFAULT CONFIGURATION #############

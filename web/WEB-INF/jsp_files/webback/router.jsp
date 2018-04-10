@@ -1,8 +1,12 @@
+<%@page import="login.LogOutAction"%>
+<%@page import="web.WebConstants"%>
 <%@page import="assets.Constants"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
     String contectxt_url_home_back = request.getContextPath();
+    
+    
 %>
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
@@ -30,11 +34,12 @@
                     <li><a href="<%=contectxt_url_home_back%>/Files">Files</a></li>  
                     <li><a href="<%=contectxt_url_home_back%>/Forms">Forms</a></li>
                     <li><a href="<%=contectxt_url_home_back%>/Devices">Devices</a></li>  
-                    <li><a href="<%=contectxt_url_home_back%>/Files">Settings</a></li>  
+                    <li><a href="<%=contectxt_url_home_back%>/Settings">Settings</a></li>  
                 </ul> 
                
                 <form action="" method="POST" style="float:  right; position:  relative; top: 7px; ">
-                   <input  class="gitst-button" type="submit" name="logout" value="Logout" style="font-size: 14px;  border: 1px solid red;">  
+                   <input type="hidden" name="posting" value="logout">
+                   <input  class="gitst-button" type="submit" value="Logout" style="font-size: 14px;  border: 1px solid red;">  
                 </form>    
                 
         </nav>
@@ -54,6 +59,11 @@
                                                                   case Constants.page_devices: 
                                                                        %>
                                                                         <jsp:include page="/WEB-INF/jsp_files/webback/web/devices.jsp"></jsp:include>
+                                                                       <%
+                                                                      break;
+                                                                  case Constants.page_settings: 
+                                                                       %>
+                                                                        <jsp:include page="/WEB-INF/jsp_files/webback/web/Settings/setings.jsp"></jsp:include>
                                                                        <%
                                                                       break;
                                                             }                             

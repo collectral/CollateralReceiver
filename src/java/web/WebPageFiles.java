@@ -3,7 +3,6 @@ package web;
 import assets.Constants;
 import com.google.gson.Gson;
 import errors.Errors;
-import initialize.Application;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -40,7 +39,6 @@ public class WebPageFiles {
         } catch (Exception ex ) {
             Errors.setErrors("WebPageFiles / getFiles  " + ex.toString());
         }  
-        
         
         return result;
     }
@@ -131,7 +129,6 @@ public class WebPageFiles {
         try { rs.close();} catch (Exception ex){}
         
         return result;
-        
     }
     
     
@@ -141,10 +138,8 @@ public class WebPageFiles {
        try {
           result = gson.fromJson(hashmap.get(key).toString(), HashMap.class)  ;
        } catch (Exception ex) {
-           System.out.println(ex.toString());
+           Errors.setErrors("WebPageFiles / convertToHashMap " + ex.toString());
        }
-       
-       
        
        return result;
     }

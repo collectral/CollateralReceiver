@@ -59,8 +59,6 @@ public class Application implements ServletContextListener {
                         if (strLine.startsWith("database")) {
                             val = strLine.split("=")[1];
                             Constants.db_database = val.trim();
-                            System.out.println(Constants.db_database);
-                                   
                         }
                         
                         if (strLine.startsWith("password")) {

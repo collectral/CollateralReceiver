@@ -21,8 +21,10 @@
                  response.sendRedirect( WebConstants.getContextFullURL (request));
         } 
 
-        request.setAttribute(Constants.page_attribute, Constants.page_file);
+        request.setAttribute(Constants.page_attribute, Constants.page_settings);
+         
         
+     
            
         Object[] id_key = null;
         Cookie cookie = null;

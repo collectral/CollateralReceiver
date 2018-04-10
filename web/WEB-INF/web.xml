@@ -89,6 +89,20 @@
         <url-pattern>/devices/*</url-pattern>
     </servlet-mapping>
     <!--End Devices-->
+    <!--Settings -->
+    <servlet>
+        <servlet-name>settings</servlet-name>
+        <jsp-file>/settings.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>settings</servlet-name>
+        <url-pattern>/Settings/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>settings</servlet-name>
+        <url-pattern>/settings/*</url-pattern>
+    </servlet-mapping>
+    <!--End Settings-->
     <servlet>
         <servlet-name>index</servlet-name>
         <jsp-file>/index.jsp</jsp-file>
