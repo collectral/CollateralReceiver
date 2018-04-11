@@ -17,7 +17,7 @@
        response.sendRedirect( WebConstants.getContextFullURL (request));
     } 
     
-    System.out.println("-->>> SETTINGS");
+    
     
     request.setAttribute(Constants.page_attribute, Constants.page_settings);
     
@@ -50,21 +50,20 @@
         } 
     } 
         
-        if (id_key != null) {
-             String logout = request.getParameter("posting") ;
-                if (logout!= null) {
-                    if (logout.equals("logout")) {
-                        LogOutAction.deleteKey(id_key);
-                    } 
+    if (id_key != null) {
+        String logout = request.getParameter("posting") ;
+        if (logout!= null) {
+            if (logout.equals("logout")) {
+                LogOutAction.deleteKey(id_key);
                 response.sendRedirect( WebConstants.getContextFullURL (request));
-            } else {
-               request.setAttribute(Constants.user_attribute, id_key);
-               %><jsp:include page="/WEB-INF/jsp_files/webback/router.jsp"></jsp:include><%
-            }
-
-        } else {
-                response.sendRedirect( WebConstants.getContextFullURL (request));
+            } 
         }
+
+        request.setAttribute(Constants.user_attribute, id_key);
+        %><jsp:include page="/WEB-INF/jsp_files/webback/router.jsp"></jsp:include><%
+    } else {
+        response.sendRedirect( WebConstants.getContextFullURL (request));
+    }
 
 
 %>

@@ -55,14 +55,12 @@
                 if (logout!= null) {
                     if (logout.equals("logout")) {
                         LogOutAction.deleteKey(id_key);
+                        response.sendRedirect( WebConstants.getContextFullURL (request));
                     } 
-                response.sendRedirect( WebConstants.getContextFullURL (request));
-            } else {
-               request.setAttribute(Constants.user_attribute, id_key);
-               %><jsp:include page="/WEB-INF/jsp_files/webback/router.jsp"></jsp:include><%
-            }
-
+            } 
+            request.setAttribute(Constants.user_attribute, id_key);
+            %><jsp:include page="/WEB-INF/jsp_files/webback/router.jsp"></jsp:include><%
         } else {
-                response.sendRedirect( WebConstants.getContextFullURL (request));
+           response.sendRedirect( WebConstants.getContextFullURL (request));
         }
 %>

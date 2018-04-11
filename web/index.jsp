@@ -42,11 +42,6 @@ if (state == 0) {
                          id_key = LoginAction.getUserKeyFromCookies(cookie.getValue().trim());
                   } 
             }
-            
-               
-           
-           
-            
                         
             if (id_key == null) {
 

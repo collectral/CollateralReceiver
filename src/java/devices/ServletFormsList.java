@@ -104,8 +104,6 @@ public class ServletFormsList extends HttpServlet {
            String query  = "SELECT * FROM `" + Constants.db_database + "`.`forms`"
                    + " WHERE ADMINID = "  + adminid + " AND GROUPID IN ("  + grouplist + ")" ;
            
-           System.out.println( query );
-           
            rs = stmt.executeQuery(query);
            while (rs.next()) {  
                result.add(rs.getInt("ID"));

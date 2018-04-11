@@ -93,9 +93,6 @@
                 <td>
                    <%
                        String[] spl = obj[2].toString().split("_");
-                       
-                       System.out.println(obj[2]);
-                       
                        if (spl.length == 3) {
                    %>
                        <b style="color: red"><%=obj[2]%> </b>

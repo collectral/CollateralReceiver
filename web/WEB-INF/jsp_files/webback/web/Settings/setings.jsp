@@ -1,3 +1,4 @@
+<%@page import="web.WebConstants"%>
 <%@page import="assets.Constants"%>
 <%@page import="web.WebPageSettings"%>
 <%
@@ -5,23 +6,19 @@
  String postying_type = request.getParameter("posting");
  
  if (postying_type != null) {
-     
     if (postying_type.equals("userdata")) {
         WebPageSettings.setUserDetails(request);
     }
-     
     if (postying_type.equals("companyname" )) {
        WebPageSettings.setCompanyName(request);
     }
-      
     if (postying_type.equals("skey")) {
         WebPageSettings.setCollectralKey(request);
     }
-    
- }
+}
     
 String [] userdata = WebPageSettings.getUserDetails ( request);
-
+String action_url = WebConstants.getContextFullURL(request) + "/Settings";
 
 %>
 
@@ -62,13 +59,16 @@ String [] userdata = WebPageSettings.getUserDetails ( request);
         </tr>
         <tr>
             <td style="width: 50%; padding: 30px" valign="top">
-                 <h1>Company Details</h1> 
+                 
             </td>  
             <td style="width: 50%; padding: 30px" valign="top">
-                
+                <h1>Company Details</h1> 
             </td>
         </tr>
          <tr>
+            <td style="width: 50%; padding: 30px" valign="top">
+             
+            </td>  
             <td style="width: 50%; padding: 30px" valign="top">
                 <form action="" method="POST">
                     <input type="text" name="company_name" placeholder="Company Name" value="<%=Constants.conf_COMPANY%>">
@@ -76,9 +76,6 @@ String [] userdata = WebPageSettings.getUserDetails ( request);
                     <input type="hidden" name="posting"    value="companyname">
                     <input class="gitst-button" type="submit" value="Save">
                 </form>
-            </td>  
-            <td style="width: 50%; padding: 30px" valign="top">
-                
             </td>
         </tr>
         
