@@ -77,7 +77,6 @@
         </td>
     </tr>
     
-    
     <%
         ArrayList objDevices = WebPageDevices .getDeviceList(adminid , 0 , request);
         for (int i = 0 ; i <objDevices.size(); i++) {
