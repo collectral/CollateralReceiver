@@ -2,12 +2,10 @@ package devices;
 
 import assets.Constants;
 import errors.Errors;
-import initialize.Application;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -43,33 +41,33 @@ public class ServletSyncReg extends HttpServlet {
     
     private static Object[] getDeviceObject (String  device_requests) {
         
-                    Object[] result  = null;
-        
-                    try {
-                         
-                        String[] splitted = device_requests.split("_");
-                        
-                        int id1 = Integer.parseInt(splitted[0]);
-                        int id2 = Integer.parseInt(splitted[1]);
-                        int id3 = Integer.parseInt(splitted[2]);
-                        String query = "SELECT * FROM  `" +  Constants.db_database  
-                                +  "`.`devices` WHERE DKEY = '" +id1 + "_" + id2 + "_" + id3 + "'  LIMIT 1 " ;
-                        
-                        PreparedStatement stmt = Constants.dbConnection.prepareStatement(query);
-                        //stmt.setString(1, device_requests);
-                        ResultSet rs = stmt.executeQuery(query);
-                        while (rs.next()) { 
-                            result    = new Object[3]; 
-                            result[0] = rs.getInt("ID"); 
-                            result[1] = rs.getInt("ADMINID"); 
-                            result[2] = rs.getString("COMPANY"); 
-                        }
-                        
-                        stmt.close();
-                        rs.close();
-                    } catch (Exception ex ) {
-                        Errors.setErrors("ClassAccess / isAccessAllowed " + ex.toString());
-                    }  
+        Object[] result  = null;
+
+        try {
+
+            String[] splitted = device_requests.split("_");
+
+            int id1 = Integer.parseInt(splitted[0]);
+            int id2 = Integer.parseInt(splitted[1]);
+            int id3 = Integer.parseInt(splitted[2]);
+            String query = "SELECT * FROM  `" +  Constants.db_database  
+                    +  "`.`devices` WHERE DKEY = '" +id1 + "_" + id2 + "_" + id3 + "'  LIMIT 1 " ;
+
+            PreparedStatement stmt = Constants.dbConnection.prepareStatement(query);
+            //stmt.setString(1, device_requests);
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) { 
+                result    = new Object[3]; 
+                result[0] = rs.getInt("ID"); 
+                result[1] = rs.getInt("ADMINID"); 
+                result[2] = Constants.conf_COMPANY; 
+            }
+
+            stmt.close();
+            rs.close();
+        } catch (Exception ex ) {
+            Errors.setErrors("ClassAccess / isAccessAllowed " + ex.toString());
+        }  
        
         return result;
     }

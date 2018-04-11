@@ -12,7 +12,7 @@
        int state = 0;
     
        if (Constants.dbConnection == null) {
-            Application.reconnectDatabase();
+            Application.connectDatabase();
         }   
         if (Constants.dbConnection == null) {
            state = 1;  

@@ -2,7 +2,6 @@ package devices;
 
 import assets.Constants;
 import errors.Errors;
-import initialize.Application;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Statement;

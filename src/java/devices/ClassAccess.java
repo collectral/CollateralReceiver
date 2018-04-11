@@ -2,8 +2,6 @@ package devices;
 
 import assets.Constants;
 import errors.Errors;
-import initialize.Application;
-
 import java.sql.ResultSet;
 import java.sql.Statement;
 

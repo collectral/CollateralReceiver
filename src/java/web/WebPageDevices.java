@@ -131,7 +131,7 @@ public class WebPageDevices {
                 obj[1] = rs.getString("DESCRIPTION");
                 obj[2] = rs.getString("DKEY");
                 obj[3] = rs.getString("DID");
-                obj[4] = rs.getString("COMPANY");
+                obj[4] = Constants.conf_COMPANY;
                 result.add(obj);
             }
             st.close();
@@ -190,41 +190,29 @@ public class WebPageDevices {
         
          try {
             
-            
              
-             
-        
             String select_compay_name = "SELECT * FROM `" +  Constants.db_database  +  "`.`users` WHERE ID = " + id_key[0] ;
             Statement st = Constants.dbConnection.createStatement();
             ResultSet rs = st.executeQuery(select_compay_name);
-            String companuName = "";
-            while (rs.next()) { 
-                    companuName = rs.getString("CM");
-            }
-            
             
             String query = "INSERT INTO `" +  Constants.db_database  +  "`.`devices` "
-                  + " ( DKEY, COMPANY, ADMINID, DESCRIPTION ) "
+                  + " ( DKEY,   ADMINID, DESCRIPTION ) "
                   + " VALUES "
-                  + " ( ?, ? , ? , ?)" ;
-            
+                  + " (?, ?, ?)" ;
             
             String key =getDeviceKey();
             
             PreparedStatement stmt  = Constants.dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 stmt.setString(1, key);
-                stmt.setString(2,companuName);
-                stmt.setInt(3, Integer.parseInt(id_key[0].toString()));
-                stmt.setString(4, description);
+                stmt.setInt(2, Integer.parseInt(id_key[0].toString()));
+                stmt.setString(3, description);
                 stmt.execute();
-                
                
             int insertedid = 0;    
             ResultSet rss = stmt.getGeneratedKeys();
             if (rss.next()){
                  insertedid=rss.getInt(1);
             }
-                
             
             if (insertedid > 0 && groupid > 0) {
              

@@ -2,7 +2,6 @@ package devices;
 
 import assets.Constants;
 import errors.Errors;
-import initialize.Application;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
@@ -31,9 +30,6 @@ public class ServletFormsList extends HttpServlet {
                       
                       if (adminid > 0) {
                           String groupList = getGroupIDsInString (deviceid);
-                          
-                          
-                          
                           outpute = "";
                           ArrayList formsIds =  getFormsArray (groupList, adminid);
                           

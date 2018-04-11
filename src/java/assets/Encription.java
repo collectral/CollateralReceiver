@@ -15,12 +15,8 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
 
- 
-
 public class Encription {
-    
-    
-    
+
     public static String getMD5  (String texttomd5) {
         String result  = null;
         try {

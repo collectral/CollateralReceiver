@@ -9,51 +9,46 @@
 
 <%
     
-        if (Constants.dbConnection == null) {
-            Application.reconnectDatabase();
-        }   
-        
-        if (Constants.dbConnection == null) {
-             response.sendRedirect( WebConstants.getContextFullURL (request));
-        }  
-        
-        if (!Constants.dbConnection.isValid(3)) {
-                 response.sendRedirect( WebConstants.getContextFullURL (request));
-        } 
+    if (Constants.dbConnection == null) {
+       response.sendRedirect( WebConstants.getContextFullURL (request));
+    }   
+    
+    if (!Constants.dbConnection.isValid(3)) {
+       response.sendRedirect( WebConstants.getContextFullURL (request));
+    } 
+    
+    System.out.println("-->>> SETTINGS");
+    
+    request.setAttribute(Constants.page_attribute, Constants.page_settings);
+    
+    Object[] id_key = null;
+    Cookie cookie = null;
+    Cookie[] cookies = request.getCookies();
 
-        request.setAttribute(Constants.page_attribute, Constants.page_settings);
-         
-        
-     
-           
-        Object[] id_key = null;
-        Cookie cookie = null;
-        Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
 
-        if (cookies != null) {
-
-            for (int i = 0; i < cookies.length; i++) {
-                cookie = cookies[i];
-                if (cookie.getName().equals(Constants.gitst_cookie)) {
-                    id_key = LoginAction.getUserKeyFromCookies(cookie.getValue().trim());
-                    break;
-                } 
-            }
-
-            if (id_key == null) {
-                    if (request.getParameter("login") != null) {
-                        String username = request.getParameter("username") ;
-                        String password = request.getParameter("password");
-                        id_key = LoginAction.getUserKeyFromLoginPass(username, password);
-                    }  
-
-                    if (id_key != null) {
-                       Cookie new_access_cookie = new Cookie(Constants.gitst_cookie, id_key[1].toString());
-                       new_access_cookie.setMaxAge(365*24*60*60);
-                       response.addCookie(new_access_cookie);
-                    } 
+        for (int i = 0; i < cookies.length; i++) {
+            cookie = cookies[i];
+            if (cookie.getName().equals(Constants.gitst_cookie)) {
+                id_key = LoginAction.getUserKeyFromCookies(cookie.getValue().trim());
+                break;
             } 
+        }
+
+        if (id_key == null) {
+                if (request.getParameter("login") != null) {
+                    String username = request.getParameter("username") ;
+                    String password = request.getParameter("password");
+                    id_key = LoginAction.getUserKeyFromLoginPass(username, password);
+                }  
+
+                if (id_key != null) {
+                   Cookie new_access_cookie = new Cookie(Constants.gitst_cookie, id_key[1].toString());
+                   new_access_cookie.setMaxAge(365*24*60*60);
+                   response.addCookie(new_access_cookie);
+                } 
         } 
+    } 
         
         if (id_key != null) {
              String logout = request.getParameter("posting") ;

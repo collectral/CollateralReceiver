@@ -7,10 +7,11 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+
 <%
     
         if (Constants.dbConnection == null) {
-            Application.reconnectDatabase();
+            Application.connectDatabase();
         }   
         
         if (Constants.dbConnection == null) {

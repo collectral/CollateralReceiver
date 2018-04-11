@@ -24,8 +24,24 @@ public class Application implements ServletContextListener {
       
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+        try {
+           Class.forName("com.mysql.jdbc.Driver");
+        }catch (Exception ex) {
+           Errors.setErrors("Application / contextInitialized " + ex.toString());
+        }
         
-        try  {
+        readConfigFile(sce);
+        connectDatabase();
+        getConfigValues();
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+         
+    }
+    
+    public static void readConfigFile (ServletContextEvent sce) {
+       try  {
             ServletContext context = sce.getServletContext();
             String fullPath = context.getRealPath(Constants.config_file_path);
               
@@ -77,31 +93,43 @@ public class Application implements ServletContextListener {
             } 
             
         } catch (Exception ex) {
-            Errors.setErrors("Application / contextInitialized " + ex.toString());
+            Errors.setErrors("Application / readConfigFile" + ex.toString());
         }
-        
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Constants.dbConnection= DriverManager.getConnection("jdbc:mysql://" +Constants.db_hostname  + ":" 
-                      + Constants.db_port, Constants.db_username, Constants.db_password ); 
-        } catch (Exception ex) {
-            Constants.dbConnection = null;
-            Errors.setErrors("Application / contextInitialized 1 " + ex.toString());
-        }
-           
-
-           
-    }
-
-    @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-         
+    
     }
     
-    public static void reconnectDatabase () {
+    public static void getConfigValues() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Constants.dbConnection= DriverManager.getConnection("jdbc:mysql://" +Constants.db_hostname  + ":" 
+            if (Constants.dbConnection != null ) {
+                
+                String query = "SELECT * FROM  `" +Constants.db_database + "`.`conf`";
+                PreparedStatement st = Constants.dbConnection.prepareStatement(query);
+                ResultSet rs = st.executeQuery(query);
+                
+                while( rs.next() ) {
+                    switch (rs.getString("TYPE")) {
+                        case "SERVERKEY":
+                            Constants.conf_SERVERKEY = rs.getString("VALUE");
+                            break;
+                            
+                        case "COMPANYNAME":
+                            Constants.conf_COMPANY   = rs.getString("VALUE");
+                            break;
+                    } 
+                }
+                
+                rs.close();
+                st.close();
+            }
+        } catch (Exception ex) {
+             Errors.setErrors("Application / getConfigValues " + ex.toString());
+        } 
+    }
+    
+    public static void connectDatabase () {
+        try {
+            
+            Constants.dbConnection = DriverManager.getConnection("jdbc:mysql://" +Constants.db_hostname  + ":" 
                       + Constants.db_port, Constants.db_username, Constants.db_password ); 
             
         } catch (Exception ex) {
@@ -122,7 +150,7 @@ public class Application implements ServletContextListener {
            Constants.db_username = request.getParameter("dbuser");
            Constants.db_password = request.getParameter("dbpass");
            Constants.db_database = request.getParameter("dbname");
-           reconnectDatabase ();
+           connectDatabase ();
            if (Constants.dbConnection.isValid(3)) {
                 String config_text  = "host=" +Constants.db_hostname+ "\n" +
                          "port=" + Constants.db_port + "\n" +
@@ -136,7 +164,7 @@ public class Application implements ServletContextListener {
                 result = true;
            }
         }catch (Exception ex) {
-           Errors.setErrors("-->>>>>   Application / writeConfigFile " + ex.toString());
+           Errors.setErrors("Application / writeConfigFile " + ex.toString());
         }
         return result;
     
@@ -144,46 +172,49 @@ public class Application implements ServletContextListener {
     
     public static boolean setDatabaseValues (HttpServletRequest request){
         boolean result =false;
-        String query = "DELETE FROM " +Constants.db_database + ".`conf` WHERE TYPE = 'SERVERKEY'";
-        
         try {
+            String query = "DELETE FROM `" +Constants.db_database + "`.`conf` WHERE TYPE = 'SERVERKEY'";
+             
             Statement st = Constants.dbConnection.createStatement();
-            st.execute(query);
-            
-            query = "INSERT INTO  `"+Constants.db_database+ "`.`conf` (TYPE , VALUE ) "
-                    + "VALUES ('SERVERKEY', ?)";
-            
+                st.execute(query);
+                query = "DELETE FROM `" +Constants.db_database + "`.`conf` WHERE TYPE = 'COMPANYNAME'";
+                st.execute(query);
+
+                query = "INSERT INTO `"+Constants.db_database+ "`.`conf` (TYPE , VALUE ) "
+                        + "VALUES ('SERVERKEY', ?)";
             
             String serverkey = request.getParameter("skey");
             PreparedStatement stmt  = Constants.dbConnection.prepareStatement(query);
-            stmt.setString(1, serverkey);
-            stmt.execute();
-            stmt.close();
+                stmt.setString(1, serverkey);
+                stmt.execute();
+                stmt.close();
                
-            query = "INSERT INTO  `" +Constants.db_database + "`.`users` (UN , EM, PS, CM ) VALUES (?, ?, ?, ? )";
+            query = "INSERT INTO  `" +Constants.db_database + "`.`users` (UN , EM, PS ) VALUES (?, ?, ?)";
             
             String username = request.getParameter("username");
             String password = Encription.getMD5(request.getParameter("pass"));
-            String company_name = request.getParameter("company");
-            stmt  = Constants.dbConnection.prepareStatement(query);
-            stmt.setString(1, username);
-            stmt.setString(2, username);
-            stmt.setString(3, password);
-            stmt.setString(4, company_name);
-            stmt.execute();
-            stmt.close();
             
-        
+            stmt  = Constants.dbConnection.prepareStatement(query);
+                stmt.setString(1, username);
+                stmt.setString(2, username);
+                stmt.setString(3, password);
+                stmt.execute();
+                stmt.close();
+            
+            String company_name = request.getParameter("company");
+                query = "INSERT INTO  `" +Constants.db_database + "`.`conf` (TYPE, VALUE) VALUES ('COMPANYNAME', ?)";
+                stmt  = Constants.dbConnection.prepareStatement(query);
+                stmt.setString(1, company_name);
+                stmt.execute();
+                stmt.close();
+                st.close();
+            
         } catch (Exception ex){
             Errors.setErrors("Application / setDatabaseValues " + ex.toString());
         }
-                  
-        
-        
         
         return result;
     }
-    
     
     public static boolean isUserExists() {
         boolean result  = false; 

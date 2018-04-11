@@ -9,7 +9,7 @@
 <%
     
         if (Constants.dbConnection == null) {
-            Application.reconnectDatabase();
+            Application.connectDatabase();
         }   
         if (Constants.dbConnection == null) {
              response.sendRedirect( WebConstants.getContextFullURL (request));

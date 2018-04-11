@@ -79,24 +79,22 @@ public class ServerAccess {
         return result; 
     }
     
-    
     public static String getAllData (int adminid) {
         
         String result = null;
         try {
             HashMap  rsmap = new HashMap ();
-            rsmap.put("AllDevices", getGetAllDevices (adminid));
-            rsmap.put("DeviceGroupMapping", getDeviceGroupMapping (adminid));
-            rsmap.put("AllForms",  getGetAllForms (adminid));
-            rsmap.put("AllGroups", getGetAllGroups (adminid));
-            result = gson.toJson(rsmap);
+                rsmap.put("AllDevices", getGetAllDevices (adminid));
+                rsmap.put("DeviceGroupMapping", getDeviceGroupMapping (adminid));
+                rsmap.put("AllForms",  getGetAllForms (adminid));
+                rsmap.put("AllGroups", getGetAllGroups (adminid));
+                result = gson.toJson(rsmap);
         } catch (Exception ex) {
             Errors.setErrors("ServerAccess / getAllData "  + ex.toString());
         }
         
         return result;
     }
-    
     
     /**
      * Retrieves all data about Devices
@@ -113,7 +111,7 @@ public class ServerAccess {
             
             while (rs.next()) {
                   devices.put("DKEY", "DKEY");
-                  devices.put("COMPANY", "COMPANY");
+                  devices.put("COMPANY", Constants.conf_COMPANY);
                   devices.put("DID" , "DID");
                   devices.put("ID"  , "ID");
                   devices.put("DESCRIPTION", "DESCRIPTION");
@@ -130,8 +128,8 @@ public class ServerAccess {
     }
     
     private static HashMap getDeviceGroupMapping (int adminid) {
+        
         HashMap result = null;
-            
         try {
             Statement st = Constants.dbConnection.createStatement();
             String query = "SELECT * FROM  `" +  Constants.db_database  +  "`.`devices_group_connectaion` WHERE ADMINID = " + adminid ;
@@ -149,13 +147,11 @@ public class ServerAccess {
         } catch (Exception ex ) {
             Errors.setErrors("ServerAccess / getDeviceGroupMapping " + ex.toString());
         }  
-        
         return result;
     } 
     
     private static HashMap getGetAllForms (int adminid) {
         HashMap result = null;
-        
         try {
             Statement st = Constants.dbConnection.createStatement();
             String query = "SELECT * FROM  `" +  Constants.db_database  +  "`.`forms` WHERE ADMINID = " + adminid ;
@@ -173,7 +169,6 @@ public class ServerAccess {
         } catch (Exception ex ) {
             Errors.setErrors("ServerAccess / getGetAllForms " + ex.toString());
         }  
-        
         return result;
     }
     

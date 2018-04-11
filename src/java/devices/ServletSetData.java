@@ -1,9 +1,7 @@
 package devices;
 
 import assets.Constants;
-import assets.Encription;
 import errors.Errors;
-import initialize.Application;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.PreparedStatement;
@@ -64,9 +62,6 @@ public class ServletSetData extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-    
-    
-    
     
     private static int setDatabase (int deviceid, int formid, String fileJson) {
         int result = 0;

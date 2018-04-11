@@ -3,7 +3,6 @@ package devices;
 import assets.Constants;
 import com.google.gson.Gson;
 import errors.Errors;
-import initialize.Application;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
