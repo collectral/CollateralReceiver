@@ -1,19 +1,29 @@
 package devices;
 
 import assets.Constants;
+import com.google.gson.Gson;
 import errors.Errors;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.HashMap;
 import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 public class Registration {
     
+      private static Gson gson = new Gson ();
+    
       public static String getResponce (HttpServletRequest request) {
-            String device_key = request.getParameter(ClassConstants.gitst_device_keys);  ///Example device database id _ device registration key _ devise serial number or unique id
-            String result = "0";
+           String result = "0";
             
             try {
+                
+                
+                String json_string  =  request.getParameter(ClassConstants .posting_data) ; 
+                System.out.println(json_string);
+                
+                HashMap json = gson.fromJson(json_string, HashMap.class);
+                
                 
                 
                 

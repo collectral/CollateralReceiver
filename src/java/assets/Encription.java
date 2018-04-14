@@ -1,23 +1,17 @@
 package assets;
-
+ 
 import errors.Errors;
-import java.nio.ByteBuffer;
-
 import java.security.MessageDigest;
-
-import java.security.AlgorithmParameters;
 import java.security.SecureRandom;
-import java.security.spec.AlgorithmParameterSpec;
 import javax.crypto.Cipher;
-import javax.crypto.SecretKey;
-import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
 
 public class Encription {
-
+    
+    private static Base64 base64 = new Base64();
+    
     public static String getMD5  (String texttomd5) {
         String result  = null;
         try {
@@ -36,59 +30,86 @@ public class Encription {
     }
     
     
-    ///// ########################## 
+    public static String getEncriptedString  (String cleanString, String key) {
+        String result  = null;
+        try {
+            byte[] encripted = encrypt(cleanString,key); 
+            result = base64.encodeAsString(encripted);
+        } catch (Exception ex) {
+            Errors.setErrors("Encription / getEncriptedString " + ex.toString());
+        }
+        return result;
+    }
     
-    public static String encryptStrToBase64(String ivStr, String keyStr, String enStr) throws Exception{
-        byte[] bytes = encrypt(keyStr, keyStr, enStr.getBytes("UTF-8"));
-        String base64 = Base64.encodeBase64String(bytes);
-        return base64;
+    public static String getDecriptedString (String encriptedString, String key) {
+        String result  = null;
+        try {
+            byte[] encrypted = base64.decode(encriptedString);
+            result = decrypt(encrypted, key);
+        } catch (Exception ex) {
+           Errors.setErrors("Encription / getDecriptedString " + ex.toString());
+        }
+        return result;
     }
-
-    public static String decryptStrFromBase64(String ivStr, String keyStr, String deStr) throws Exception{
-        byte[] data = Base64.decodeBase64(deStr);
-        return new String(data, "UTF-8");
-    }
-
-    private static byte[] encrypt(String ivStr, String keyStr, byte[] bytes) throws Exception{
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        md.update(ivStr.getBytes());
-        byte[] ivBytes = md.digest();
-
-        MessageDigest sha = MessageDigest.getInstance("SHA-256");
-        sha.update(keyStr.getBytes());
-        byte[] keyBytes = sha.digest();
-
-        return encrypt(ivBytes, keyBytes, bytes);
-    }
-
-    private static byte[] encrypt(byte[] ivBytes, byte[] keyBytes, byte[] bytes) throws Exception{
-        AlgorithmParameterSpec ivSpec = new IvParameterSpec(ivBytes);
-        SecretKeySpec newKey = new SecretKeySpec(keyBytes, "AES");
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        cipher.init(Cipher.ENCRYPT_MODE, newKey, ivSpec);
-        return cipher.doFinal(bytes);
-    }
-
-    private static byte[] decrypt(String ivStr, String keyStr, byte[] bytes) throws Exception{
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        md.update(ivStr.getBytes());
-        byte[] ivBytes = md.digest();
-
-        MessageDigest sha = MessageDigest.getInstance("SHA-256");
-        sha.update(keyStr.getBytes());
-        byte[] keyBytes = sha.digest();
-
-        return decrypt(ivBytes, keyBytes, bytes);
-    }
-
-    private static byte[] decrypt(byte[] ivBytes, byte[] keyBytes, byte[] bytes)  throws Exception{
-        AlgorithmParameterSpec ivSpec = new IvParameterSpec(ivBytes);
-        SecretKeySpec newKey = new SecretKeySpec(keyBytes, "AES");
-        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        cipher.init(Cipher.DECRYPT_MODE, newKey, ivSpec);
-        return cipher.doFinal(bytes);
-    }
-
     
+    
+    private static byte[] encrypt(String plainText, String key) throws Exception {
+        byte[] clean = plainText.getBytes();
+
+        // Generating IV.
+        int ivSize = 16;
+        byte[] iv = new byte[ivSize];
+        SecureRandom random = new SecureRandom();
+        random.nextBytes(iv);
+        IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+
+        // Hashing key.
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        digest.update(key.getBytes("UTF-8"));
+        byte[] keyBytes = new byte[16];
+        System.arraycopy(digest.digest(), 0, keyBytes, 0, keyBytes.length);
+        SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, "AES");
+
+        // Encrypt.
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivParameterSpec);
+        byte[] encrypted = cipher.doFinal(clean);
+
+        // Combine IV and encrypted part.
+        byte[] encryptedIVAndText = new byte[ivSize + encrypted.length];
+        System.arraycopy(iv, 0, encryptedIVAndText, 0, ivSize);
+        System.arraycopy(encrypted, 0, encryptedIVAndText, ivSize, encrypted.length);
+
+        return encryptedIVAndText;
+    }
+
+    private  static String decrypt(byte[] encryptedIvTextBytes, String key) throws Exception {
+        int ivSize = 16;
+        int keySize = 16;
+
+        // Extract IV.
+        byte[] iv = new byte[ivSize];
+        System.arraycopy(encryptedIvTextBytes, 0, iv, 0, iv.length);
+        IvParameterSpec ivParameterSpec = new IvParameterSpec(iv);
+
+        // Extract encrypted part.
+        int encryptedSize = encryptedIvTextBytes.length - ivSize;
+        byte[] encryptedBytes = new byte[encryptedSize];
+        System.arraycopy(encryptedIvTextBytes, ivSize, encryptedBytes, 0, encryptedSize);
+
+        // Hash key.
+        byte[] keyBytes = new byte[keySize];
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(key.getBytes());
+        System.arraycopy(md.digest(), 0, keyBytes, 0, keyBytes.length);
+        SecretKeySpec secretKeySpec = new SecretKeySpec(keyBytes, "AES");
+
+        // Decrypt.
+        Cipher cipherDecrypt = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        cipherDecrypt.init(Cipher.DECRYPT_MODE, secretKeySpec, ivParameterSpec);
+        byte[] decrypted = cipherDecrypt.doFinal(encryptedBytes);
+
+        return new String(decrypted);
+    }
     
 }
