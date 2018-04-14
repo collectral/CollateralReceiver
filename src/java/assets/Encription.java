@@ -7,6 +7,7 @@ import java.security.MessageDigest;
 
 import java.security.AlgorithmParameters;
 import java.security.SecureRandom;
+import java.security.spec.AlgorithmParameterSpec;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -34,62 +35,60 @@ public class Encription {
         return result;
     }
     
-    public String encrypt(String word, String password, String md5factoryKey) throws Exception {
-            byte[] ivBytes;
-            
-            SecureRandom random = new SecureRandom();
-            byte bytes[] = new byte[20];
-            random.nextBytes(bytes);
-            byte[] saltBytes = bytes;
-            
-            SecretKeyFactory factory = SecretKeyFactory.getInstance(md5factoryKey);
-            PBEKeySpec spec = new PBEKeySpec(password.toCharArray(),saltBytes,65556,256);
-            SecretKey secretKey = factory.generateSecret(spec);
-            SecretKeySpec secret = new SecretKeySpec(secretKey.getEncoded(), "AES");
-            
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            cipher.init(Cipher.ENCRYPT_MODE, secret);
-            AlgorithmParameters params = cipher.getParameters();
-            ivBytes =   params.getParameterSpec(IvParameterSpec.class).getIV();
-            byte[] encryptedTextBytes =                          cipher.doFinal(word.getBytes("UTF-8"));
-            
-            byte[] buffer = new byte[saltBytes.length + ivBytes.length + encryptedTextBytes.length];
-            System.arraycopy(saltBytes, 0, buffer, 0, saltBytes.length);
-            System.arraycopy(ivBytes, 0, buffer, saltBytes.length, ivBytes.length);
-            System.arraycopy(encryptedTextBytes, 0, buffer, saltBytes.length + ivBytes.length, encryptedTextBytes.length);
-            
-            String result = new Base64().encodeToString(buffer);
-            
-            return result;
-    }
     
-     public String decrypt(String encryptedText, String password, String md5factoryKey) throws Exception {
-           
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-            
-            ByteBuffer buffer = ByteBuffer.wrap(new Base64().decode(encryptedText));
-            byte[] saltBytes = new byte[20];
-            buffer.get(saltBytes, 0, saltBytes.length);
-            byte[] ivBytes1 = new byte[cipher.getBlockSize()];
-            buffer.get(ivBytes1, 0, ivBytes1.length);
-            byte[] encryptedTextBytes = new byte[buffer.capacity() - saltBytes.length - ivBytes1.length];
-
-            buffer.get(encryptedTextBytes);
-            
-            
-            SecretKeyFactory factory = SecretKeyFactory.getInstance(md5factoryKey);
-            PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), saltBytes, 65556, 256);
-            SecretKey secretKey = factory.generateSecret(spec);
-            SecretKeySpec secret = new SecretKeySpec(secretKey.getEncoded(), "AES");
-            cipher.init(Cipher.DECRYPT_MODE, secret, new IvParameterSpec(ivBytes1));
-            byte[] decryptedTextBytes = null;
-            try {
-              decryptedTextBytes = cipher.doFinal(encryptedTextBytes);
-            } catch (Exception e) {
-                e.printStackTrace();
-            } 
-
-            return new String(decryptedTextBytes);
+    ///// ########################## 
+    
+    public static String encryptStrToBase64(String ivStr, String keyStr, String enStr) throws Exception{
+        byte[] bytes = encrypt(keyStr, keyStr, enStr.getBytes("UTF-8"));
+        String base64 = Base64.encodeBase64String(bytes);
+        return base64;
     }
+
+    public static String decryptStrFromBase64(String ivStr, String keyStr, String deStr) throws Exception{
+        byte[] data = Base64.decodeBase64(deStr);
+        return new String(data, "UTF-8");
+    }
+
+    private static byte[] encrypt(String ivStr, String keyStr, byte[] bytes) throws Exception{
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(ivStr.getBytes());
+        byte[] ivBytes = md.digest();
+
+        MessageDigest sha = MessageDigest.getInstance("SHA-256");
+        sha.update(keyStr.getBytes());
+        byte[] keyBytes = sha.digest();
+
+        return encrypt(ivBytes, keyBytes, bytes);
+    }
+
+    private static byte[] encrypt(byte[] ivBytes, byte[] keyBytes, byte[] bytes) throws Exception{
+        AlgorithmParameterSpec ivSpec = new IvParameterSpec(ivBytes);
+        SecretKeySpec newKey = new SecretKeySpec(keyBytes, "AES");
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        cipher.init(Cipher.ENCRYPT_MODE, newKey, ivSpec);
+        return cipher.doFinal(bytes);
+    }
+
+    private static byte[] decrypt(String ivStr, String keyStr, byte[] bytes) throws Exception{
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(ivStr.getBytes());
+        byte[] ivBytes = md.digest();
+
+        MessageDigest sha = MessageDigest.getInstance("SHA-256");
+        sha.update(keyStr.getBytes());
+        byte[] keyBytes = sha.digest();
+
+        return decrypt(ivBytes, keyBytes, bytes);
+    }
+
+    private static byte[] decrypt(byte[] ivBytes, byte[] keyBytes, byte[] bytes)  throws Exception{
+        AlgorithmParameterSpec ivSpec = new IvParameterSpec(ivBytes);
+        SecretKeySpec newKey = new SecretKeySpec(keyBytes, "AES");
+        Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+        cipher.init(Cipher.DECRYPT_MODE, newKey, ivSpec);
+        return cipher.doFinal(bytes);
+    }
+
+    
     
 }

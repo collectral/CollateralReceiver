@@ -6,37 +6,17 @@
         </listener-class>
     </listener>
     <servlet>
-        <servlet-name>ServletSyncReg</servlet-name>
-        <servlet-class>devices.ServletSyncReg</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ServletTemplates</servlet-name>
-        <servlet-class>devices.ServletFormsList</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>confirm</servlet-name>
-        <servlet-class>devices.ServletConfirm</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>GetSingleForm</servlet-name>
-        <servlet-class>devices.ServletSingleForm</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Servers</servlet-name>
         <servlet-class>servers.Server</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletSyncReg</servlet-name>
-        <url-pattern>/reg</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ServletTemplates</servlet-name>
-        <url-pattern>/templ</url-pattern>
-    </servlet-mapping>
     <!--Forms  -->
     <servlet>
         <servlet-name>forms</servlet-name>
         <jsp-file>/forms.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Connect</servlet-name>
+        <servlet-class>devices.Connect</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>forms</servlet-name>
@@ -118,16 +98,12 @@
     </error-page>
     <!--End Error Page-->
     <servlet-mapping>
-        <servlet-name>confirm</servlet-name>
-        <url-pattern>/confirm</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GetSingleForm</servlet-name>
-        <url-pattern>/singleform</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>Servers</servlet-name>
         <url-pattern>/servers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Connect</servlet-name>
+        <url-pattern>/connect</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

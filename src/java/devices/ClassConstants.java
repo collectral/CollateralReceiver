@@ -27,4 +27,11 @@ public class ClassConstants {
     public static final int TYPE_MULTIPLESELECT = 6;
     public static final int TYPE_SINGLESELECT  = 7;
     
+    public static final String posting              = "posting";
+    public static final String posting_get_form     = "get_form";
+    public static final String posting_get_forms    = "get_forms";
+    public static final String posting_get_data     = "get_data";
+    public static final String posting_post_data    = "post_data";
+    public static final String posting_registration = "registration";
+    
 }

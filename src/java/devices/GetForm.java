@@ -3,90 +3,66 @@ package devices;
 import assets.Constants;
 import com.google.gson.Gson;
 import errors.Errors;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HashMap;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-public class ServletSingleForm extends HttpServlet {
+public class GetForm {
     
     private static Gson gson = new Gson ();
     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public static String getResponce (HttpServletRequest request) {
+        String result  = "0";
+    
         
-        try (PrintWriter out = response.getWriter()) {
-            
-            String outpute = "0"; /// Means no changes in Forms
-            HashMap jsonForms = null;
-            try {
-                String device_key = request.getParameter(ClassConstants.gitst_device_keys);
-                String [] keys_vals = device_key.split("__");
-              
-                if (keys_vals.length > 1) {
-                           try {
-                              int deviceid = Integer.parseInt(keys_vals[0]);
-                              int[] userdata =  ClassAccess.isAccessDeviceAllowed(deviceid,  keys_vals[1]);
-                              
-                              int userid =  userdata[0];
-                              if (userid > 0) {
-                                    String forms_list = request.getParameter(ClassConstants.gitst_device_forms).trim();
-                                    String [] formIds = forms_list.split(",");
+        HashMap jsonForms = null;
+        try {
+            String device_key = request.getParameter(ClassConstants.gitst_device_keys);
+            String [] keys_vals = device_key.split("__");
 
-                                    jsonForms = new HashMap ();
+            if (keys_vals.length > 1) {
+                       try {
+                          int deviceid = Integer.parseInt(keys_vals[0]);
+                          int[] userdata =  ClassAccess.isAccessDeviceAllowed(deviceid,  keys_vals[1]);
 
-                                    for (int i = 0 ; i < formIds.length ; i++) {
-                                                      int formid = Integer.parseInt(formIds[i].trim());
-                                                      if (formid > 0) {
-                                                         jsonForms.put(formid, getSingleForm (formid))  ;
-                                                      }
-                                    }
-                                    
-                                    
-                                    
-                                    jsonForms.put("INFO", getFormsInfo (forms_list, userdata) )  ;
-                              }
-                             
-                           } catch (Exception ex) {
-                               Errors.setErrors("ServletSingleForm  / processRequest " + ex.toString());
-                           }
-                }
-            } catch (Exception ex) {
-                    Errors.setErrors("ServletSingleForm / processRequest " + ex.toString());
+                          int userid =  userdata[0];
+                          if (userid > 0) {
+                                String forms_list = request.getParameter(ClassConstants.gitst_device_forms).trim();
+                                String [] formIds = forms_list.split(",");
+
+                                jsonForms = new HashMap ();
+
+                                for (int i = 0 ; i < formIds.length ; i++) {
+                                                  int formid = Integer.parseInt(formIds[i].trim());
+                                                  if (formid > 0) {
+                                                     jsonForms.put(formid, getSingleForm (formid))  ;
+                                                  }
+                                }
+
+
+
+                                jsonForms.put("INFO", getFormsInfo (forms_list, userdata) )  ;
+                          }
+
+                       } catch (Exception ex) {
+                           Errors.setErrors("ServletSingleForm  / processRequest " + ex.toString());
+                       }
             }
-            
-            if (jsonForms != null) {
-               outpute = gson.toJson(jsonForms);
-            }
-            
-            out.print(outpute);
-            
+        } catch (Exception ex) {
+                Errors.setErrors("ServletSingleForm / processRequest " + ex.toString());
         }
+            
+        if (jsonForms != null) {
+            result = gson.toJson(jsonForms);
+        }
+      
+        return result;
     }
     
     
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
     
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
-    
-    private static HashMap getFormsInfo (String fids, int[] userdata) {
+      private static HashMap getFormsInfo (String fids, int[] userdata) {
           HashMap result = new HashMap ();
           
           ResultSet rs = null;
@@ -207,9 +183,6 @@ public class ServletSingleForm extends HttpServlet {
         return singleSection;
         
     }
-    
-    
-    
     
     
 }
