@@ -91,7 +91,7 @@ public class WebPageSettings {
             stmt.close();
             Constants.conf_SERVERKEY = serverkey ;
         } catch (Exception ex) {
-            Errors.setErrors("WebPageSettings / setCompanyName" + ex.toString());
+            Errors.setErrors("WebPageSettings / setCollectralKey" + ex.toString());
         }
     }
     

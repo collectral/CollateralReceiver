@@ -112,8 +112,6 @@ public class WebPageDevices {
                query = "SELECT  * FROM `" +  Constants.db_database  +  "`.`devices`"
                        + " WHERE  ADMINID = " + id_key[0] + " AND ID IN ("  + groupList +  ")";
                
-               
-               
                rs.close();
                
                
@@ -196,11 +194,11 @@ public class WebPageDevices {
             ResultSet rs = st.executeQuery(select_compay_name);
             
             String query = "INSERT INTO `" +  Constants.db_database  +  "`.`devices` "
-                  + " ( DKEY,   ADMINID, DESCRIPTION ) "
+                  + " (DKEY, ADMINID, DESCRIPTION ) "
                   + " VALUES "
                   + " (?, ?, ?)" ;
             
-            String key =getDeviceKey();
+            String key = getDeviceKey(request);
             
             PreparedStatement stmt  = Constants.dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
                 stmt.setString(1, key);
@@ -220,7 +218,6 @@ public class WebPageDevices {
                          + " (DEVICEID, GROUPID, ADMINID ) "
                          + " VALUES "
                          + " ( ?, ? , ? )" ;
-                  
                 
                 PreparedStatement stmt_group  = Constants.dbConnection.prepareStatement(insert_group);
                        stmt_group.setInt(1, insertedid);
@@ -240,25 +237,22 @@ public class WebPageDevices {
         }
    }
     
-   private static String getDeviceKey() {
+   private static String getDeviceKey(HttpServletRequest request) {
        
        String result = null;
        try {
             String select_compay_name = "SELECT * FROM `" +  Constants.db_database  +  "`.`conf` WHERE TYPE = 'SERVERKEY' LIMIT 1 "  ;
             Statement st = Constants.dbConnection.createStatement();
             ResultSet rs = st.executeQuery(select_compay_name);
-            String serverkey = null;
-            String severurl =  null;
             
-            while (rs.next()) { 
-                 severurl  = rs.getString("SERVERURL");
-                 serverkey = rs.getString("SERVERKEY");
-            }
+            String severurl =  WebConstants.getContextFullURL(request);
+            
             rs.close();
             st.close();
             
-            if (serverkey != null && severurl != null) {
-                result = HTTPSPost.sendPost(Constants.collectralurl, serverkey , severurl) ;
+            if (Constants.conf_SERVERKEY != null && severurl != null) {
+                System.out.println(Constants.conf_SERVERKEY );
+                result = HTTPSPost.sendPost(Constants.collectralurl, Constants.conf_SERVERKEY  , severurl) ;
             }
             
        } catch (Exception ex){
@@ -334,7 +328,7 @@ public class WebPageDevices {
                         stmt.close();
 
                 } catch (Exception ex) {
-                    Errors.setErrors("WebPageDevices / generateDevice "  + ex.toString());
+                    Errors.setErrors("WebPageDevices / updateGroup "  + ex.toString());
                 }
         }
     }
