@@ -1,8 +1,10 @@
 package assets;
 
+import com.google.gson.Gson;
 import errors.Errors;
 import javax.net.ssl.*;
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -14,21 +16,32 @@ import java.util.Map;
 
 public class  HTTPSPost {
         
-        
+        private static Gson gson = new Gson ();
         private final static String USER_AGENT = "Mozilla/5.0";
     
-	public static String sendPost(String url, String  serverkey,  String severurl) {
-                String result = "";
-                
-                System.out.println("url : " + url);
+	public static String[] sendPost(String url, String  serverkey,  String deviceurl) {
+                String[] result = new String[2];
                 
                 try {
+                    String[] serverKeys = serverkey.split("_");
+                    int serverid = Integer.parseInt(serverKeys[0]);
                     url = url.trim();
+                    
+                    Map<String, String> data       = new HashMap<String, String>();
+                    
+                    String dkey =  Encription.getMD5(System.currentTimeMillis()+ Encription.getMD5(serverkey));
+                    
+                    data.put("DKEY", Encription.getMD5(dkey));
+                    data.put("DURL", deviceurl);
+                    String jsonString  = gson.toJson(data);
+                    jsonString = Encription.getEncriptedString(jsonString, serverKeys[1]);
+                    
                     Map<String, String> parameters = new HashMap<String, String>();
-                    parameters.put("SKEY", serverkey);
-                    parameters.put("DURL", severurl);
-                    result = makePostRequest(url, parameters);
-                    System.out.println("result " +  result);
+                    parameters.put("DATA",  jsonString);
+                    parameters.put("IDENT", serverid + "");
+                    
+                    result[0] = makePostRequest(url, parameters, serverKeys[1]);
+                    result[1] = dkey;
                 } catch (Exception ex) {
                     Errors.setErrors("" + ex.toString());
                 }
@@ -74,23 +87,31 @@ public class  HTTPSPost {
     }
 
    
-    public static String makePostRequest(String url, Map<String, String> parameters) {
+    public static String makePostRequest(String url, Map<String, String> parameters, String key) {
        
         String result = "";
         try {
             ensureAllParametersArePresent(parameters);
             
-            HttpsURLConnection con = getUrlConnection(url);
-            String urlParameters = processRequestParameters(parameters);
+            BufferedReader in = null;
+            if (url.toLowerCase().startsWith("https")) {
+                HttpsURLConnection con = getHttpslConnection(url);
+                String urlParameters = processRequestParameters(parameters);
+                sendPostParameters(con, urlParameters);
+                in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            } else {
+                HttpURLConnection con = getHttpConnection(url);
+                String urlParameters = processRequestParameters(parameters);
+                sendPostParameters(con, urlParameters);
+                in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            }
             
-            sendPostParameters(con, urlParameters);
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
                result += inputLine;
             }
-            
+            result = Encription.getDecriptedString(result, key);
             in.close();
               
         } catch (Exception e) {
@@ -108,8 +129,15 @@ public class  HTTPSPost {
         wr.close();
     }
        
-    private static HttpsURLConnection getUrlConnection(String url) throws IOException {
+     private static HttpsURLConnection getHttpslConnection(String url) throws IOException {
         HttpsURLConnection con = (HttpsURLConnection) new URL(url).openConnection();
+        con.setRequestMethod("POST");
+        con.setRequestProperty("User-Agent", USER_AGENT);
+        return con;
+    }
+    
+    private static HttpURLConnection getHttpConnection(String url) throws IOException {
+        HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
         con.setRequestMethod("POST");
         con.setRequestProperty("User-Agent", USER_AGENT);
         return con;

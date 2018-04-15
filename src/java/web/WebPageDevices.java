@@ -3,15 +3,12 @@ package web;
 import assets.Constants;
 import assets.HTTPSPost;
 import errors.Errors;
-import initialize.Application;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
  
-
 public class WebPageDevices {
     
     /**
@@ -47,7 +44,6 @@ public class WebPageDevices {
         }
         
         return result;
-    
     }
     
     /**
@@ -187,7 +183,6 @@ public class WebPageDevices {
          }
         
          try {
-            
              
             String select_compay_name = "SELECT * FROM `" +  Constants.db_database  +  "`.`users` WHERE ID = " + id_key[0] ;
             Statement st = Constants.dbConnection.createStatement();
@@ -198,10 +193,10 @@ public class WebPageDevices {
                   + " VALUES "
                   + " (?, ?, ?)" ;
             
-            String key = getDeviceKey(request);
+            String[] key = getDeviceKey(request);
             
             PreparedStatement stmt  = Constants.dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                stmt.setString(1, key);
+                stmt.setString(1, key[0]);
                 stmt.setInt(2, Integer.parseInt(id_key[0].toString()));
                 stmt.setString(3, description);
                 stmt.execute();
@@ -237,9 +232,9 @@ public class WebPageDevices {
         }
    }
     
-   private static String getDeviceKey(HttpServletRequest request) {
+   private static String[] getDeviceKey(HttpServletRequest request) {
        
-       String result = null;
+       String[] result = null;
        try {
             String select_compay_name = "SELECT * FROM `" +  Constants.db_database  +  "`.`conf` WHERE TYPE = 'SERVERKEY' LIMIT 1 "  ;
             Statement st = Constants.dbConnection.createStatement();
@@ -251,7 +246,6 @@ public class WebPageDevices {
             st.close();
             
             if (Constants.conf_SERVERKEY != null && severurl != null) {
-                System.out.println(Constants.conf_SERVERKEY );
                 result = HTTPSPost.sendPost(Constants.collectralurl, Constants.conf_SERVERKEY  , severurl) ;
             }
             

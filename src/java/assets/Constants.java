@@ -7,8 +7,8 @@ public class Constants {
     public static final boolean isDebbaging = true; // should be errors seen and reported
     public static final String  gitst_cookie = "gitstkey"; // key is stored in user ckookie to allow loging in 
     public static       int     login_length =  0;
-    public static final String  collectralurl = "https://collectral.com/collectral/servers"; // key is stored in user ckookie to allow loging in 
-    
+  //  public static final String  collectralurl = "https://collectral.com/collectral/servers"; // key is stored in user ckookie to allow loging in 
+    public static final String  collectralurl = "http://localhost:8080/collectral/servers";
     public static final String page_attribute  = "pagetype";
     public static final String user_attribute  = "userkey";
     
