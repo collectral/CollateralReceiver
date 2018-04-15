@@ -28,7 +28,7 @@ public class ClassConstants {
     public static final int TYPE_SINGLESELECT  = 7;
     
     public static final String posting              = "posting";
-    public static final String posting_data         = "data";
+    public static final String posting_data         = "DATA";
     public static final String posting_get_form     = "get_form";
     public static final String posting_get_forms    = "get_forms";
     public static final String posting_get_data     = "get_data";

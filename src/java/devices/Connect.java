@@ -1,5 +1,6 @@
 package devices;
 
+import assets.Encription;
 import errors.Errors;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,20 +11,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Connect extends HttpServlet {
-
-    
-    
+        
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         try (PrintWriter out = response.getWriter()) {
             String respond = "0";            
             try {
                   
-                  String key = Security.getKey(request);
+                  Object[] key = Security.getKey(request);
                   
                   if (key != null) {
                         String posting = request.getParameter(ClassConstants.posting);
-                        HashMap data = Security.getHashDataDecripted(key, request);
+                        HashMap data = Security.getHashDataDecripted(key[0].toString(), request);
 
                         if (data != null) {
                              if (posting.equals(ClassConstants.posting_get_data)) {
@@ -43,14 +42,16 @@ public class Connect extends HttpServlet {
                              }
 
                              if (posting.equals(ClassConstants.posting_registration)) {
-                                 respond = Registration.getResponce(request);
+                                 respond = Registration.getResponce(key, data);
                              }
 
-                             respond = Security.getEncriptedResponce(respond, key);
+                             System.out.println(respond);
+                             System.out.println(key[0].toString());
+                             respond = Encription.getEncriptedString(respond, key[0].toString().trim());
+                             System.out.println(respond);
                         }
                   }
-                
-                 
+         
             } catch (Exception ex) {
                 Errors.setErrors("Connect / processRequest " + ex.toString());
             }

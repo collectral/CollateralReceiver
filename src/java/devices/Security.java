@@ -13,15 +13,15 @@ public class Security {
     
     private static Gson gson = new Gson ();
     
-    public static String getKey (HttpServletRequest request) {
-        
-        String result = null;    
+    public static Object[] getKey (HttpServletRequest request) {
+        Object[] result = null;    
         
         PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
             String ident = request.getParameter("IDENT");
+            
             String query ;
             
             if (request.getParameter(ClassConstants.posting).equals(ClassConstants.posting_registration)) {
@@ -37,7 +37,10 @@ public class Security {
             }
             
             while (rs.next()) {   
-                result = rs.getString("DKEY");
+                 result  = new Object[5];
+                 result[1] = rs.getInt("ID");
+                 result[2] = rs.getString("DKEY");
+                 result[3] = rs.getInt("ADMINID");
             }
 
         } catch (Exception ex) {
@@ -47,11 +50,19 @@ public class Security {
         try {if ( rs != null ){ rs.close(); }}catch (Exception ex){} 
         try {if ( stmt != null) {stmt.close();}} catch (Exception ex){}  
         
+        if (request.getParameter(ClassConstants.posting).equals(ClassConstants.posting_registration)) {
+           result[0] = result[2].toString().split("_")[2];
+        } else {
+           result[0] = result[2].toString().split("_")[1];
+        }
+        
+        
         return result;
     }
     
     public static HashMap getHashDataDecripted (String key , HttpServletRequest request) {
         HashMap result = null;
+        
         try {
             String encriptedString = request.getParameter("DATA");
             String jsonstring = Encription.getDecriptedString(encriptedString, key);
@@ -62,10 +73,5 @@ public class Security {
         return result;
     } 
     
-    public static String getEncriptedResponce (String responceClean, String key) {
-        String result = Encription.getEncriptedString(responceClean, key);
-        
-        return result;
-    }
     
 }

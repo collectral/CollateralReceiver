@@ -7,74 +7,27 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.UUID;
-import javax.servlet.http.HttpServletRequest;
 
 public class Registration {
     
       private static Gson gson = new Gson ();
     
-      public static String getResponce (HttpServletRequest request) {
-           String result = "0";
-            
+      public static String getResponce (Object[] devKeys , HashMap json) {
+
+            String result = "0";
             try {
-                
-                
-                String json_string  =  request.getParameter(ClassConstants .posting_data) ; 
-                System.out.println(json_string);
-                
-                HashMap json = gson.fromJson(json_string, HashMap.class);
-                
-                
-                
-                
-//                if (device_key  != null) {
-//                        String [] device_request =  device_key.split("_");;
-//                        Object[] device_vals = getDeviceObject (device_key);
-//                        
-//                        if (device_vals != null) {
-//                           int deviceid = Integer.parseInt(device_vals[0].toString());
-//                           String accesskey = setAcccessKey ( deviceid , device_request[3]);
-//                           result = deviceid  + "__" +  accesskey  + "__" + device_vals[2] ;
-//                        }
-//                }
+               
+               String [] device_request = devKeys[2].toString().split("_");;
+               int deviceid = Integer.parseInt(devKeys [1].toString());
+               String accesskey = setAcccessKey ( deviceid , json.get(ClassConstants.gitst_device_id).toString());
+               result = deviceid  + "__" +  accesskey  + "__" + Constants.conf_COMPANY;
             } catch (Exception ex) {
-                 Errors.setErrors ("ServletSyncReg / processRequest " + ex.toString());
+                 Errors.setErrors ("Registration / processRequest " + ex.toString());
             }
         
             return result;
     }
-      private static Object[] getDeviceObject (String  device_requests) {
-        
-            Object[] result  = null;
-
-            try {
-
-                String[] splitted = device_requests.split("_");
-
-                int id1 = Integer.parseInt(splitted[0]);
-                int id2 = Integer.parseInt(splitted[1]);
-                int id3 = Integer.parseInt(splitted[2]);
-                String query = "SELECT * FROM  `" +  Constants.db_database  
-                        +  "`.`devices` WHERE DKEY = '" +id1 + "_" + id2 + "_" + id3 + "'  LIMIT 1 " ;
-
-                PreparedStatement stmt = Constants.dbConnection.prepareStatement(query);
-                //stmt.setString(1, device_requests);
-                ResultSet rs = stmt.executeQuery(query);
-                while (rs.next()) { 
-                    result    = new Object[3]; 
-                    result[0] = rs.getInt("ID"); 
-                    result[1] = rs.getInt("ADMINID"); 
-                    result[2] = Constants.conf_COMPANY; 
-                }
-
-                stmt.close();
-                rs.close();
-            } catch (Exception ex ) {
-                Errors.setErrors("ClassAccess / isAccessAllowed " + ex.toString());
-            }  
-       
-        return result;
-    }
+     
     
     private static String setAcccessKey ( int deviceid  , String deviceuid ) {
          
@@ -88,7 +41,7 @@ public class Registration {
             stmt.setInt(3, deviceid);
             stmt.execute();
         } catch (Exception ex) {
-            Errors.setErrors ("ServletSyncReg / setAcccessKey " + ex.toString());
+            Errors.setErrors ("Registration / setAcccessKey " + ex.toString());
         }
         
         return unique_key;
