@@ -22,9 +22,17 @@ public class Security {
         try {
             String ident = request.getParameter("IDENT");
             
+            
+            System.out.println(ident);
+            
             String query ;
             
-            if (request.getParameter(ClassConstants.posting).equals(ClassConstants.posting_registration)) {
+            String posting = request.getParameter(ClassConstants.posting);
+            
+            System.out.println(posting);
+            
+            
+            if (posting != null && posting.equals(ClassConstants.posting_registration)) {
                 query = "SELECT * FROM `" + Constants.db_database +"`.`devices` WHERE DKEY LIKE ?";
                 stmt = Constants.dbConnection.prepareStatement(query);
                 stmt.setString(1, ident + "%");
@@ -36,12 +44,15 @@ public class Security {
                 rs = stmt.executeQuery();
             }
             
-            while (rs.next()) {   
-                 result  = new Object[5];
-                 result[1] = rs.getInt("ID");
-                 result[2] = rs.getString("DKEY");
-                 result[3] = rs.getInt("ADMINID");
+            if (rs!=null) {
+                while (rs.next()) { 
+                     result  = new Object[4];
+                     result[1] = rs.getInt("ID");
+                     result[2] = rs.getString("DKEY");
+                     result[3] = rs.getInt("ADMINID");
+                }
             }
+            
 
         } catch (Exception ex) {
              Errors.setErrors ("Security / getKey " + ex.toString());
@@ -50,11 +61,16 @@ public class Security {
         try {if ( rs != null ){ rs.close(); }}catch (Exception ex){} 
         try {if ( stmt != null) {stmt.close();}} catch (Exception ex){}  
         
-        if (request.getParameter(ClassConstants.posting).equals(ClassConstants.posting_registration)) {
-           result[0] = result[2].toString().split("_")[2];
-        } else {
-           result[0] = result[2].toString().split("_")[1];
+        try {
+            if (request.getParameter(ClassConstants.posting).equals(ClassConstants.posting_registration)) {
+               result[0] = result[2].toString().split("_")[2];
+            } else {
+               result[0] = result[2].toString();
+            }
+        }catch (Exception ex) {
+            Errors.setErrors("Security / getKey  3  " + ex.toString());
         }
+        
         
         
         return result;

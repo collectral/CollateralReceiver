@@ -9,11 +9,9 @@
 <jsp:include page="/WEB-INF/jsp_files/post_handler.jsp"></jsp:include>
 <%
     
-       int state = 0;
+        int state = 0;
     
-       if (Constants.dbConnection == null) {
-            Application.connectDatabase();
-        }   
+     
         if (Constants.dbConnection == null) {
            state = 1;  
         }  
@@ -22,7 +20,9 @@
            state = 2;  
         } 
         
- 
+        if (state > 0) {
+            Application.connectDatabase();
+        }
 %> 
 
 

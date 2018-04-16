@@ -1,38 +1,37 @@
 package devices;
 
 import assets.Constants;
+import com.google.gson.Gson;
 import errors.Errors;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 
 public class PostData {
       
-    public static String getResponce (HttpServletRequest request) {
+    private static Gson gson = new Gson ();
+    
+    public static String getResponce (Object[] deviceKeys, HashMap data) {
         String result  = "0";
     
         try {
-            String device_key = request.getParameter(ClassConstants.gitst_device_keys);
-            String [] keys_vals = device_key.split("_");
-            if (keys_vals.length > 1) {
-                   try {
-                      int deviceid = Integer.parseInt(keys_vals[0]);
-                      if (deviceid > 0) {
-                          String formid   = request.getParameter(ClassConstants.formid).trim();
-                          String fileJson = request.getParameter(ClassConstants.json).trim();
-                          try {
-                            if (setDatabase (deviceid ,Integer.parseInt(formid), fileJson) > 0) {
-                                result = "1";
-                            } 
-                          } catch (Exception ex) {
-                            Errors.setErrors("ServletSetData / processRequest 1 " + ex.toString());
-                          }
-                      }  
-                   } catch (Exception ex) {
-                       Errors.setErrors("ServletSetData / processRequest 2 " + ex.toString());
-                   }
+                   
+            int deviceid = Integer.parseInt(deviceKeys[1].toString());
+
+            String formid   = data.get(ClassConstants.formid).toString();
+            
+            HashMap fileJson = (HashMap)data.get(ClassConstants.json);
+            try {
+                if (setDatabase (deviceid ,Integer.parseInt(formid), fileJson) > 0) {
+                    result = "1";
+                } 
+            } catch (Exception ex) {
+                Errors.setErrors("ServletSetData / processRequest 1 " + ex.toString());
             }
+                     
+                   
+            
         } catch (Exception ex) {
             Errors.setErrors("ServletSetData / processRequest " + ex.toString());
         }
@@ -40,8 +39,7 @@ public class PostData {
         return result;
     }
     
-    
-    private static int setDatabase (int deviceid, int formid, String fileJson) {
+    private static int setDatabase (int deviceid, int formid, HashMap fileJson) {
         int result = 0;
          
         PreparedStatement stmt = null;
@@ -56,7 +54,7 @@ public class PostData {
             stmt  = Constants.dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, deviceid);
             stmt.setInt(2, formid);
-            stmt.setString(3,fileJson);
+            stmt.setString(3, gson.toJson(fileJson));
             stmt.execute();
             
             rs = stmt.getGeneratedKeys();

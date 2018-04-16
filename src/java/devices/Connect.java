@@ -1,7 +1,10 @@
 package devices;
 
+import assets.Constants;
 import assets.Encription;
+import com.google.gson.Gson;
 import errors.Errors;
+import initialize.Application;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
@@ -12,33 +15,45 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Connect extends HttpServlet {
         
+    private static Gson gson = new Gson ();
+        
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         
         try (PrintWriter out = response.getWriter()) {
             String respond = "0";            
             try {
-                  
+                
+                
+                  validateDbConnection();
+                   
                   Object[] key = Security.getKey(request);
                   
                   if (key != null) {
+                        System.out.println("#######" + key.length  + "##########");
                         String posting = request.getParameter(ClassConstants.posting);
+                        
+                        System.out.println("#######" + posting  + "##########");
+                        
                         HashMap data = Security.getHashDataDecripted(key[0].toString(), request);
-
+                        
+                        System.out.println(gson.toJson(data));
+                        
                         if (data != null) {
                              if (posting.equals(ClassConstants.posting_get_data)) {
                                  respond = GetData.getResponce(request);
                              }
 
                              if (posting.equals(ClassConstants.posting_post_data)) {
-                                 respond = PostData.getResponce(request);
+                                 respond = PostData.getResponce(key, data);
                              }
 
                              if (posting.equals(ClassConstants.posting_get_form)) {
-                                 respond = GetForm.getResponce(request);
+                                 respond = GetForm.getResponce(key ,data );
                              }
-
+                             
                              if (posting.equals(ClassConstants.posting_get_forms)) {
-                                 respond = GetForms.getResponce(request);
+                                 respond = GetForms.getResponce(key);
                              }
 
                              if (posting.equals(ClassConstants.posting_registration)) {
@@ -58,6 +73,24 @@ public class Connect extends HttpServlet {
             out.print(respond);
         }
     }
+    
+    private static void validateDbConnection() {
+        try {
+            int state = 0;
+            if (Constants.dbConnection == null) {
+               state = 1;  
+            }  
+            if (!Constants.dbConnection.isValid(3)) {
+               state = 2;  
+            } 
+            if (state > 0) {
+                Application.connectDatabase();
+            }
+        } catch (Exception ex) {
+            Errors.setErrors("Connect / validateDbConnection " + ex.toString());
+        }
+    }
+    
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -6,51 +6,40 @@ import errors.Errors;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HashMap;
-import javax.servlet.http.HttpServletRequest;
 
 public class GetForm {
     
     private static Gson gson = new Gson ();
     
-    public static String getResponce (HttpServletRequest request) {
+    public static String getResponce (Object[] deviceKeys, HashMap data) {
         String result  = "0";
-    
         
         HashMap jsonForms = null;
         try {
-            String device_key = request.getParameter(ClassConstants.gitst_device_keys);
-            String [] keys_vals = device_key.split("__");
-
-            if (keys_vals.length > 1) {
-                       try {
-                          int deviceid = Integer.parseInt(keys_vals[0]);
-                          int[] userdata =  ClassAccess.isAccessDeviceAllowed(deviceid,  keys_vals[1]);
-
-                          int userid =  userdata[0];
-                          if (userid > 0) {
-                                String forms_list = request.getParameter(ClassConstants.gitst_device_forms).trim();
-                                String [] formIds = forms_list.split(",");
-
-                                jsonForms = new HashMap ();
-
-                                for (int i = 0 ; i < formIds.length ; i++) {
-                                                  int formid = Integer.parseInt(formIds[i].trim());
-                                                  if (formid > 0) {
-                                                     jsonForms.put(formid, getSingleForm (formid))  ;
-                                                  }
-                                }
-
-
-
-                                jsonForms.put("INFO", getFormsInfo (forms_list, userdata) )  ;
-                          }
-
-                       } catch (Exception ex) {
-                           Errors.setErrors("ServletSingleForm  / processRequest " + ex.toString());
-                       }
+                       
+            // int deviceid = Integer.parseInt(deviceKeys[1].toString());
+            // int userid =  Integer.parseInt(deviceKeys[3].toString());
+            // String forms_list = data.get(ClassConstants.gitst_device_forms).toString();
+            
+            String forms_list = GetForms.getResponce(deviceKeys);
+            
+            System.out.println(forms_list);
+            
+            String [] formIds = forms_list.split(",");
+            
+            jsonForms = new HashMap ();
+            
+            for (int i = 0 ; i < formIds.length ; i++) {
+                int formid = Integer.parseInt(formIds[i].trim());
+                if (formid > 0) {
+                    jsonForms.put(formid, getSingleForm (formid))  ;
+                }
             }
+            
+            jsonForms.put("INFO", getFormsInfo(forms_list));
+
         } catch (Exception ex) {
-                Errors.setErrors("ServletSingleForm / processRequest " + ex.toString());
+            Errors.setErrors("ServletSingleForm / processRequest " + ex.toString());
         }
             
         if (jsonForms != null) {
@@ -60,9 +49,7 @@ public class GetForm {
         return result;
     }
     
-    
-    
-      private static HashMap getFormsInfo (String fids, int[] userdata) {
+    private static HashMap getFormsInfo (String fids) {
           HashMap result = new HashMap ();
           
           ResultSet rs = null;
@@ -70,7 +57,7 @@ public class GetForm {
           try {
            stmt = Constants.dbConnection.createStatement();
            String query = "SELECT * FROM `" + Constants.db_database +"`.`forms` "
-                   + " WHERE ADMINID = " + userdata[0] + " AND  ENABLED = 1 AND ID IN  (" + fids + ")";
+                   + " WHERE ENABLED = 1 AND ID IN  (" + fids + ")";
            
            rs = stmt.executeQuery(query);
            

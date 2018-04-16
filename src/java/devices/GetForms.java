@@ -6,39 +6,30 @@ import errors.Errors;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 
 public class GetForms {
       
-    public static String getResponce (HttpServletRequest request) {
-       
-        String result  = "0";
-        String device_key   = request.getParameter(ClassConstants.gitst_device_keys);
-        String [] keys_vals = device_key.split("__");
+    public static String getResponce ( Object[] deviceKeys) {
         
-        if (keys_vals.length > 1) {
-               try {
-                  int deviceid = Integer.parseInt(keys_vals[0]);
-                  int[] devivedata =  ClassAccess.isAccessDeviceAllowed(deviceid,  keys_vals[1]);
-                  int adminid = devivedata[0];
+        String result  = "0";
+        
+        try {
+            String groupList = getGroupIDsInString (Integer.parseInt(deviceKeys[1].toString()));
+            result = "";
+            ArrayList formsIds = getFormsArray (groupList, Integer.parseInt(deviceKeys[3].toString()));
 
-                  if (adminid > 0) {
-                      String groupList = getGroupIDsInString (deviceid);
-                      result = "";
-                      ArrayList formsIds =  getFormsArray (groupList, adminid);
-
-                      for (int fil = 0 ; fil <formsIds.size() ; fil++ ) {
-                          try {
-                              result = result +  formsIds.get(fil) + ",";
-                          } catch (Exception ex1) {
-                               Errors.setErrors(ex1.toString());
-                          }
-                      }
-                      result = result.substring(0, result.length() - 1);
-                  }  
-               } catch (Exception ex) {
-                   Errors.setErrors("ServletTemplates / processRequest " + ex.toString());
-               }
+            for (int fil = 0 ; fil <formsIds.size() ; fil++ ) {
+                try {
+                   result = result +  formsIds.get(fil) + ",";
+                } catch (Exception ex1) {
+                   Errors.setErrors(ex1.toString());
+                }
+            }
+            
+            result = result.substring(0, result.length() - 1);
+        } catch (Exception ex) {
+           Errors.setErrors("GetForms / processRequest " + ex.toString());
         }
         
         return result;
@@ -63,7 +54,7 @@ public class GetForms {
            result = result.substring(0, result.length() - 1);
            
         } catch (Exception ex) {
-            Errors.setErrors ("ServletTemplates / getGroupLists " + ex.toString());
+            Errors.setErrors ("GetForms / getGroupLists " + ex.toString());
         }   
         try {rs.close();}catch(Exception ex){} 
         try {stmt.close();}catch(Exception ex){} 
@@ -86,7 +77,7 @@ public class GetForms {
                result.add(rs.getInt("ID"));
            }
         } catch (Exception ex) {
-            Errors.setErrors ("ServletTemplates / getFormsArray " + ex.toString());
+            Errors.setErrors ("GetForms / getFormsArray " + ex.toString());
         }   
         
         try {rs.close();}catch (Exception ex){} 
