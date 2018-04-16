@@ -7,10 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    
-        if (Constants.dbConnection == null) {
-            Application.connectDatabase();
-        }   
+        
         if (Constants.dbConnection == null) {
              response.sendRedirect( WebConstants.getContextFullURL (request));
         }  

@@ -14,34 +14,25 @@ public class PostData {
     
     public static String getResponce (Object[] deviceKeys, HashMap data) {
         String result  = "0";
-    
         try {
-                   
             int deviceid = Integer.parseInt(deviceKeys[1].toString());
-
             String formid   = data.get(ClassConstants.formid).toString();
+            String fileJson =gson .toJson(data.get(ClassConstants.filedata));
             
-            HashMap fileJson = (HashMap)data.get(ClassConstants.json);
-            try {
-                if (setDatabase (deviceid ,Integer.parseInt(formid), fileJson) > 0) {
-                    result = "1";
-                } 
-            } catch (Exception ex) {
-                Errors.setErrors("ServletSetData / processRequest 1 " + ex.toString());
-            }
-                     
-                   
+            int res = setDatabase (deviceid ,Integer.parseInt(formid), fileJson);
+            if (res > 0) {
+                result = res + "" ;
+            } 
             
         } catch (Exception ex) {
-            Errors.setErrors("ServletSetData / processRequest " + ex.toString());
+            Errors.setErrors("PostData / getResponce " + ex.toString());
         }
-        
         return result;
     }
     
-    private static int setDatabase (int deviceid, int formid, HashMap fileJson) {
+    private static int setDatabase (int deviceid, int formid, String fileJson) {
         int result = 0;
-         
+        
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
@@ -63,9 +54,8 @@ public class PostData {
             }
             
         } catch (Exception ex) {
-            Errors.setErrors("ServletSetData / setDatabase "  + ex.toString());
+            Errors.setErrors("PostData / setDatabase "  + ex.toString());
         }
-        
         
         try {stmt.close();} catch (Exception ex) {}
         try {rs.close();} catch (Exception ex) {}

@@ -32,7 +32,7 @@ if (fileid > 0 ) {
   
   if (formid > 0) {
     
-       String formName = WebPageForms. getAllGroups(request);
+       ArrayList formName = WebPageForms.getAllGroups( request);
        
 
 %>
@@ -48,7 +48,7 @@ if (fileid > 0 ) {
     
     ///// Section Generation
     
-    ArrayList sectionsArray = WebPageForms.getSectionsOfSingleForm ( formid ) ;
+    ArrayList sectionsArray = WebPageForms.getSectionsOfSingleForm ( formid, request ) ;
     
     for (int si = 0 ; si <sectionsArray.size() ; si++ ) {
         Object[] sectionObj = (Object[])sectionsArray.get(si);
@@ -71,7 +71,7 @@ if (fileid > 0 ) {
                  
                  ArrayList sectionsFieldsArray = null;
                  if (sectionid > 0) {
-                    sectionsFieldsArray = WebPageForms.getSectionFieldsArray( sectionid , formid ) ;
+                    sectionsFieldsArray = WebPageForms.getSectionFieldsArray( sectionid , formid , request) ;
                  }
                  
 

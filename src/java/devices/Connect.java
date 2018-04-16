@@ -30,7 +30,7 @@ public class Connect extends HttpServlet {
                   Object[] key = Security.getKey(request);
                   
                   if (key != null) {
-                        System.out.println("#######" + key.length  + "##########");
+                         
                         String posting = request.getParameter(ClassConstants.posting);
                         
                         System.out.println("#######" + posting  + "##########");

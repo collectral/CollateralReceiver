@@ -4,8 +4,7 @@ public class ClassConstants {
     
     public static final String gitst_device_keys  = "dkey"; // Action which should be performed it comes with key
     public static final String gitst_device_forms = "formslist";    
-    public static final String json               = "json";
-    public static final String formid             = "formid";
+    
     
     public static final int action_device_register       = 1;
     public static final int action_device_get_templates  = 2;
@@ -38,5 +37,8 @@ public class ClassConstants {
     public static final String gitst_device_serial  = "skey";
     public static final String gitst_device_id      = "did";
    
+    public static final String formid                = "formid";
+    public static final String formdata              = "formdata";
+    public static final String filedata              = "filedata";
     
 }
