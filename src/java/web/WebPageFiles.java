@@ -151,6 +151,40 @@ public class WebPageFiles {
     public static String getFormNameAndDisplay (int formid, JsonObject obj) {
         String result  = "";
         
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            String query = "SELECT * FROM  `" +  Constants.db_database  +  "`.`forms` WHERE ID = " + formid ;
+            st = Constants.dbConnection.createStatement();
+            rs = st.executeQuery(query);
+            while (rs.next()) { 
+               result +=  rs.getString("NAME");
+            }
+            
+        } catch (Exception ex ) {
+            Errors.setErrors("WebPageFiles / getFormList  " + ex.toString());
+        }  
+        
+        result += " : ";
+        
+        try { st.close();} catch (Exception ex){}
+        try { rs.close();} catch (Exception ex){}
+        
+        try {
+            String query = "SELECT * FROM  `" +  Constants.db_database  +  "`.`forms_fields` WHERE DISPL = 1 AND FID =  " + formid ;
+            st = Constants.dbConnection.createStatement();
+            rs = st.executeQuery(query);
+            
+            while (rs.next()) { 
+                result += getFieldValue (rs.getInt("ID")+ ""  ,  obj) + "  ";
+            }
+            
+        } catch (Exception ex ) {
+            Errors.setErrors("WebPageFiles / getFormList  " + ex.toString());
+        }  
+        
+        try { st.close();} catch (Exception ex){}
+        try { rs.close();} catch (Exception ex){}
         
         return result;
     }
