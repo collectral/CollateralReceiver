@@ -31,7 +31,7 @@
             <b>NAME</b>
         </td>
         <td>
-           <b> ACTIONS</b>
+           <b>ACTIONS</b>
         </td>
     </tr>
     

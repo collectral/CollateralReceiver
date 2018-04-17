@@ -20,7 +20,6 @@ public class WebPageDevices {
         int result  = 0 ;
         
         try {
-            
             String query = "INSERT INTO `" +  Constants.db_database  +  "`.`devices_group` "
                   + " ( NAME , ADMINID ) "
                   + " VALUES "
@@ -29,7 +28,6 @@ public class WebPageDevices {
             PreparedStatement stmt  = Constants.dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, groupname);
             stmt.setInt(2,  Integer.parseInt(id_key[0].toString()));
-            
             stmt.execute();
             
             ResultSet rs = stmt.getGeneratedKeys();

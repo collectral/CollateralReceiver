@@ -2,12 +2,14 @@ package web;
 
 import assets.Constants;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import errors.Errors;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-
 
 public class WebPageFiles {
     
@@ -19,8 +21,8 @@ public class WebPageFiles {
         
          try {
             Statement st = Constants.dbConnection.createStatement();
-            String query = "SELECT DG.*, USR.FN, FRM.NAME FROM  `" +  Constants.db_database  +  "`.`data_get` AS DG "
-                    + " LEFT JOIN  `" +  Constants.db_database  +  "`.`users` AS USR ON USR.ID = DG.USERID " 
+            String query = "SELECT DG.*, DVS.DESCRIPTION FROM  `" +  Constants.db_database  +  "`.`data_get` AS DG "
+                    + " LEFT JOIN  `" +  Constants.db_database  +  "`.`devices` AS DVS ON DVS.ID = DG.DEVICEID " 
                     + " LEFT JOIN  `" +  Constants.db_database  +  "`.`forms` AS FRM ON FRM.ID = DG.FORMID"
                     + " ORDER BY DG.ID DESC LIMIT  " + limit ;
             ResultSet rs = st.executeQuery(query);
@@ -29,9 +31,9 @@ public class WebPageFiles {
             while (rs.next()) { 
                 usr = new Object [4];
                 usr [0] = rs.getInt("ID");
-                usr [1] = rs.getString("FN");
-                usr [2] = rs.getString("NAME");
-                usr [3] = rs.getDate("RDATE");
+                usr [1] = rs.getString("DESCRIPTION");
+                usr [2] = rs.getString("DESCRIPTION");
+                usr [3] = rs.getDate("CDATE");
                 result.add(usr);
             }
             st.close();
@@ -49,8 +51,8 @@ public class WebPageFiles {
         
          try {
             Statement st = Constants.dbConnection.createStatement();
-            String query = "SELECT DG.*, USR.FN, FRM.NAME FROM  `" +  Constants.db_database  +  "`.`data_get` AS DG "
-                    + " LEFT JOIN  `" +  Constants.db_database  +  "`.`users` AS USR ON USR.ID = DG.USERID " 
+            String query = "SELECT DG.*, DVS.DESCRIPTION  FROM  `" +  Constants.db_database  +  "`.`data_get` AS DG "
+                    + " LEFT JOIN  `" +  Constants.db_database  +  "`.`devices` AS DVS ON DVS.ID = DG.DEVICEID " 
                     + " LEFT JOIN  `" +  Constants.db_database  +  "`.`forms` AS FRM ON FRM.ID = DG.FORMID "
                     + " WHERE DG.FORMID = " + formid + " ORDER BY DG.ID DESC LIMIT  " + limit ;
             ResultSet rs = st.executeQuery(query);
@@ -59,9 +61,9 @@ public class WebPageFiles {
             while (rs.next()) { 
                 usr = new Object [4];
                 usr [0] = rs.getInt("ID");
-                usr [1] = rs.getString("FN");
-                usr [2] = rs.getString("NAME");
-                usr [3] = rs.getDate("RDATE");
+                usr [1] = rs.getString("DESCRIPTION");
+                usr [2] = rs.getString("DESCRIPTION");
+                usr [3] = rs.getDate("CDATE");
                 result.add(usr);
             }
             st.close();
@@ -69,7 +71,6 @@ public class WebPageFiles {
         } catch (Exception ex ) {
             Errors.setErrors("WebPageFiles / getFiles  " + ex.toString());
         }  
-        
         
         return result;
     }
@@ -87,15 +88,16 @@ public class WebPageFiles {
             
             while (rs.next()) { 
                 result = new Object[5];
-                result [0] = rs.getInt("USERID");
-                result [1] = rs.getInt("DEVICEID");
-                result [2] = rs.getInt("FORMID");
-                HashMap hs = gson.fromJson(rs.getString("JSON"), HashMap.class);
-                result [3] = hs;
-                result [4] = rs.getDate("RDATE");
+                result [0] = rs.getInt("DEVICEID");
+                result [1] = rs.getInt("FORMID");
+                JsonElement jelement = new JsonParser().parse(rs.getString("JSONTEXT"));
+                JsonObject  jobject = jelement.getAsJsonObject();
+                jobject = jobject.getAsJsonObject("filedata");
+                result [2] = jobject;
+                result [3] = rs.getDate("CDATE");
             }
         } catch (Exception ex) {
-            Errors.setErrors("WebPageFiles / getFiles  " + ex.toString());
+            Errors.setErrors("WebPageFiles / getFileJson  " + ex.toString());
         }   
         
         try {st.close();} catch (Exception ex) {}
@@ -111,6 +113,7 @@ public class WebPageFiles {
         ResultSet rs = null;
         try {
             String query = "SELECT * FROM  `" +  Constants.db_database  +  "`.`forms` " ;
+            st = Constants.dbConnection.createStatement();
             rs = st.executeQuery(query);
             
             Object [] usr = null;
@@ -122,7 +125,7 @@ public class WebPageFiles {
             }
             
         } catch (Exception ex ) {
-            Errors.setErrors("WebPageFiles / getFiles  " + ex.toString());
+            Errors.setErrors("WebPageFiles / getFormList  " + ex.toString());
         }  
         
         try { st.close();} catch (Exception ex){}
@@ -132,19 +135,34 @@ public class WebPageFiles {
     }
     
     
-    public static HashMap convertToHashMap (String key , HashMap hashmap) {
-       HashMap result = null;
-        
-       try {
-          result = gson.fromJson(hashmap.get(key).toString(), HashMap.class)  ;
-       } catch (Exception ex) {
-           Errors.setErrors("WebPageFiles / convertToHashMap " + ex.toString());
-       }
-       
-       return result;
-    }
-   
+    public static String getFieldValue (String fieldid, JsonObject obj) {
+        String result  = "";
+        try {
+           JsonObject fieldObj = obj.getAsJsonObject(fieldid + "");
+           JsonElement element = fieldObj.get("VALUE");
+           result = element.getAsString();
+        } catch (Exception ex) {
+            Errors.setErrors("WebPageFiles / getFieldvalue " + ex.toString());
+        }
+        return result;
+    } 
     
-     
+    
+    public static String getFormNameAndDisplay (int formid, JsonObject obj) {
+        String result  = "";
+        
+        
+        return result;
+    }
+    
+    private String demo(String jsonLine) {
+           JsonElement jelement = new JsonParser().parse(jsonLine);
+           JsonObject  jobject = jelement.getAsJsonObject();
+           jobject = jobject.getAsJsonObject("data");
+           JsonArray jarray = jobject.getAsJsonArray("translations");
+           jobject = jarray.get(0).getAsJsonObject();
+           String result = jobject.get("translatedText").getAsString();
+           return result;
+    }
     
 }

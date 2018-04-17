@@ -17,9 +17,12 @@ public class PostData {
         try {
             int deviceid = Integer.parseInt(deviceKeys[1].toString());
             String formid   = data.get(ClassConstants.formid).toString();
-            String fileJson =gson .toJson(data.get(ClassConstants.filedata));
+            String fileJson = gson.toJson(data);
             
-            int res = setDatabase (deviceid ,Integer.parseInt(formid), fileJson);
+            System.out.println("fileJson -->> " + fileJson);
+            
+            
+            int res = setDatabase (deviceid , Integer.parseInt(formid), fileJson);
             if (res > 0) {
                 result = res + "" ;
             } 
@@ -45,7 +48,7 @@ public class PostData {
             stmt  = Constants.dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             stmt.setInt(1, deviceid);
             stmt.setInt(2, formid);
-            stmt.setString(3, gson.toJson(fileJson));
+            stmt.setString(3, fileJson);
             stmt.execute();
             
             rs = stmt.getGeneratedKeys();

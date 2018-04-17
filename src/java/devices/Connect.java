@@ -24,7 +24,6 @@ public class Connect extends HttpServlet {
             String respond = "0";            
             try {
                 
-                
                   validateDbConnection();
                    
                   Object[] key = Security.getKey(request);
@@ -32,8 +31,6 @@ public class Connect extends HttpServlet {
                   if (key != null) {
                          
                         String posting = request.getParameter(ClassConstants.posting);
-                        
-                        System.out.println("#######" + posting  + "##########");
                         
                         HashMap data = Security.getHashDataDecripted(key[0].toString(), request);
                         

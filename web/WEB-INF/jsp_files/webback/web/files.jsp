@@ -36,7 +36,7 @@
                                     }
                                 %>
                                     <div class="gitst-vmenublockheader">
-                                        <h3 class="t">Template List</h3>
+                                        <h3 class="t">Form List</h3>
                                     </div>
                                     <div class="gitst-vmenublockcontent">
                                         <ul class="gitst-vmenu">
