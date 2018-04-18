@@ -3,13 +3,15 @@ package assets;
 import errors.Errors;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
+import java.util.Random;
+import java.util.UUID;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
 
 public class Encription {
-    
+    private static Random rand = new Random();
     private static Base64 base64 = new Base64();
     
     public static String getMD5  (String texttomd5) {
@@ -110,6 +112,35 @@ public class Encription {
         byte[] decrypted = cipherDecrypt.doFinal(encryptedBytes);
 
         return new String(decrypted);
+    }
+    
+    public static String textMixer (String cleantext) {
+
+        try {
+            int randomNum = rand.nextInt(10);
+            String uuid = UUID.randomUUID().toString();
+            uuid = uuid.substring(0, randomNum);
+            cleantext = uuid + "_GITST_"+ cleantext ;
+
+            randomNum = rand.nextInt(10);
+            uuid = UUID.randomUUID().toString();
+            uuid = uuid.substring(0, randomNum);
+            cleantext = cleantext + "_GITST_" + uuid;
+
+        }catch (Exception ex) {
+            Errors.setErrors("Encryption / textMixer " + ex.toString());
+        }
+        return cleantext;
+    }
+    
+    public static String textMixCleaner (String cleantext) {
+
+        try {
+           cleantext = cleantext.split("_GITST_")[1];
+        }catch (Exception ex) {
+            Errors.setErrors("Encryption / textMixer " + ex.toString());
+        }
+        return cleantext;
     }
     
 }

@@ -31,6 +31,7 @@ public class Connect extends HttpServlet {
                   if (key != null) {
                          
                         String posting = request.getParameter(ClassConstants.posting);
+                        System.out.println(posting);
                         
                         HashMap data = Security.getHashDataDecripted(key[0].toString(), request);
                         
@@ -59,6 +60,8 @@ public class Connect extends HttpServlet {
 
                              System.out.println(respond);
                              System.out.println(key[0].toString());
+                             
+                             respond = Encription.textMixer (respond);
                              respond = Encription.getEncriptedString(respond, key[0].toString().trim());
                              System.out.println(respond);
                         }

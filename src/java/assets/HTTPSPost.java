@@ -34,13 +34,20 @@ public class  HTTPSPost {
                     data.put("DKEY", Encription.getMD5(dkey));
                     data.put("DURL", deviceurl);
                     String jsonString  = gson.toJson(data);
+                    
+                    jsonString = Encription.textMixer(jsonString);
+                    
+                    System.out.println("-->> POST  " +jsonString);
+                    
                     jsonString = Encription.getEncriptedString(jsonString, serverKeys[1]);
                     
                     Map<String, String> parameters = new HashMap<String, String>();
                     parameters.put("DATA",  jsonString);
                     parameters.put("IDENT", serverid + "");
                     
-                    result[0] = makePostRequest(url, parameters, serverKeys[1]);
+                    String respons = makePostRequest(url, parameters, serverKeys[1]);
+                    
+                    result[0] = respons;
                     result[1] = dkey;
                 } catch (Exception ex) {
                     Errors.setErrors("" + ex.toString());
@@ -112,6 +119,7 @@ public class  HTTPSPost {
                result += inputLine;
             }
             result = Encription.getDecriptedString(result, key);
+            result = Encription.textMixCleaner(result);
             in.close();
               
         } catch (Exception e) {

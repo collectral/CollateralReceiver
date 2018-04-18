@@ -21,15 +21,10 @@ public class Security {
         
         try {
             String ident = request.getParameter("IDENT");
-            
-            
-            System.out.println(ident);
-            
+             
             String query ;
             
             String posting = request.getParameter(ClassConstants.posting);
-            
-            System.out.println(posting);
             
             
             if (posting != null && posting.equals(ClassConstants.posting_registration)) {
@@ -71,17 +66,15 @@ public class Security {
             Errors.setErrors("Security / getKey  3  " + ex.toString());
         }
         
-        
-        
         return result;
     }
     
     public static HashMap getHashDataDecripted (String key , HttpServletRequest request) {
         HashMap result = null;
-        
         try {
             String encriptedString = request.getParameter("DATA");
-            String jsonstring = Encription.getDecriptedString(encriptedString, key);
+            String decreptedString = Encription.getDecriptedString(encriptedString, key);
+            String jsonstring      = Encription.textMixCleaner(decreptedString);
             result = gson.fromJson(jsonstring, HashMap.class);
         } catch (Exception ex) {
             Errors.setErrors("Security / getHashDataDecripted " + ex.toString());
