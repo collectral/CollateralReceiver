@@ -5,7 +5,6 @@
 <%@page import="assets.Constants"%>
 <%@page import="errors.Errors"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <jsp:include page="/WEB-INF/jsp_files/post_handler.jsp"></jsp:include>
     
 <%
@@ -13,11 +12,9 @@
     if (Constants.dbConnection == null) {
        state = 1;  
     }  
-
     if (!Constants.dbConnection.isValid(3)) {
        state = 2;  
     } 
-
     if (state > 0) {
         Application.connectDatabase();
     }
@@ -64,7 +61,7 @@ if (state == 0) {
         request.setAttribute(Constants.user_attribute, id_key);
         response.sendRedirect( WebConstants.getContextFullURL (request) + "/Forms");
     }
-
+    
     } else {
         %><jsp:include page="/WEB-INF/jsp_files/webfront/router.jsp"></jsp:include><%
     }
