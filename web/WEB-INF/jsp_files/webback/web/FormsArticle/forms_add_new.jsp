@@ -41,7 +41,7 @@
             <a id="section_delete" class="gitst-button" style="padding: 1px 3px 4px 5px;height: 23px" onclick="setNewSection(this)">ADD SECTION</a>
            
             <hr style="visibility: hidden">
-            <input name="<%=WebConstants.form_name_url%>" type="text" placeholder="Add Data URL" style="width: 100%;  height: 10px" required >
+        
             <hr style="visibility: hidden">
         </div>
     <input type="submit" value="SAVE"  class="gitst-button" >    
@@ -67,6 +67,7 @@
                     <option value="5">Camera</option>
                 </select>
                     
+                
                 <input type="checkbox" name="mandatory[{sid}_{fid}]"> Mandatory 
                 <input type="checkbox" name="visible[{sid}_{fid}]">   Visible  
                 <a param="{sid}_{fid}" id="section_delete" class="gitst-button"  style="padding-top: 5px;padding-bottom: 5px;" onclick="deleteField(this)">DELETE</a>

@@ -69,13 +69,12 @@ public class Security {
         return result;
     }
     
-    public static HashMap getHashDataDecripted (String key , HttpServletRequest request) {
-        HashMap result = null;
+    public static String getHashDataDecripted (String key , HttpServletRequest request) {
+        String result = null;
         try {
             String encriptedString = request.getParameter("DATA");
             String decreptedString = Encription.getDecriptedString(encriptedString, key);
-            String jsonstring      = Encription.textMixCleaner(decreptedString);
-            result = gson.fromJson(jsonstring, HashMap.class);
+            result   = Encription.textMixCleaner(decreptedString);
         } catch (Exception ex) {
             Errors.setErrors("Security / getHashDataDecripted " + ex.toString());
         }

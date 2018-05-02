@@ -79,7 +79,7 @@
             <a id="section_delete" class="gitst-button" style="padding: 5px;" onclick="setNewSection(this)">ADD SECTION</a>
            
             <hr style="visibility: hidden">
-            <input name="<%=WebConstants.form_name_url%>" value="<%=formUrl%>" type="text" placeholder="Add Data URL" style="width: 100%;  height: 10px" required >
+            
             <hr style="visibility: hidden">
 <%
     
@@ -240,6 +240,8 @@
                     <option value="1">Text</option>
                     <option value="2">Numeric</option>
                     <option value="3">Date</option>
+                    <option value="6">Multi Select</option>
+                    <option value="7">Single Select</option>
                     <option value="4">Address</option>
                     <option value="5">Camera</option>
                 </select>

@@ -21,7 +21,7 @@ public class WebPageFiles {
         
          try {
             Statement st = Constants.dbConnection.createStatement();
-            String query = "SELECT DG.*, DVS.DESCRIPTION FROM  `" +  Constants.db_database  +  "`.`data_get` AS DG "
+            String query = "SELECT DG.*, DVS.DESCRIPTION FROM  `" +  Constants.db_database  +  "`.`data` AS DG "
                     + " LEFT JOIN  `" +  Constants.db_database  +  "`.`devices` AS DVS ON DVS.ID = DG.DEVICEID " 
                     + " LEFT JOIN  `" +  Constants.db_database  +  "`.`forms` AS FRM ON FRM.ID = DG.FORMID"
                     + " ORDER BY DG.ID DESC LIMIT  " + limit ;
@@ -51,7 +51,7 @@ public class WebPageFiles {
         
          try {
             Statement st = Constants.dbConnection.createStatement();
-            String query = "SELECT DG.*, DVS.DESCRIPTION  FROM  `" +  Constants.db_database  +  "`.`data_get` AS DG "
+            String query = "SELECT DG.*, DVS.DESCRIPTION  FROM  `" +  Constants.db_database  +  "`.`data` AS DG "
                     + " LEFT JOIN  `" +  Constants.db_database  +  "`.`devices` AS DVS ON DVS.ID = DG.DEVICEID " 
                     + " LEFT JOIN  `" +  Constants.db_database  +  "`.`forms` AS FRM ON FRM.ID = DG.FORMID "
                     + " WHERE DG.FORMID = " + formid + " ORDER BY DG.ID DESC LIMIT  " + limit ;
@@ -80,10 +80,10 @@ public class WebPageFiles {
             
         Statement st = null;
         ResultSet rs = null;
-         
+        
         try {
             st = Constants.dbConnection.createStatement();
-            String query = "SELECT * FROM `" +  Constants.db_database  +  "`.`data_get` WHERE ID = " + fileid  ;
+            String query = "SELECT * FROM `" +  Constants.db_database  +  "`.`data` WHERE ID = " + fileid  ;
             rs = st.executeQuery(query);
             
             while (rs.next()) { 

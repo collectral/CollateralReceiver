@@ -3,6 +3,8 @@ package devices;
 import assets.Constants;
 import assets.Encription;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import errors.Errors;
 import initialize.Application;
 import java.io.IOException;
@@ -31,11 +33,9 @@ public class Connect extends HttpServlet {
                   if (key != null) {
                          
                         String posting = request.getParameter(ClassConstants.posting);
-                        System.out.println(posting);
-                        
-                        HashMap data = Security.getHashDataDecripted(key[0].toString(), request);
-                        
-                        System.out.println(gson.toJson(data));
+                        String getCleanJson = Security.getHashDataDecripted(key[0].toString(), request) ;
+                        HashMap data =  gson.fromJson(getCleanJson, HashMap.class);;
+                        JsonObject data_json = new JsonParser().parse(getCleanJson).getAsJsonObject();
                         
                         if (data != null) {
                              if (posting.equals(ClassConstants.posting_get_data)) {
@@ -43,7 +43,7 @@ public class Connect extends HttpServlet {
                              }
 
                              if (posting.equals(ClassConstants.posting_post_data)) {
-                                 respond = PostData.getResponce(key, data);
+                                 respond = PostData.getResponce(key, data_json);
                              }
 
                              if (posting.equals(ClassConstants.posting_get_form)) {
@@ -57,13 +57,9 @@ public class Connect extends HttpServlet {
                              if (posting.equals(ClassConstants.posting_registration)) {
                                  respond = Registration.getResponce(key, data);
                              }
-
-                             System.out.println(respond);
-                             System.out.println(key[0].toString());
                              
                              respond = Encription.textMixer (respond);
                              respond = Encription.getEncriptedString(respond, key[0].toString().trim());
-                             System.out.println(respond);
                         }
                   }
          

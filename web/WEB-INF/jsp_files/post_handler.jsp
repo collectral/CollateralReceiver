@@ -3,7 +3,6 @@
 <%
 
 String action_type = request.getParameter("posting");
- 
 
 if (action_type != null) {
 
@@ -15,12 +14,13 @@ if (action_type != null) {
         Application.setDatabaseValues(request);
     }
     
+    /**
     if (action_type.equals("registration")) {
             String fullname = request.getParameter("fullname");
             String email = request.getParameter("email");
             Registration.register(email,  fullname);
     }
-
+     */
 }
 
 
