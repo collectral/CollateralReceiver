@@ -57,7 +57,9 @@
                              <article class="gitst-post gitst-article" id="users_working_dir">
                                 
                                 <%
-                                      if ( request.getRequestURL().toString().endsWith("AddFile"))  {
+                                       if ( request.getRequestURL().toString().contains("Images"))  {
+                                           %><jsp:include page="/WEB-INF/jsp_files/webback/web/FilesArticle/file_image_viewer.jsp"></jsp:include><%
+                                      } else if ( request.getRequestURL().toString().endsWith("AddFile"))  {
                                            %><jsp:include page="/WEB-INF/jsp_files/webback/web/FilesArticle/files_add_new.jsp"></jsp:include><%
                                       } else if (request.getRequestURL().toString().contains("Form=")) {
                                            %><jsp:include page="/WEB-INF/jsp_files/webback/web/FilesArticle/files_listPerForm.jsp"></jsp:include><%

@@ -2,7 +2,6 @@ package web;
 
 import assets.Constants;
 import errors.Errors;
-import initialize.Application;
  
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

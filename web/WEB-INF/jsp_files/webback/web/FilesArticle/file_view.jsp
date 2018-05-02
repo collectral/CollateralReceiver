@@ -8,13 +8,13 @@
 <%
     
 int fileid = 0;
-  
-
 
 try {
    String [] uriSplit = request.getRequestURI().split("=");
    fileid = Integer.parseInt(uriSplit [1]);
-
+   String file_context_view_url =   request.getContextPath();
+   
+   
 if (fileid > 0 ) {
    Object [] obj =  WebPageFiles.getFileJson(fileid);
    
@@ -22,9 +22,6 @@ if (fileid > 0 ) {
    if (obj != null) {
        
     JsonObject dataHash = (JsonObject)obj[2];
-   
-    System.out.println(dataHash .toString());
-   
     int formid = Integer.parseInt(obj[1].toString()); 
     
     if (formid > 0) {
@@ -70,7 +67,17 @@ if (fileid > 0 ) {
                                         <table style="width: 100%">
                                             <tr>
                                                 <td style="width: 150px"><%=objField[1]%></td>
-                                                <td><%=fieldValue%></td>
+                                                <%
+                                          if (Integer.parseInt(objField[3].toString()) == 5) {  
+                                                %>
+                                                       <td><a href="<%=file_context_view_url%>/Files/Images/<%=objField[0]%>/<%=fileid%>"> <%=fieldValue%></a></td>
+                                                <%
+                                                    } else {
+                                                %>
+                                                       <td><%=fieldValue%></td>
+                                                <%
+                                                    }
+                                                %>
                                             </tr>
                                         </table>
                                     <%  

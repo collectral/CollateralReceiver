@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import errors.Errors;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 
 public class Security {

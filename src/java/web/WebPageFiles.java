@@ -199,4 +199,38 @@ public class WebPageFiles {
            return result;
     }
     
+    
+    public static ArrayList getImages (int fieldid, int fileid) {
+        ArrayList result = new ArrayList ();    
+        
+        
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            String query = "SELECT * FROM  `" +  Constants.db_database  
+                    +  "`.`data_images` WHERE FILEID = " + fileid + " AND FIELDID = " + fieldid;
+            
+            st = Constants.dbConnection.createStatement();
+            rs = st.executeQuery(query);
+            Object[] igOpbj ;
+            
+            while (rs.next()) { 
+                 igOpbj = new Object[3];
+                 igOpbj[0] = rs.getInt("ID");
+                 igOpbj[1] = rs.getString("NAME");
+                 igOpbj[2] = rs.getString("CONTENT");
+                 result.add(igOpbj);
+            }
+            
+        } catch (Exception ex ) {
+            Errors.setErrors("WebPageFiles / getImages  " + ex.toString());
+        }  
+        
+        try { st.close();} catch (Exception ex){}
+        try { rs.close();} catch (Exception ex){}
+        
+        
+        return result;
+    }   
+    
 }

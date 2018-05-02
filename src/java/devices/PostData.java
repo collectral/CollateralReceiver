@@ -29,15 +29,9 @@ public class PostData {
             int fileid = Integer.parseInt(filedata.get("IMDBID").getAsString());
             filedata.remove("IMDBID");
             
-            System.out.println("fileid   " +fileid );
-            
             JsonObject images = filedata.getAsJsonObject("IMAGES");
             filedata.remove("IMAGES");
             data.add("filedata", filedata);
-            
-            System.out.println(" data " + data.toString());
-            
-            
             
             int res = setDatabase (fileid, deviceid, formid , data.toString());
             if (res > 0) {
@@ -57,24 +51,29 @@ public class PostData {
     
     private static void setImages (int fileid,  JsonObject images) {
         
+        boolean deleted = false;
         Set<Entry<String, JsonElement>> entrySet =  images.entrySet();
         for(Map.Entry<String,JsonElement> entry : entrySet){
             
             String key = entry.getKey();
-            String img = images.get(entry.getKey()).toString();
+            String img = images.get(entry.getKey()).getAsString();
             String[] keSet = key.split("_");
+            
+            
             
             PreparedStatement stmt = null;
             ResultSet rs = null;
             try {
-
+                
                 int FIELDID  = Integer.parseInt(keSet[0]);
-                String query = "DELETE FROM `" +  Constants.db_database  +  "`.`data_images` "
+                String query;
+                if (!deleted) {
+                    query = "DELETE FROM `" +  Constants.db_database  +  "`.`data_images` "
                         + " WHERE FILEID = " + fileid  + " AND  FIELDID = "  + FIELDID     ;
-                
-                
-                stmt = Constants.dbConnection.prepareStatement(query);
-                stmt.execute();
+                    stmt = Constants.dbConnection.prepareStatement(query);
+                    stmt.execute();
+                    deleted = true;
+                }
                 
                 query = "INSERT INTO `" +  Constants.db_database  +  "`.`data_images` "
                       + " (FILEID, FIELDID, NAME, CONTENT) "
@@ -105,21 +104,42 @@ public class PostData {
         ResultSet rs = null;
         try {
             
-            String query = "INSERT INTO `" +  Constants.db_database  +  "`.`data` "
+            String  query;
+            
+            if (fileid > 0) {
+               
+                query = "UPDATE `" +  Constants.db_database  +  "`.`data` "
+                  + " SET  JSONTEXT = ? "
+                  + " WHERE ID = "  + fileid;
+                 
+                stmt  = Constants.dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                stmt.setString(1, fileJson);
+                stmt.execute();
+                result = fileid;
+                
+                
+            } else {
+                
+                query = "INSERT INTO `" +  Constants.db_database  +  "`.`data` "
                   + " (DEVICEID, FORMID, JSONTEXT) "
                   + " VALUES "
                   + " (?, ?, ?)" ;
-            
-            stmt  = Constants.dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, Integer.parseInt(deviceid));
-            stmt.setInt(2, formid);
-            stmt.setString(3, fileJson);
-            stmt.execute();
-            
-            rs = stmt.getGeneratedKeys();
-            if (rs.next()){
-                result=rs.getInt(1);
+                 
+                stmt  = Constants.dbConnection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+                stmt.setInt(1, Integer.parseInt(deviceid));
+                stmt.setInt(2, formid);
+                stmt.setString(3, fileJson);
+                stmt.execute();
+
+                rs = stmt.getGeneratedKeys();
+                if (rs.next()){
+                    result=rs.getInt(1);
+                }
             }
+            
+            
+            
+          
             
         } catch (Exception ex) {
             Errors.setErrors("PostData / setDatabase "  + ex.toString());
