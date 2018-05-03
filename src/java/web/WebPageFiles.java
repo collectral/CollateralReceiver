@@ -33,7 +33,7 @@ public class WebPageFiles {
                 usr [0] = rs.getInt("ID");
                 usr [1] = rs.getString("DESCRIPTION");
                 usr [2] = rs.getString("DESCRIPTION");
-                usr [3] = rs.getDate("CDATE");
+                usr [3] = rs.getDate("CDATE") + "  " +  rs.getTime("CDATE");
                 result.add(usr);
             }
             st.close();
@@ -63,7 +63,7 @@ public class WebPageFiles {
                 usr [0] = rs.getInt("ID");
                 usr [1] = rs.getString("DESCRIPTION");
                 usr [2] = rs.getString("DESCRIPTION");
-                usr [3] = rs.getDate("CDATE");
+                usr [3] = rs.getDate("CDATE") + "  " +  rs.getTime("CDATE");
                 result.add(usr);
             }
             st.close();
