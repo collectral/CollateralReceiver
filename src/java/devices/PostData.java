@@ -137,10 +137,6 @@ public class PostData {
                 }
             }
             
-            
-            
-          
-            
         } catch (Exception ex) {
             Errors.setErrors("PostData / setDatabase "  + ex.toString());
         }

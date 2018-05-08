@@ -153,7 +153,7 @@ public class Application implements ServletContextListener {
            connectDatabase ();
            if (Constants.dbConnection.isValid(3)) {
                 String config_text  = "host=" +Constants.db_hostname+ "\n" +
-                         "port=" + Constants.db_port + "\n" +
+                         "port="    + Constants.db_port + "\n" +
                          "username="+ Constants.db_username+"\n" +
                          "password="+ Constants.db_password +"\n" +
                          "database="+ Constants.db_database +"\n" +
