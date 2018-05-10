@@ -4,7 +4,6 @@ import assets.Constants;
 import assets.Encription;
 import emailsender.EmailSender;
 import errors.Errors;
-import initialize.Application;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
