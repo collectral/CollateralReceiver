@@ -37,6 +37,11 @@ public class Application implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
+        try {
+           Constants.dbConnection.close();
+        }catch (Exception ex) {
+           Errors.setErrors("Application / contextDestroyed " + ex.toString());
+        }
          
     }
     

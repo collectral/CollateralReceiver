@@ -6,9 +6,7 @@
     String contectxt_url_home_front = request.getContextPath();
         
     boolean userexists = Application.isUserExists();
-
     
-
 
 %>
 
@@ -39,7 +37,7 @@
                             <%
                               if (!userexists) {
                             %>
-                              <jsp:include page="/WEB-INF/jsp_files/webfront/registration.jsp"></jsp:include>                        
+                              <jsp:include page="/WEB-INF/jsp_files/webfront/dbregister.jsp"></jsp:include>                        
                             <%
                                 } else {
                             %>

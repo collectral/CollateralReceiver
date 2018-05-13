@@ -9,15 +9,26 @@
     
 <%
     int state = 0;
-    if (Constants.dbConnection == null) {
-       state = 1;  
-    }  
-    if (!Constants.dbConnection.isValid(3)) {
-       state = 2;  
-    } 
-    if (state > 0) {
-        Application.connectDatabase();
+    try {
+        if (Constants.dbConnection == null) {
+           state = 1;  
+        }  
+        if (!Constants.dbConnection.isValid(3)) {
+           
+           state = 2;  
+        } 
+        if (state > 0) {
+            Application.connectDatabase();
+            state = 0; 
+        }
+    
+    }catch (Exception ex) {
+        out.print(ex.toString());
     }
+    
+    
+    
+
 %> 
 
 <%

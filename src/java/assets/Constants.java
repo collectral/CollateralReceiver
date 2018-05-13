@@ -22,7 +22,7 @@ public class Constants {
     public static String db_database = "collectral_data"; //  default configuration database name 
     public static String db_username = "root";            //  default configuration database name 
     public static String db_password = "";                //  default configuration database name 
-    public static String db_hostname = "localhost";       //  default configuration database name 
+    public static String db_hostname = "127.0.0.1";       //  default configuration database name 
     public static String db_port     = "3306";            //  default configuration database name 
     
     public static Connection dbConnection = null;    
