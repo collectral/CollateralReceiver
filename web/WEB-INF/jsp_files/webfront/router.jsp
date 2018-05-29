@@ -33,7 +33,12 @@
                 <div class="gitst-content-layout-row">
                     <div class="gitst-layout-cell gitst-content">
                         <article class="gitst-post gitst-article">
-                         
+                            <div>
+                                <h1>Login : demo</h1>
+                                <h2>Password : demo</h2> 
+                            </div>
+                            
+                            
                             <%
                               if (!userexists) {
                             %>

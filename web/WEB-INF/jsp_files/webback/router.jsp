@@ -19,6 +19,11 @@
         <script src="<%=contectxt_url_home_back%>/assets/back/jquery.js"></script>
         <script src="<%=contectxt_url_home_back%>/assets/back/script.js"></script>
         <script src="<%=contectxt_url_home_back%>/assets/back/script.responsive.js"></script>
+        
+        <script src="<%=contectxt_url_home_back%>/assets/JQ/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="<%=contectxt_url_home_back%>/assets/JQ/jquery-ui.min.css" media="all">
+        
+        
         <style>.gitst-content .gitst-postcontent-0 .layout-item-0 { color: #2B2B2B; background: #FCFCFC; padding: 0px;  }
         .ie7 .gitst-post .gitst-layout-cell {border:none !important; padding:0 !important; }
         .ie6 .gitst-post .gitst-layout-cell {border:none !important; padding:0 !important; }
