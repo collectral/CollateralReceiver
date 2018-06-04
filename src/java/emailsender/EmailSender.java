@@ -18,8 +18,8 @@ public class EmailSender {
    public static void sendRegistrationEmail(String recipient, String subject, String textBody   )   {
 
         
-      final String username="info@gitst.com";
-      final String password="Pass2020";
+      final String username="";
+      final String password="";
             
       Properties props = new Properties();
       props.put("mail.smtp.auth", "true");

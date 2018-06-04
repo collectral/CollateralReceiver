@@ -14,13 +14,13 @@ if (action_type != null) {
          Application.setDatabaseValues(request);
     }
     
-    /**
-    if (action_type.equals("registration")) {
+ 
+    if (action_type.equals("adminregister")) {
             String fullname = request.getParameter("fullname");
             String email = request.getParameter("email");
             Registration.register(email,  fullname);
     }
-     */
+     
 }
 
 

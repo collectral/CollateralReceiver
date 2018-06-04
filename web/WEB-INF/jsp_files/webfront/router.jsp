@@ -38,15 +38,14 @@
                                 <h2>Password : demo</h2> 
                             </div>
                             
-                            
                             <%
                               if (!userexists) {
                             %>
-                              <jsp:include page="/WEB-INF/jsp_files/webfront/dbregister.jsp"></jsp:include>                        
+                                  <jsp:include page="/WEB-INF/jsp_files/webfront/userregister.jsp"></jsp:include>                        
                             <%
                                 } else {
                             %>
-                               <jsp:include page="/WEB-INF/jsp_files/webfront/login.jsp"></jsp:include>   
+                                  <jsp:include page="/WEB-INF/jsp_files/webfront/login.jsp"></jsp:include>   
                             <%
                               }
                             %>

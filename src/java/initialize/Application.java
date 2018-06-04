@@ -36,24 +36,18 @@ public class Application implements ServletContextListener {
         }catch (Exception ex) {
            Errors.setErrors("Application / contextDestroyed " + ex.toString());
         }
-         
     }
     
-    
     private static void initServer (ServletContextEvent sce, String fileLocation) {
-    
        try {
            Class.forName("com.mysql.jdbc.Driver");
         }catch (Exception ex) {
            Errors.setErrors("initServer / contextInitialized " + ex.toString());
         }
-        
         readConfigFile(sce, fileLocation);
         connectDatabase();
         getConfigValues();
     }
-    
-    
     
     public static void readConfigFile (ServletContextEvent sce, String filelocation) {
        try  {
@@ -250,8 +244,8 @@ public class Application implements ServletContextListener {
     }
     
     public static boolean isUserExists() {
+        
         boolean result  = false; 
-
         String  query = "SELECT * FROM `" + Constants.db_database+"`.`users` LIMIT 1 ";
         try {
             Statement st = Constants.dbConnection.createStatement();
