@@ -7,11 +7,13 @@ import errors.Errors;
 import java.sql.DriverManager;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -24,17 +26,9 @@ public class Application implements ServletContextListener {
       
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        try {
-           Class.forName("com.mysql.jdbc.Driver");
-        }catch (Exception ex) {
-           Errors.setErrors("Application / contextInitialized " + ex.toString());
-        }
-        
-        readConfigFile(sce);
-        connectDatabase();
-        getConfigValues();
+       initServer  (sce, null) ;
     }
-
+    
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         try {
@@ -45,11 +39,35 @@ public class Application implements ServletContextListener {
          
     }
     
-    public static void readConfigFile (ServletContextEvent sce) {
+    
+    private static void initServer (ServletContextEvent sce, String fileLocation) {
+    
+       try {
+           Class.forName("com.mysql.jdbc.Driver");
+        }catch (Exception ex) {
+           Errors.setErrors("initServer / contextInitialized " + ex.toString());
+        }
+        
+        readConfigFile(sce, fileLocation);
+        connectDatabase();
+        getConfigValues();
+    }
+    
+    
+    
+    public static void readConfigFile (ServletContextEvent sce, String filelocation) {
        try  {
             ServletContext context = sce.getServletContext();
-            String fullPath = context.getRealPath(Constants.config_file_path);
+            String fullPath;
+            if (filelocation == null) {
+                fullPath = context.getRealPath(Constants.config_file_path);
+            } else {
+                fullPath = filelocation; 
+            }
+            
               
+            
+            
             File configFile = new File(fullPath);
             if(configFile.exists()) {
                    
@@ -59,7 +77,6 @@ public class Application implements ServletContextListener {
                   
                 String strLine ;
                 String val ;
-                  
                   
                 while ((strLine = br.readLine()) != null)   {
                         if (strLine.startsWith("host")) {
@@ -133,10 +150,8 @@ public class Application implements ServletContextListener {
     
     public static void connectDatabase () {
         try {
-            
             Constants.dbConnection = DriverManager.getConnection("jdbc:mysql://" +Constants.db_hostname  + ":" 
                       + Constants.db_port, Constants.db_username, Constants.db_password ); 
-            
         } catch (Exception ex) {
             Constants.dbConnection = null;
             Errors.setErrors("Application / reconnectDatabase " + ex.toString());
@@ -144,33 +159,46 @@ public class Application implements ServletContextListener {
     }
     
     public static boolean writeConfigFile (HttpServletRequest request){
-    
+        
         boolean result = false;
         try {
-           FileWriter fileWriter = new FileWriter(Constants.config_file_path);
-           PrintWriter printWriter = new PrintWriter(fileWriter);
-       
-           Constants.db_hostname = request.getParameter("dbhost");
-           Constants.db_port     = request.getParameter("dbport");
-           Constants.db_username = request.getParameter("dbuser");
-           Constants.db_password = request.getParameter("dbpass");
-           Constants.db_database = request.getParameter("dbname");
-           connectDatabase ();
-           if (Constants.dbConnection.isValid(3)) {
-                String config_text  = "host=" +Constants.db_hostname+ "\n" +
-                         "port="    + Constants.db_port + "\n" +
-                         "username="+ Constants.db_username+"\n" +
-                         "password="+ Constants.db_password +"\n" +
-                         "database="+ Constants.db_database +"\n" +
-                         "login_length=3";
+           
+          String config_path = request.getSession().getServletContext().getRealPath("/WEB-INF/config/config"); 
+           
+           
+          Constants.db_hostname = request.getParameter("dbhost");
+          Constants.db_port     = request.getParameter("dbport");
+          Constants.db_username = request.getParameter("dbuser");
+          
+          if ( request.getParameter("dbpass") == null) {
+            Constants.db_password ="";
+          } else {
+            Constants.db_password = request.getParameter("dbpass") ;
+          }
+          
+          Constants.db_database = request.getParameter("dbname");
+          
+          
+           String config_text  = "host=" +Constants.db_hostname+ "\n" +
+                              "port="    + Constants.db_port + "\n" +
+                              "username="+ Constants.db_username+"\n" +
+                              "password="+ Constants.db_password +"\n" +
+                              "database="+ Constants.db_database +"\n" +
+                              "login_length=3";
 
-                printWriter.print(config_text);
-                printWriter.close();
-                result = true;
-           }
+            try (Writer writer = new BufferedWriter(new OutputStreamWriter( new FileOutputStream( config_path), "utf-8")) ) {
+                          writer.write(config_text);
+                          writer.close();
+                          result = true;
+            }
+          
+           initServer (null,  config_path );
+           
+
         }catch (Exception ex) {
            Errors.setErrors("Application / writeConfigFile " + ex.toString());
         }
+          
         return result;
     
     }

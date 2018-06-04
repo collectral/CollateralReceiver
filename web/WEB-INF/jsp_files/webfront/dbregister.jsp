@@ -5,7 +5,7 @@
             <input type="text" name="dbname" placeholder="Database Name" style="width: 100%">
             <input type="text" name="dbuser" placeholder="Database User" style="width: 100%">
             <input type="text" name="dbpass" placeholder="Database Password" style="width: 100%">
-            <input type="hidden" name="posting" name="dbregister">
+            <input type="hidden" name="posting" value="dbregister">
             <hr>
             <input class="gitst-button" type="submit"   value="SAVE" style="width: 100%">
     </form>

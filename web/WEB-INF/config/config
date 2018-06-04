@@ -1,6 +1,6 @@
 host=127.0.0.1
 port=3306
-username=root
+username=
 password=
-database=collectral_data
+database=
 login_length=3

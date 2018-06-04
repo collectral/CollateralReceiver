@@ -5,13 +5,13 @@
 String action_type = request.getParameter("posting");
 
 if (action_type != null) {
-
+    
     if (action_type.equals("dbregister")) {
         Application.writeConfigFile (request);
     }
 
     if (action_type.equals("dbconfig")) {
-        Application.setDatabaseValues(request);
+         Application.setDatabaseValues(request);
     }
     
     /**
