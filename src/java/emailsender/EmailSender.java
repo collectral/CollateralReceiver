@@ -11,16 +11,14 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
- 
-
 public class EmailSender {
     
    public static void sendRegistrationEmail(String recipient, String subject, String textBody   )   {
-
-        
+       
       final String username="";
       final String password="";
-            
+      final String fromemail="info@collectral.com";    
+      
       Properties props = new Properties();
       props.put("mail.smtp.auth", "true");
       props.put("mail.smtp.starttls.enable", "true");
@@ -36,10 +34,10 @@ public class EmailSender {
                    }
             });
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("info@gitst.com"));
+            message.setFrom(new InternetAddress(fromemail));
             
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
-            message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse("info@gitst.com"));
+            message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse(fromemail));
             
             message.setSubject(subject);
             message.setText(textBody);
