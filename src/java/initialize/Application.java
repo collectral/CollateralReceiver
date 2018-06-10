@@ -45,8 +45,8 @@ public class Application implements ServletContextListener {
            Errors.setErrors("Application  / initServer " + ex.toString());
         }
         readConfigFile(sce, fileLocation);
+        
         connectDatabase();
-        getConfigValues();
         
         try {
             if (Constants.dbConnection.isValid(Constants.db_timeout)) {
@@ -55,7 +55,9 @@ public class Application implements ServletContextListener {
         } catch (Exception ex) {
             Errors.setErrors("Application / initServer 2" + ex.toString());
         }
-       
+        
+        getConfigValues();
+        
     }
     
     public static void readConfigFile (ServletContextEvent sce, String filelocation) {
@@ -249,12 +251,16 @@ public class Application implements ServletContextListener {
         return result;
     }
     
+    
     public static boolean initDatabaseTables() {
         boolean result = false;
         
         try {
                 Statement st = Constants.dbConnection.createStatement();
                 String query = "";
+                    
+                    query = "CREATE DATABASE IF NOT EXISTS " + Constants.db_database + " CHARACTER SET utf8 COLLATE utf8_general_ci"; 
+                    st.execute(query);
                     
                     query = "CREATE TABLE  IF NOT EXISTS `" +Constants.db_database + "`.`conf` ("
                        + "`ID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, "

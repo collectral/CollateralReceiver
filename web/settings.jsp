@@ -6,9 +6,7 @@
 <%@page import="login.LoginAction"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<%
-    
+<%    
     if (Constants.dbConnection == null) {
        response.sendRedirect( WebConstants.getContextFullURL (request));
     }   
@@ -16,8 +14,6 @@
     if (!Constants.dbConnection.isValid(Constants.db_timeout)) {
        response.sendRedirect( WebConstants.getContextFullURL (request));
     } 
-    
-    
     
     request.setAttribute(Constants.page_attribute, Constants.page_settings);
     
@@ -49,7 +45,7 @@
                 } 
         } 
     } 
-        
+    
     if (id_key != null) {
         String logout = request.getParameter("posting") ;
         if (logout!= null) {
@@ -58,12 +54,9 @@
                 response.sendRedirect( WebConstants.getContextFullURL (request));
             } 
         }
-
         request.setAttribute(Constants.user_attribute, id_key);
         %><jsp:include page="/WEB-INF/jsp_files/webback/router.jsp"></jsp:include><%
     } else {
         response.sendRedirect( WebConstants.getContextFullURL (request));
     }
-
-
 %>

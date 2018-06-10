@@ -5,28 +5,16 @@
 String action_type = request.getParameter("posting");
 
 if (action_type != null) {
-    
     if (action_type.equals("dbregister")) {
         Application.writeConfigFile (request);
     }
-
     if (action_type.equals("dbconfig")) {
          Application.setDatabaseValues(request);
     }
-    
- 
     if (action_type.equals("adminregister")) {
-            String fullname = request.getParameter("fullname");
-            String email = request.getParameter("email");
-            Registration.register(email,  fullname);
+            Registration.registeradmin(request);
     }
-     
 }
-
-
-
-
-
 
 %>
 
