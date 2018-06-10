@@ -13,7 +13,7 @@
        response.sendRedirect( WebConstants.getContextFullURL (request));
     }   
     
-    if (!Constants.dbConnection.isValid(3)) {
+    if (!Constants.dbConnection.isValid(Constants.db_timeout)) {
        response.sendRedirect( WebConstants.getContextFullURL (request));
     } 
     

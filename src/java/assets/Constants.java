@@ -9,8 +9,8 @@ public class Constants {
     public static       int     login_length =  0;
     
     public static final String  collectralurl = "http://collectral.com/servers";
-    public static final String page_attribute  = "pagetype";
-    public static final String user_attribute  = "userkey";
+    public static final String  page_attribute  = "pagetype";
+    public static final String  user_attribute  = "userkey";
     
     public static final int page_home     = 0;
     public static final int page_file     = 1;
@@ -26,6 +26,7 @@ public class Constants {
     public static String db_port     = "";            //  default configuration database name 
     
     public static Connection dbConnection = null;    
+    public static int db_timeout = 10;   
     //// ############### 
     public static final String config_file_path = "/WEB-INF/config/config"; 
     

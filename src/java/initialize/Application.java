@@ -42,11 +42,20 @@ public class Application implements ServletContextListener {
        try {
            Class.forName("com.mysql.jdbc.Driver");
         }catch (Exception ex) {
-           Errors.setErrors("initServer / contextInitialized " + ex.toString());
+           Errors.setErrors("Application  / initServer " + ex.toString());
         }
         readConfigFile(sce, fileLocation);
         connectDatabase();
         getConfigValues();
+        
+        try {
+            if (Constants.dbConnection.isValid(Constants.db_timeout)) {
+              initDatabaseTables();
+            }
+        } catch (Exception ex) {
+            Errors.setErrors("Application / initServer 2" + ex.toString());
+        }
+       
     }
     
     public static void readConfigFile (ServletContextEvent sce, String filelocation) {
@@ -58,9 +67,6 @@ public class Application implements ServletContextListener {
             } else {
                 fullPath = filelocation; 
             }
-            
-              
-            
             
             File configFile = new File(fullPath);
             if(configFile.exists()) {
@@ -242,6 +248,125 @@ public class Application implements ServletContextListener {
         
         return result;
     }
+    
+    public static boolean initDatabaseTables() {
+        boolean result = false;
+        
+        try {
+                Statement st = Constants.dbConnection.createStatement();
+                String query = "";
+                    
+                    query = "CREATE TABLE  IF NOT EXISTS `" +Constants.db_database + "`.`conf` ("
+                       + "`ID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT, "
+                       + "`TYPE` varchar(250) NOT NULL,"
+                       + "`VALUE` varchar(250) NOT NULL"
+                       + ")"; 
+             
+                    st.execute(query);
+                    
+                    query = "CREATE TABLE IF NOT EXISTS  `" +Constants.db_database + "`.`data` (" +
+                                "`ID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                                "`DEVICEID` int(11) NOT NULL," +
+                                "`FORMID` int(11) NOT NULL," +
+                                "`JSONTEXT` text NOT NULL," +
+                                "`CDATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" +
+                            ")"; 
+                    st.execute(query);
+                    
+                    query = "CREATE TABLE IF NOT EXISTS  `" +Constants.db_database + "`.`data_images` (" +
+                        "`ID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                        "`FILEID` int(11) NOT NULL," +
+                        "`FIELDID` int(11) NOT NULL," +
+                        "`NAME` varchar(250) NOT NULL COMMENT 'Name of image'," +
+                        "`CONTENT` text NOT NULL COMMENT 'Base 64 Image'" +
+                        ")"; 
+                    st.execute(query);
+                    
+                    query = "CREATE TABLE IF NOT EXISTS `" +Constants.db_database + "`.`devices` (" +
+                        "`ID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                        "`DKEY` varchar(200) NOT NULL," +
+                        "`DESCRIPTION` varchar(250) DEFAULT NULL," +
+                        "`ADMINID` int(11) NOT NULL," +
+                        "`DID` varchar(200) DEFAULT NULL," +
+                        "`UDT` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP," +
+                        "`DT` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" +
+                        ")";                     
+                    st.execute(query);
+                    
+                    query = "CREATE TABLE IF NOT EXISTS `" +Constants.db_database + "`.`devices_group`(" +
+                        "`ID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                        "`NAME` varchar(250) NOT NULL," +
+                        "`ADMINID` int(11) NOT NULL," +
+                        "`CDATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP" +
+                        ")";                     
+                    st.execute(query);
+                    
+                    query = "CREATE TABLE IF NOT EXISTS `" +Constants.db_database + "`.`devices_group_connectaion` (" +
+                        "`ID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                        "`DEVICEID` int(11) NOT NULL," +
+                        "`GROUPID` int(11) NOT NULL," +
+                        "`ADMINID` int(11) NOT NULL" +
+                        ") ";                     
+                    st.execute(query);
+                    
+                    
+                    query = "CREATE TABLE IF NOT EXISTS `" +Constants.db_database + "`.`forms` (" +
+                        "`ID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                        "`NAME` varchar(200) NOT NULL," +
+                        "`URL` text," +
+                        "`ADMINID` int(11) NOT NULL," +
+                        "`GROUPID` int(11) NOT NULL DEFAULT '0'," +
+                        "`UDATE` int(11) NOT NULL DEFAULT '0'," +
+                        "`ENABLED` int(11) NOT NULL DEFAULT '1'," +
+                        "`CDATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP" +
+                        ") ";                     
+                    st.execute(query);
+                     
+                    query = "CREATE TABLE  IF NOT EXISTS `" +Constants.db_database + "`.`forms_fields` (" +
+                        "`ID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                        "`SID` int(11) NOT NULL COMMENT 'Section ID'," +
+                        "`FID` int(11) NOT NULL COMMENT 'Form ID'," +
+                        "`NAME` varchar(250) NOT NULL COMMENT 'Name Of the Field'," +
+                        "`DVAL` varchar(250) NOT NULL COMMENT 'Default Start Value'," +
+                        "`TYPE` int(11) NOT NULL COMMENT 'Filed Type'," +
+                        "`MAND` int(11) NOT NULL COMMENT 'Mandatory Field'," +
+                        "`DISPL` int(11) NOT NULL COMMENT 'Displayable '," +
+                        "`ADMINID` int(11) NOT NULL," +
+                        "`CDATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP" +
+                        ") ";                     
+                    st.execute(query);
+                    
+                    query = "CREATE TABLE IF NOT EXISTS `" +Constants.db_database + "`.`forms_sections` (" +
+                        "`ID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                        "`FID` int(11) NOT NULL," +
+                        "`FP` int(11) NOT NULL DEFAULT '0'," +
+                        "`NAME` varchar(250) NOT NULL," +
+                        "`ADMINID` int(11) NOT NULL," +
+                        "`CDATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP" +
+                        ")";                     
+                    st.execute(query);
+                    
+                    query = "CREATE TABLE IF NOT EXISTS `" +Constants.db_database + "`.`users` (" +
+                        "`ID` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT," +
+                        "`UN` varchar(100) NOT NULL," +
+                        "`PS` varchar(200) NOT NULL," +
+                        "`CK` varchar(200) DEFAULT NULL," +
+                        "`EM` varchar(100) NOT NULL," +
+                        "`ADMINID` int(11) NOT NULL DEFAULT '0'," +
+                        "`DT` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP" +
+                        ")";                     
+                    st.execute(query);
+                    
+                    st.close();
+                    
+        } catch (Exception ex) {
+            Errors.setErrors("Application / initDatabaseTables " + ex.toString());
+        }
+        
+        return result;
+    }
+    
+    
     
     public static boolean isUserExists() {
         

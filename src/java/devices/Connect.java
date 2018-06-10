@@ -76,7 +76,7 @@ public class Connect extends HttpServlet {
             if (Constants.dbConnection == null) {
                state = 1;  
             }  
-            if (!Constants.dbConnection.isValid(3)) {
+            if (!Constants.dbConnection.isValid(Constants.db_timeout)) {
                state = 2;  
             } 
             if (state > 0) {

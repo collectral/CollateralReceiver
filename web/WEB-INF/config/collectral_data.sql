@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `conf`
 --
 
-CREATE TABLE `conf` (
+CREATE TABLE  IF NOT EXISTS `conf` (
   `ID` int(11) NOT NULL,
   `TYPE` varchar(250) NOT NULL,
   `VALUE` varchar(250) NOT NULL
@@ -48,7 +48,7 @@ INSERT INTO `conf` (`ID`, `TYPE`, `VALUE`) VALUES
 -- Table structure for table `data`
 --
 
-CREATE TABLE `data` (
+CREATE TABLE IF NOT EXISTS  `data` (
   `ID` int(11) NOT NULL,
   `DEVICEID` int(11) NOT NULL,
   `FORMID` int(11) NOT NULL,
@@ -83,7 +83,7 @@ INSERT INTO `data` (`ID`, `DEVICEID`, `FORMID`, `JSONTEXT`, `CDATE`) VALUES
 -- Table structure for table `data_images`
 --
 
-CREATE TABLE `data_images` (
+CREATE TABLE IF NOT EXISTS  `data_images` (
   `ID` int(11) NOT NULL,
   `FILEID` int(11) NOT NULL,
   `FIELDID` int(11) NOT NULL,
@@ -107,7 +107,7 @@ INSERT INTO `data_images` (`ID`, `FILEID`, `FIELDID`, `NAME`, `CONTENT`) VALUES
 -- Table structure for table `devices`
 --
 
-CREATE TABLE `devices` (
+CREATE TABLE IF NOT EXISTS `devices` (
   `ID` int(11) NOT NULL,
   `DKEY` varchar(200) NOT NULL COMMENT 'Device Unique ID of device registration key in both key\\ses comes from device side ',
   `DESCRIPTION` varchar(250) DEFAULT NULL COMMENT 'Owner ID',
@@ -135,7 +135,7 @@ INSERT INTO `devices` (`ID`, `DKEY`, `DESCRIPTION`, `ADMINID`, `DID`, `UDT`, `DT
 -- Table structure for table `devices_group`
 --
 
-CREATE TABLE `devices_group` (
+CREATE TABLE IF NOT EXISTS `devices_group` (
   `ID` int(11) NOT NULL,
   `NAME` varchar(250) COLLATE utf8mb4_bin NOT NULL,
   `ADMINID` int(11) NOT NULL,
@@ -155,7 +155,7 @@ INSERT INTO `devices_group` (`ID`, `NAME`, `ADMINID`, `CDATE`) VALUES
 -- Table structure for table `devices_group_connectaion`
 --
 
-CREATE TABLE `devices_group_connectaion` (
+CREATE TABLE IF NOT EXISTS `devices_group_connectaion` (
   `ID` int(11) NOT NULL,
   `DEVICEID` int(11) NOT NULL,
   `GROUPID` int(11) NOT NULL,
@@ -180,7 +180,7 @@ INSERT INTO `devices_group_connectaion` (`ID`, `DEVICEID`, `GROUPID`, `ADMINID`)
 -- Table structure for table `forms`
 --
 
-CREATE TABLE `forms` (
+CREATE TABLE IF NOT EXISTS `forms` (
   `ID` int(11) NOT NULL,
   `NAME` varchar(200) NOT NULL COMMENT 'Form Display Name',
   `URL` text,
@@ -204,7 +204,7 @@ INSERT INTO `forms` (`ID`, `NAME`, `URL`, `ADMINID`, `GROUPID`, `UDATE`, `ENABLE
 -- Table structure for table `forms_fields`
 --
 
-CREATE TABLE `forms_fields` (
+CREATE TABLE  IF NOT EXISTS  `forms_fields` (
   `ID` int(11) NOT NULL,
   `SID` int(11) NOT NULL COMMENT 'Section ID',
   `FID` int(11) NOT NULL COMMENT 'Form ID',
@@ -237,7 +237,7 @@ INSERT INTO `forms_fields` (`ID`, `SID`, `FID`, `NAME`, `DVAL`, `TYPE`, `MAND`, 
 -- Table structure for table `forms_sections`
 --
 
-CREATE TABLE `forms_sections` (
+CREATE TABLE IF NOT EXISTS `forms_sections` (
   `ID` int(11) NOT NULL,
   `FID` int(11) NOT NULL COMMENT 'Form ID to which belongs this section',
   `FP` int(11) NOT NULL DEFAULT '0' COMMENT 'First Page Section  ID if = 1',
@@ -262,7 +262,7 @@ INSERT INTO `forms_sections` (`ID`, `FID`, `FP`, `NAME`, `ADMINID`, `CDATE`) VAL
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `ID` int(11) NOT NULL,
   `UN` varchar(100) NOT NULL COMMENT 'login',
   `PS` varchar(200) NOT NULL COMMENT 'Password',
